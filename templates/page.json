@@ -1,0 +1,107 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary"
+      }
+    },
+    "1643001455e8797284": {
+      "type": "image-with-text",
+      "settings": {
+        "feature_image": "shopify:\/\/shop_images\/976A9391_27b69ba1-81af-4fd4-8219-3160b2ed5728.jpg",
+        "heading": "The finish line just got a whole lot closer",
+        "text": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "content_position": "text-align--left align--middle",
+        "text_align": "text-align--left",
+        "section_color_overlay": "secondary",
+        "color_scheme": "secondary"
+      }
+    },
+    "16430783440e848941": {
+      "type": "cascade",
+      "blocks": {
+        "1643078344a745d7ab-0": {
+          "type": "rich_text",
+          "settings": {
+            "heading": "We’re all working toward the same goal",
+            "rich_text": "<p>Creating the opportunities, volume and profit potential in the plant-based world that eggs have enjoyed for so long. But every step of the supply chain has to be reconsidered, retooled and improved to make that happen—and Acremade has been making waves at every juncture. <\/p>",
+            "cta_url": "",
+            "cta_text": "Shop now",
+            "text_align": "text-align--left",
+            "block_width_mobile": "full",
+            "block_width": "full"
+          }
+        },
+        "1643078344a745d7ab-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pylyp-sukhenko-y-XZf_TNRms-unsplash.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "full"
+          }
+        },
+        "1643078344a745d7ab-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/wholesale-scramble_mix.jpg",
+            "url": "",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        },
+        "41e86b9d-5915-4274-a7e9-fab86007e8c9": {
+          "type": "text",
+          "settings": {
+            "rich_text": "<p>If you’re looking to fast-track your company’s plant-based innovations to market, the shortcuts lie in Acremade strategies, connections, investments, plants, facilities and distribution capabilities.<\/p>",
+            "cta_url": "",
+            "cta_text": "",
+            "text_align": "text-align--left",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        }
+      },
+      "block_order": [
+        "1643078344a745d7ab-0",
+        "1643078344a745d7ab-1",
+        "1643078344a745d7ab-2",
+        "41e86b9d-5915-4274-a7e9-fab86007e8c9"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "secondary"
+      }
+    },
+    "164633542488864fe4": {
+      "type": "richtext",
+      "blocks": {
+        "1646335424124ce588-0": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "<p>If you're interested in integrating plant-based eggs into your next food innovation or commercial kitchen process, reach out to us for more information.<\/p><p><\/p><p><\/p><p><a href=\"\/pages\/contact\" title=\"Contact\"><span style=\"text-decoration:underline\"><strong>Contact Us<\/strong><\/span><\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "1646335424124ce588-0"
+      ],
+      "settings": {
+        "title": "Cracking the surface of plant-based eating",
+        "cta_url": "",
+        "cta_text": "",
+        "color_scheme": "tertiary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1643001455e8797284",
+    "16430783440e848941",
+    "164633542488864fe4"
+  ]
+}

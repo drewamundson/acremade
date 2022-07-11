@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page--contact",
+      "settings": {
+        "color_scheme": "tertiary"
+      }
+    },
+    "1643000608d49a4440": {
+      "type": "image-with-text",
+      "settings": {
+        "feature_image": "shopify:\/\/shop_images\/MG_3932.jpg",
+        "heading": "",
+        "text": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "content_position": "text-align--left align--middle",
+        "text_align": "text-align--left",
+        "section_color_overlay": "primary",
+        "color_scheme": "secondary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1643000608d49a4440"
+  ]
+}

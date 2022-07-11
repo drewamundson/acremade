@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "cascade",
+      "blocks": {
+        "rich-text-0": {
+          "type": "rich_text",
+          "settings": {}
+        },
+        "image-0": {
+          "type": "image",
+          "settings": {}
+        },
+        "image-1": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "rich-text-0",
+        "image-0",
+        "image-1"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

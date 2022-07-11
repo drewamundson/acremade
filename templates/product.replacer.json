@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_drop_down_labels": false
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "show_pickup_availability": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "color_scheme": "primary",
+        "enable_image_zoom": false,
+        "enable_video_looping": false,
+        "enable_full_width_description": true,
+        "enable_split_description": true,
+        "description_color_scheme": "primary"
+      }
+    },
+    "1642799884c205f40f": {
+      "type": "cascade",
+      "blocks": {
+        "1642799884a8400ce1-0": {
+          "type": "rich_text",
+          "settings": {
+            "heading": "Bake without cracking a single shell",
+            "rich_text": "<p>Acremade Plant-Based Egg Replacer powder is the perfect substitute ingredient for everyone from home bakers to commercial operations. It’s all thanks to the mighty pea, ensuring your next baking masterpiece is plant-powered perfection. From your first bite to the last, we promise, you won’t miss a thing.<\/p>",
+            "cta_url": "",
+            "cta_text": "Shop now",
+            "text_align": "text-align--left",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "1642799884a8400ce1-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/nutrition_labels_replacer.png",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "1642799884a8400ce1-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Stocksy_txp6693617cStL300_Medium_3528004.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        }
+      },
+      "block_order": [
+        "1642799884a8400ce1-0",
+        "1642799884a8400ce1-2",
+        "1642799884a8400ce1-1"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "tertiary"
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "You may also like",
+        "color_scheme": "secondary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1642799884c205f40f",
+    "recommendations"
+  ]
+}

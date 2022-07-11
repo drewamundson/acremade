@@ -1,0 +1,147 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary"
+      }
+    },
+    "1642997618fdcca612": {
+      "type": "cascade",
+      "blocks": {
+        "16429976186156816d-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "We bring eggs* to the eggless.",
+            "text_align": "text-align--left",
+            "font_size": "large",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        },
+        "16429976186156816d-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Ezra-eggs.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "16429976186156816d-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/DSC02420.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "16429976186156816d-3": {
+          "type": "text",
+          "settings": {
+            "rich_text": "<p>Acremade is free from the things that take the fun out of eating well. Whether you're a plant-based home cook, an allergy household, an ethical vegan, an environmental steward, or just plant-curious, we give egg-free egg lovers something to cluck about.<\/p>",
+            "cta_url": "shopify:\/\/collections\/all",
+            "cta_text": "Give Acremade a Try",
+            "text_align": "text-align--left",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        }
+      },
+      "block_order": [
+        "16429976186156816d-0",
+        "16429976186156816d-1",
+        "16429976186156816d-2",
+        "16429976186156816d-3"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "primary"
+      }
+    },
+    "16429993153d0e663c": {
+      "type": "richtext",
+      "blocks": {
+        "16429993152f0d6554-0": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "<p>Plants are the only solution for sustainably feeding the earth’s growing population. Even with all the interest and good intentions in the marketplace, conventional agriculture is solidly in the lead. That’s why Acremade exists: to fulfill a vision of <strong>a future where plant-based takes the lead<\/strong>, resetting the world’s expectations for satisfaction, affordability and sustainability.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16429993152f0d6554-0"
+      ],
+      "settings": {
+        "title": "A world of potential, born from a single pea.",
+        "cta_url": "shopify:\/\/blogs\/news",
+        "cta_text": "",
+        "color_scheme": "tertiary"
+      }
+    },
+    "16466586982725ba3a": {
+      "type": "cascade",
+      "blocks": {
+        "1646658697079f6e0b-0": {
+          "type": "rich_text",
+          "settings": {
+            "heading": "",
+            "rich_text": "",
+            "cta_url": "",
+            "cta_text": "Shop now",
+            "text_align": "text-align--left",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        },
+        "1646658697079f6e0b-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/whyacremade-waffle.jpg",
+            "url": "",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        },
+        "1646658697079f6e0b-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/whyacremade-cookies.jpg",
+            "url": "",
+            "block_width_mobile": "half",
+            "block_width": "half"
+          }
+        }
+      },
+      "block_order": [
+        "1646658697079f6e0b-0",
+        "1646658697079f6e0b-1",
+        "1646658697079f6e0b-2"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "tertiary"
+      }
+    },
+    "1643087462e6c84bb5": {
+      "type": "video",
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "video_url": "https:\/\/vimeo.com\/683525127",
+        "color_scheme": "primary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1642997618fdcca612",
+    "16429993153d0e663c",
+    "16466586982725ba3a",
+    "1643087462e6c84bb5"
+  ]
+}

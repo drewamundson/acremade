@@ -1,0 +1,106 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_drop_down_labels": false
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "enable_payment_button": true,
+            "show_pickup_availability": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "color_scheme": "primary",
+        "enable_image_zoom": false,
+        "enable_video_looping": false,
+        "enable_full_width_description": true,
+        "enable_split_description": true,
+        "description_color_scheme": "primary"
+      }
+    },
+    "1642799884c205f40f": {
+      "type": "cascade",
+      "blocks": {
+        "1642799884a8400ce1-0": {
+          "type": "rich_text",
+          "settings": {
+            "heading": "The best scramble, no eggs needed.",
+            "rich_text": "<p>Whether you love animals too much to eat them, or want to clean up the planet while you clean your plate, Acremade’s plant-based egg scrambler has you covered. It’s all thanks to the mighty pea, filling hungry bellies and fueling a regenerative food system at the same time. Today, crack open something new.<\/p>",
+            "cta_url": "",
+            "cta_text": "Shop now",
+            "text_align": "text-align--left",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "1642799884a8400ce1-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/nutrition_labels_scrambler.png",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "1642799884a8400ce1-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Stocksy_txp6693617cStL300_Medium_4032706.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        }
+      },
+      "block_order": [
+        "1642799884a8400ce1-0",
+        "1642799884a8400ce1-2",
+        "1642799884a8400ce1-1"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "tertiary"
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "show_product_recommendations": true,
+        "product_recommendations_heading": "You may also like",
+        "color_scheme": "secondary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1642799884c205f40f",
+    "recommendations"
+  ]
+}

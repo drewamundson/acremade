@@ -1,0 +1,185 @@
+{% assign section_color = 'primary' %}
+<div class="mt1 max-width--4 px2 lg--up--px3 mx--auto section-with-padding pt0 {% if cart == empty %}is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
+  <div class="show-unless-empty">
+
+    <hr class="hr bg--{{ section_color }}-text my3"/>
+
+    <div class="grid">
+      <div class="grid__item md--up--one-half">
+        <div class="md--up--pr4">
+          {% if settings.cart_notes_enable %}
+            <label class="inline-block mb1 font-size--sm" for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <cart-note class="block updatable reflects-update-state">
+              <textarea class="bg--transparent border--main full--w" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+            </cart-note>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="grid__item cart-blocks md--up--one-half md--up--text-align--right mt3 md--up--mt0 {% unless settings.cart_notes_enable %}right{% endunless %}">
+
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when '@app' %}
+              {% render block %}
+            {% when 'liquid' %}
+            <div {{ block.shopify_attributes }}>
+              {{ block.settings.liquid }}
+            </div>
+            {% when 'subtotal' %}
+              <div class="cart-blocks__subtotal" data-updatable-region="cart" {{ block.shopify_attributes }}>
+                {%- if cart.cart_level_discount_applications != blank -%}
+                <div class="grid--full cart__row--table">
+                  <div class="cart__discounts">
+                    {%- for discount_application in cart.cart_level_discount_applications -%}
+                      <p class="color--primary-accent">
+                        <span class="visually-hidden">{{ 'customer.order.discount' | t }}:</span><span class="mr1">{{- discount_application.title -}}</span>
+                        <span class="order-discount order-di  scount--cart">-{{ discount_application.total_allocated_amount | money }}</span>
+                      </p>
+                    {%- endfor -%}
+                  </div>
+                </div>
+                {%- endif -%}
+                <div class="flex full--w font-size--m mt1">
+                  <div class="table-cell text-align--left flex--1 md--up--text-align--right">
+                    <p>{{ 'cart.general.subtotal' | t }}</p>
+                  </div>
+                  <div class="table-cell flex--1 text-align--right">
+                    <p>{{ cart.total_price | money_with_currency }}</p>
+                  </div>
+                </div>
+                {%- capture taxes_shipping_checkout -%}
+                  {%- if shop.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url, link_class: 'link-underline link-underline--primary' }}
+                  {%- elsif shop.taxes_included -%}
+                    {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url, link_class: 'link-underline link-underline--primary' }}
+                  {%- else -%}
+                    {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                {%- endcapture -%}
+                <p class="font-size--xs md--up--font-size--s mt1 mb3">
+                  {{ taxes_shipping_checkout }}
+                </p>
+              </div>
+            {% when 'buttons' %}
+              <div class="cart-blocks__buttons reflects-update-state" {{ block.shopify_attributes }}>
+                <div class="grid grid--half-gutter mt1">
+                  <div class="grid__item one-half">
+                    <input type="submit" form="cart" name="update" class="btn border--none p1 block full--w bg--transparent border--primary-text color--primary-text hv--border--primary-accent hv--primary-accent" value="{{ 'cart.general.update' | t }}">
+                  </div>
+                  <div class="grid__item one-half">
+                    <input type="submit" form="cart" name="checkout" class="btn border--primary-text p1 block full--w bg--primary-text color--primary-text--overlay hv--border--primary-accent hv--primary-accent--overlay hv-bg--primary-accent" value="{{ 'cart.general.checkout' | t }}">
+                  </div>
+                </div>
+                {% if additional_checkout_buttons and settings.enable_accelerated_checkout %}
+                <div class="grid grid--half-gutter mt2">
+                  <div class="grid__item text-align--right lg--up--one-half lg--up--push-one-half">
+                    <div class="additional-checkout-buttons">
+                      {{ content_for_additional_checkout_buttons }}
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+        <div id="cart-errors" class="my2 text-align--right px1 font-size--s"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% javascript %}
+  class CartNote extends HTMLElement {
+    get noteInputEl() {
+      return this.querySelector("textarea");
+    }
+
+    get currentValue() {
+      return this.noteInputEl.value;
+    }
+
+    constructor() {
+      super();
+
+      this.lastValue = this.currentValue;
+
+      this.noteInputEl.addEventListener(
+        "keyup",
+        debounce((event) => {
+          event.target.dispatchEvent(new Event("change"));
+        }, 750)
+      );
+
+      this.noteInputEl.addEventListener(
+        "change",
+        debounce((event) => {
+          if (this.currentValue === this.lastValue) return;
+
+          this.classList.add(
+            "updatable--is-updating",
+            "reflects-update-state--state-is-updating"
+          );
+
+          const body = JSON.stringify({ note: event.target.value });
+
+          fetch(`${window.theme.routes.cart_update_url}`, {
+            ...{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+            },
+            ...{ body },
+          })
+            .then((response) => response.text())
+            .then((state) => {
+              this.lastValue = JSON.parse(state).note;
+              this.classList.remove(
+                "updatable--is-updating",
+                "reflects-update-state--state-is-updating"
+              );
+            });
+        }, 300)
+      );
+    }
+  }
+
+  customElements.define("cart-note", CartNote);
+
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Cart footer",
+  "blocks": [
+    {
+      "type": "subtotal",
+      "name": "Subtotal",
+      "limit": 1
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "liquid",
+      "name": "Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

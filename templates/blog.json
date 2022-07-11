@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "color_scheme": "primary",
+        "no_posts": 12,
+        "enable_tag_filter": true,
+        "show_subscribe_link": true,
+        "show_author": false,
+        "show_date": true,
+        "show_excerpt": true,
+        "show_tags": true,
+        "show_link": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

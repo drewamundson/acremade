@@ -1,0 +1,5 @@
+{% if additional_checkout_buttons and settings.enable_accelerated_checkout %}
+<div class="additional_checkout_buttons">
+  {{ content_for_additional_checkout_buttons }}
+</div>
+{% endif %}

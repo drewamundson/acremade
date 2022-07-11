@@ -1,0 +1,189 @@
+{
+  "sections": {
+    "cascade-0": {
+      "type": "cascade",
+      "blocks": {
+        "rich-text-0": {
+          "type": "rich_text",
+          "settings": {
+            "heading": "A BETTER PLANT-BASED EGG*",
+            "rich_text": "<p><strong>Acremade is ushering in a new era of plant-based eggs with delicious, easy-to-use, nutritious  products free from the top 8 allergens and that unlock a world of potential within plant-based eating and baking. Whether you love animals too much to eat them, or want to clean up the planet while you clean your plate, Acremade has you covered.<\/strong><\/p>",
+            "cta_url": "shopify:\/\/collections\/all",
+            "cta_text": "Shop Now",
+            "text_align": "text-align--left",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home-scramble_toast_plated-crop.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "image-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home_peapods_009382f8-e5f7-45ce-af95-925a667934b5.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        }
+      },
+      "block_order": [
+        "rich-text-0",
+        "image-1",
+        "image-0"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "primary"
+      }
+    },
+    "1642734512a24bd11c": {
+      "type": "cascade",
+      "blocks": {
+        "55105277-4119-42ba-bcd6-f7a6f3fa9dea": {
+          "type": "section_break",
+          "settings": {}
+        },
+        "1642734512510f64b6-1": {
+          "type": "rich_text",
+          "settings": {
+            "heading": "Meet the mighty pea.",
+            "rich_text": "<p>Acremade is new, but our roots grow deep. Built on a foundation of 40 years of plant-based food expertise, we've developed an egg* made from yellow field peas, a nutritious and planet-friendly pulse that fills hungry bellies while fueling a regenerative food system at the same time.<\/p>",
+            "cta_url": "shopify:\/\/pages\/about",
+            "cta_text": "Learn More",
+            "text_align": "text-align--left",
+            "block_width_mobile": "full",
+            "block_width": "full"
+          }
+        },
+        "1642734512510f64b6-0": {
+          "type": "video",
+          "settings": {
+            "video_url": "https:\/\/vimeo.com\/683404863",
+            "use_high_res_image": true,
+            "block_width_mobile": "full",
+            "block_width": "full"
+          }
+        }
+      },
+      "block_order": [
+        "55105277-4119-42ba-bcd6-f7a6f3fa9dea",
+        "1642734512510f64b6-1",
+        "1642734512510f64b6-0"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "primary"
+      }
+    },
+    "1645474002c4ba4b52": {
+      "type": "image-with-text",
+      "settings": {
+        "feature_image": "shopify:\/\/shop_images\/home-acremade_scrambler_feature.jpg",
+        "heading": "Scrambler",
+        "text": "<p>Crack open something new with this skillet-friendly scramble.<\/p>",
+        "cta_url": "shopify:\/\/products\/egg-scrambler",
+        "cta_text": "Product Page",
+        "content_position": "text-align--left align--middle",
+        "text_align": "text-align--left",
+        "section_color_overlay": "primary",
+        "color_scheme": "primary"
+      }
+    },
+    "164633370323941418": {
+      "type": "image-with-text",
+      "settings": {
+        "feature_image": "shopify:\/\/shop_images\/204-acremade-replacement-paperbag.jpg",
+        "heading": "Replacer",
+        "text": "<p>Ensure your next baking masterpiece is plant-powered perfection.<\/p>",
+        "cta_url": "shopify:\/\/products\/egg-replacer",
+        "cta_text": "Product Page",
+        "content_position": "text-align--right align--middle",
+        "text_align": "text-align--left",
+        "section_color_overlay": "primary",
+        "color_scheme": "primary"
+      }
+    },
+    "cascade-2": {
+      "type": "cascade",
+      "blocks": {
+        "heading-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "There’s a world of potential in a single pea",
+            "text_align": "text-align--left",
+            "font_size": "large",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "image-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home-chop.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/home-omelet_skillet.jpg",
+            "url": "",
+            "block_width_mobile": "full",
+            "block_width": "half"
+          }
+        },
+        "6707061c-b46d-4b3f-a886-39f4c0cf1f0f": {
+          "type": "video",
+          "settings": {
+            "video_url": "https:\/\/vimeo.com\/684828249",
+            "use_high_res_image": true,
+            "block_width_mobile": "full",
+            "block_width": "full"
+          }
+        }
+      },
+      "block_order": [
+        "heading-0",
+        "image-0",
+        "image-1",
+        "6707061c-b46d-4b3f-a886-39f4c0cf1f0f"
+      ],
+      "settings": {
+        "first_item": "left",
+        "color_scheme": "tertiary"
+      }
+    },
+    "1642805256b5388896": {
+      "type": "image-with-text",
+      "settings": {
+        "feature_image": "shopify:\/\/shop_images\/home-scramble_scoop.jpg",
+        "heading": "",
+        "text": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "content_position": "text-align--left align--middle",
+        "text_align": "text-align--left",
+        "section_color_overlay": "primary",
+        "color_scheme": "secondary"
+      }
+    }
+  },
+  "order": [
+    "cascade-0",
+    "1642734512a24bd11c",
+    "1645474002c4ba4b52",
+    "164633370323941418",
+    "cascade-2",
+    "1642805256b5388896"
+  ]
+}
