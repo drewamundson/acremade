@@ -420,6 +420,7 @@
           {%- assign cta_url = block.settings.cta_url -%}
           {%- assign content_position = block.settings.content_position -%}
           {%- assign text_align = block.settings.text_align -%}
+          {%- assign fp = block.settings.featured_product -%}
           {% if cta_url != blank or heading != blank %}
           <div class="absolute top--0 right--0  bottom--0 left--0  px2 py4 lg--up--px3 wd--p5 z1">
             {% assign content_position = content_position | split: ' ' %}
@@ -448,6 +449,18 @@
                     {% render 'icon-arrow-down' %}
             </button>
           </div>
+          
+          {% if fp %}
+            {% assign theProduct = all_products[fp] %}
+            <div id="featured-product">
+              <h3>{{theProduct.title}}</h3>
+              <button>Add to cart</button>
+            </div>
+          {% endif %}
+
+
+
+
         </div>
         {% else %}
         <div class="banner__placeholder  relative {% unless block.settings.image_style == 'fit_content' %}full--vh full--w{% endunless %} bg--placeholder-dark js banner_image full--w"
@@ -676,6 +689,15 @@
           },
           {
             "type": "header",
+            "content": "Product"
+          },
+          {
+            "type": "product",
+            "id": "featured_product",
+            "label": "Product"
+          },
+          {
+            "type": "header",
             "content": "Content"
           },
           {
@@ -751,3 +773,13 @@
     ]
   }
 {% endschema %}
+
+{% stylesheet %}
+
+#featured-product {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+}
+{% endstylesheet %}
