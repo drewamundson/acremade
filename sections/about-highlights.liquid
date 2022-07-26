@@ -1,0 +1,110 @@
+{%- assign section_color = section.settings.color_scheme -%}
+
+<section class="page section-with-padding color--{{ section_color }}-text pb0">
+  <div class="max-site-width px2 lg--up--px3">
+    {%- if section.settings.highlight_heading != blank -%}
+      <div class="lg--up--four-fifths md--up--pr2 wh-text">
+        <div class="md--up--pr2">
+          <div class="hl-heading m0 f--heading font-weight-normal font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ section.settings.highlight_heading }}</div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+      
+  {%- if section.blocks.size > 0 -%}
+    <div class="color-block bg--{{ section_color }}-background">
+      <div class="max-site-width px2 lg--up--px3">
+        <div class="lg--up--one-whole lg--up--mt3 lg--up--pt3">
+          <ul class="flex flex--wrap px1 py3 lg--up--p2 m0 flex--wrap">
+            {%- for block in section.blocks -%}
+              {%- assign hl = block.settings.highlight -%}
+              {%- if hl != blank -%}
+                <li class="highlight-item one-whole lg--up--one-third pr4 md--dn--pr2 mb2">
+                  {{ hl }}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+  
+</section>
+
+{% schema %}
+{
+  "name": "About Highlights",
+  "settings": [
+    {
+      "type":      "header",
+      "content":   "Color"
+    },
+    {
+       "type": "select",
+       "id": "color_scheme",
+       "label": "Color scheme",
+       "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+       ]
+    },
+    {
+      "type": "header",
+      "content": "Header text"
+    },
+    {
+      "type": "richtext",
+      "id": "highlight_heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "highlight",
+          "label": "Highlight text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Highlights",
+      "category": "About Page",
+      "blocks": [
+        { 
+          "type": "highlight"
+        }
+      ]
+    }
+  ]  
+}
+{% endschema %}
+
+{% stylesheet %} 
+  .hl-heading { 
+    font-weight: normal;
+    text-transform: none; 
+  }
+  .hl-heading strong {
+    font-weight: var(--heading-font-weight);
+  }
+  .highlight-item {
+    font-family: var(--heading-font-stack);
+  }
+  .highlight-item strong {
+    font-family: var(--heading-font-stack);
+    font-weight: var(--heading-font-weight);
+    font-style: var(--heading-font-style);
+    margin: 0 5px 0 0; 
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+{% endstylesheet %}

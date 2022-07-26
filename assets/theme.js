@@ -28803,28 +28803,3 @@ window.addEventListener('DOMContentLoaded', function () {
 
 /***/ })
 /******/ ]);
-
-
-
-
-
-
-function addProductToCart(data, successCallback, errorCallback){
-  $.ajax({ url: '/cart/add.js', type: 'post', dataType: 'json',
-    data: data,
-    success: function(data, textStatus, jqXHR) {
-      if (textStatus === 'success') {
-        //Utilities.updateCart(successCallback, true);
-        
-        setTimeout(function(){
-          
-        }, 3000);
-      }
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      errorCallback 
-        ? errorCallback(jqXHR.responseJSON.description)
-        : alert(jqXHR.responseJSON.description);
-    }
-  });
-}

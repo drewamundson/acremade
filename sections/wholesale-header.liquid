@@ -1,0 +1,97 @@
+{%- assign section_color = section.settings.color_scheme -%}
+
+<section class="page section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="lg--up--flex items--center">
+    
+      {% if section.settings.wholesale_heading != blank or section.settings.wholesale_text != blank %}
+        <div class="lg--up--one-half md--up--pr2 wh-text">
+          <div class="md--up--pr2">
+            {% if section.settings.wholesale_heading != blank %}
+              <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ section.settings.wholesale_heading }}</h2>
+            {% endif %}
+            {% if section.settings.wholesale_text != blank %}
+              <div class="font-size__basic mt3">
+                <p>{{ section.settings.wholesale_text }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.wholesale_img %}
+        <div class="lg--up--one-half">
+          {% assign image = section.settings.wholesale_img %}
+          <div class="image-holder {% if col_count_mobile == 2 or col_count_mobile == 3 %}seven-eighths mx--auto{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
+            {% render 'responsive-image' with
+              image: image,
+              max_width: 2000,
+              max_height: 2000,
+              section_color: section_color,
+            %}
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+
+    {% if section.settings.wholesale_form_snippet != blank %}
+      <div class="mt2 lg--up--mt4">
+        {{ section.settings.wholesale_form_snippet }}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wholesale Header",
+  "settings": [
+    {
+      "type":      "header",
+      "content":   "Color"
+    },
+    {
+       "type": "select",
+       "id": "color_scheme",
+       "label": "Color scheme",
+       "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+       ]
+    },
+    {
+      "type": "header",
+      "content": "Header text & image"
+    },
+    {
+      "type": "image_picker",
+      "id": "wholesale_img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_text",
+      "label": "Text",
+      "default": "Acremade is free from the things that take the fun out of eating well. Whether you're a plant-based home cook, an allergy household, an ethical vegan, an environmental steward, or just plant-curious, we give egg-free egg lovers something to cluck about."
+    },
+    {
+      "type": "header",
+      "content": "Wholesale application form"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_form_snippet",
+      "label": "Wholesale form snippet.",
+      "info": "Get this code from the Form Builder App"
+    }
+  ]
+}
+{% endschema %}

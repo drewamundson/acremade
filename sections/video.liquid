@@ -1,13 +1,11 @@
 {%- assign section_color = section.settings.color_scheme -%}
-
-
 {%- assign video_grid_width = 'lg--up--three-quarters' -%}
 {%- if section.settings.title == blank and section.settings.description == blank and section.settings.cta_url == blank -%}
   {%- assign video_grid_width = 'lg--up--one-whole' -%}
 {%- endif -%}
 
-<section class="video section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-type="video" data-section-id="{{ section.id }}">
-  <div class="max-site-width lg--up--px3">
+<section class="video color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-type="video" data-section-id="{{ section.id }}">
+  <div class="max-site-width lg--up--p3">
     <div class="grid">
 
       {% unless section.settings.title == blank and section.settings.description == blank and  section.settings.cta_url == blank %}
@@ -35,7 +33,7 @@
       {% endunless %}
 
       <div class="grid__item {{ video_grid_width }}">
-        <div class="px2 lg--up--px0">
+        <div class="p2 lg--up--p0">
           {% if section.settings.video_url %}
             {% if section.settings.video_url.type == 'youtube' %}
               <iframe width="560" height="315" src="//www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&amp;controls=0&amp;showinfo=0" title="{{ 'general.accessibility.media.embedded_video_title' | t }}" frameborder="0" allowfullscreen></iframe>

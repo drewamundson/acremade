@@ -63,6 +63,13 @@
       ],
       "settings": {}
     },
+    "product-split": {
+      "type": "product-split",
+      "color_scheme": "primary",
+      "settings": {
+        
+      }      
+    },    
     "recommendations": {
       "type": "product-recommendations",
       "settings": {}
@@ -71,6 +78,7 @@
   "order": [
     "main",
     "cascade",
+    "product-split",
     "recommendations"
-  ]
+  ] 
 }

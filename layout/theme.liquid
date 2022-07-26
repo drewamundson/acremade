@@ -131,6 +131,13 @@
   {% if main_font_bolder %}
     {{ main_font_bolder | font_face: font_display: 'swap' }}
   {% endif %}
+  .bg--base-background {
+    background: #fff;
+  }
+
+  .color--base-text {
+    color: var(--color-primary-text);
+  }  
   </style>
 
   <script>
@@ -197,7 +204,6 @@
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {% section 'header' %}
-
 
   <main role="main" id="MainContent">
     {{ content_for_layout }}

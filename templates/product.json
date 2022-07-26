@@ -45,52 +45,15 @@
         "description_color_scheme": "primary"
       }
     },
-    "1642799884c205f40f": {
-      "type": "cascade",
-      "blocks": {
-        "1642799884a8400ce1-0": {
-          "type": "rich_text",
-          "settings": {
-            "heading": "The best scramble, no eggs needed.",
-            "rich_text": "<p>Acremade uses ingredients that have actually been diverted from the food chain’s waste stream—what before was used as extra plant-material fertilizer, is now a clean, delicious source of plant protein.<\/p>",
-            "cta_url": "",
-            "cta_text": "Shop now",
-            "text_align": "text-align--left",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        },
-        "1642799884a8400ce1-2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/100-acremade-nutrition_labels_replacer.png",
-            "url": "",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        },
-        "1642799884a8400ce1-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Stocksy_comp_3822025.jpg",
-            "url": "",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        }
-      },
-      "block_order": [
-        "1642799884a8400ce1-0",
-        "1642799884a8400ce1-2",
-        "1642799884a8400ce1-1"
-      ],
+    "product-split": {
+      "type": "product-split",
+      "color_scheme": "primary",
       "settings": {
-        "first_item": "left",
-        "color_scheme": "tertiary"
+        
       }
     },
     "recommendations": {
-      "type": "product-recommendations",
+      "type": "product-recommendations", 
       "settings": {
         "show_product_recommendations": true,
         "product_recommendations_heading": "You may also like",
@@ -100,7 +63,7 @@
   },
   "order": [
     "main",
-    "1642799884c205f40f",
+    "product-split", 
     "recommendations"
   ]
 }

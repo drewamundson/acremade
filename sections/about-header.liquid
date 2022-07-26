@@ -1,0 +1,85 @@
+{%- assign section_color = section.settings.color_scheme -%}
+
+<section class="page section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="lg--up--flex items--center">
+    
+      {% if section.settings.about_heading != blank or section.settings.about_text != blank %}
+        <div class="lg--up--one-half md--up--pr2 wh-text">
+          <div class="md--up--pr2">
+            {% if section.settings.about_heading != blank %}
+              <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ section.settings.about_heading }}</h2>
+            {% endif %}
+            {% if section.settings.about_text != blank %}
+              <div class="font-size__basic mt2 lg--up--mt3">
+                <p>{{ section.settings.about_text }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.about_img %}
+        <div class="lg--up--one-half">
+          {% assign image = section.settings.about_img %}
+          <div class="image-holder {% if col_count_mobile == 2 or col_count_mobile == 3 %}seven-eighths mx--auto{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
+            {% render 'responsive-image' with
+              image: image,
+              max_width: 2000,
+              max_height: 2000,
+              section_color: section_color,
+            %}
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Header",
+  "settings": [
+    {
+      "type":      "header",
+      "content":   "Color"
+    },
+    {
+       "type": "select",
+       "id": "color_scheme",
+       "label": "Color scheme",
+       "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+       ]
+    },
+    {
+      "type": "header",
+      "content": "Header text & image"
+    },
+    {
+      "type": "image_picker",
+      "id": "about_img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "about_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "about_text",
+      "label": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .wh-text {
+    padding-right: 10%;
+  }
+{% endstylesheet %}

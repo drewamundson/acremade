@@ -3715,6 +3715,14 @@ $colors: (
   border-bottom: 1px solid var(--color-primary-text);
 }
 
+.bg--base-background {
+  background: #fff;
+}
+
+.color--base-text {
+  color: var(--color-primary-text);
+}
+
 .color--primary-background {
   color: var(--color-primary-background);
 }
@@ -4637,6 +4645,9 @@ h5,
 }
 
 @media only screen and (min-width: 480px) {
+  .pm--font-size--xxxxxxl {
+    font-size: 3.5rem;
+  }  
   .pm--font-size--xxxxxl {
     font-size: 3rem;
   }
@@ -4712,6 +4723,9 @@ h5,
 }
 
 @media only screen and (min-width: 1400px) {
+  .wd--font-size--xxxxxxxl {
+    font-size: 4.5rem;
+  }  
   .wd--font-size--xxxxxxl {
     font-size: 3.5rem;
   }

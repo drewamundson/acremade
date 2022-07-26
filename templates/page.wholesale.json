@@ -1,5 +1,12 @@
 {
   "sections": {
+    "wholesale": {
+      "type": "wholesale-header", 
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary" 
+      }
+    },    
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -138,6 +145,7 @@
     }
   },
   "order": [
+    "wholesale",
     "main",
     "1642997618fdcca612",
     "16429993153d0e663c",

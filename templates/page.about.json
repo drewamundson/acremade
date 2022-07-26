@@ -1,0 +1,22 @@
+{
+  "sections": {   
+    "highlights": {
+      "type": "about-highlights", 
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary"   
+      }
+    },    
+    "about": {
+      "type": "about-header", 
+      "disabled": true,
+      "settings": {
+        "color_scheme": "primary" 
+      }
+    }
+  },
+  "order": [
+    "highlights",
+    "about"
+  ]
+}

@@ -31,9 +31,9 @@
         endif
       -%}
 
-      <div class="{% if product.media.size > 1 %}lg--up--seven-eighths{% endif %} mx--auto">
-        <div class="grid">
-          <div class="grid__item md--up--one-half">
+      <div class="{% if product.media.size > 1 %}lg--up--whole{% endif %} mx--auto">
+        <div class="flex flex--wrap">
+          <div class="one-whole lg--grid__item md--up--one-half">
             <div class="product__images relative md--up--text-align--right font-size--0">
               {% if featured_media != blank %}
                 {% capture featured_media_class %}one-whole md--up--five-sixths{% endcapture %}
@@ -185,7 +185,7 @@
             endif
           %}
 
-          <div class="grid__item md--up--one-half{% if current_variant.unit_price_measurement %} has-unit-price{% endif %}" data-product-block-container>
+          <div class="one-whole lg--grid__item md--up--one-half{% if current_variant.unit_price_measurement %} has-unit-price{% endif %}" data-product-block-container>
             <div class="{% unless needs_wider_spacing %}wd--pt3 lg--up--pl3 wd--pl4{% endunless %}">
               <div class="mt3">
                 {% for block in section.blocks %}
@@ -203,7 +203,7 @@
                         </p>
                       </div>
                     {% when 'title' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
                         <h1 class="f--heading f--heading font-size__heading m0">
                           {{ product.title }}
                         </h1>
@@ -437,7 +437,7 @@
                         </div>
                       </div>
                     {% when 'description' %}
-                      <div class="px2 max-width--2 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
                         {% if product.description != empty or product.description != '' %}
                           <div class="mt3 rte font-size__basic" data-product-description>
                             {{ product.description }}
@@ -584,7 +584,7 @@
       </script>
     {% endunless %}
   </section>
-  {% if section.settings.enable_full_width_description and product.description != empty %}
+  {% comment %} {% if section.settings.enable_full_width_description and product.description != empty %}
     {%- liquid
       assign description_color_scheme = section.settings.description_color_scheme
       if section_color == description_color_scheme
@@ -603,7 +603,7 @@
         </div>
       </div>
     </section>
-  {% endif %}
+  {% endif %} {% endcomment %}
 </div>
 
 
