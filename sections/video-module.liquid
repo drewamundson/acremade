@@ -140,8 +140,12 @@
     }
   });
 
-  $('.Slick').on('afterChange', function(){
-    $('.slick-slide').not('.slick-current').find('iframe').attr('src', $('iframe').attr('src'));
+  $('.Slick').on('afterChange', function(event, slick, currentSlide){ 
+    $('.slick-slide').each(function(i,el){
+      var $me = $(el),
+          this_vid = $me.find('iframe').attr('src');
+      $me.not('.slick-current').find('iframe').attr('src', this_vid);
+    });
   });
 
 {% endjavascript %}

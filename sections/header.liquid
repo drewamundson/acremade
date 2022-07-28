@@ -487,7 +487,7 @@
           <div class="banner pt3 flex flex--wrap items--center relative {% if block.settings.image_style == 'fit_content' %}mt5{% else %}min-full--h full--w{% endif %} js banner_image full--w" data-banner-image>
 
             {% if cta_url != blank or heading != blank %}
-              <div class="px2 lg--up-px4 pb4 wd--p4 z2 relative one-whole lg--up--one-half mobile-order-2">
+              <div class="px2 lg--up-px4 pb4 wd--p4 z2 relative one-whole mt5 lg--up--one-half mobile-order-2">
                 {% assign content_position = content_position | split: ' ' %}
                 <div class="table full {% if section.settings.show_announcement %}{% if section.settings.home_page_only == false or template.name == 'index' %}pt3 lg--up--mt4 lg--up--pl2{% endif %}{% endif %}">
                   <div class="table-cell {{ content_position[0] }} {{ content_position[1] }} lg--up--pl2">
@@ -505,7 +505,6 @@
                     </div>
 
                     {% if fp %}
-
                       {%- comment -%}
                         Check if the product is on sale and set a variable to be used below.
                       {%- endcomment -%}
@@ -528,7 +527,7 @@
                       <div id="featured-product" class="flex mt2 pb2 lg--up--pb0">
                         <div>
                           <h3 class="color--{{ section_color }}-text">{{theProduct.title}}</h3>
-                          <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0 font-size__basic">
+                          <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-text{% endif %} m0 font-size__basic">
                             {% if sold_out %}
                               <span class="sold-out color--{{ section_color }}-meta {% if on_sale %}mr1{% endif %}">{{ 'products.product.sold_out' | t }}</span>
                             {% else %}
@@ -619,7 +618,7 @@
                 {% endif %}
               </div>
             {% else %}
-                <div class="px3 lg--up--px1 wd--p4 z2 relative lg--up--one-half mt4">
+                <div class="px3 lg--up--px1 wd--p4 z2 relative one-whole lg--up--one-half mt5 mobile-order-1">
                   {% render 'responsive-image' with
                     image: theProductImage,
                     max_width: 1000,
