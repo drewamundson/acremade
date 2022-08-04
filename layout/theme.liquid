@@ -44,7 +44,7 @@
 <link rel="preload" as="font" href="{{ main_font_bold | font_url }}" type="font/woff2" crossorigin>
 {% endunless %}
 
-<link rel="preload" href="{{ 'theme.min.js' | asset_url }}" as="script">
+{% comment %} <link rel="preload" href="{{ 'theme.min.js' | asset_url }}" as="script"> {% endcomment %}
   {% comment %}theme-check-enable UndefinedObject{% endcomment %}
 
   {% if settings.favicon != blank %}
@@ -219,5 +219,6 @@
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {% render 'ajax-cart-template' %}
+
 </body>
 </html>

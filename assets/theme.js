@@ -13761,6 +13761,7 @@ ShopifyAPI.onError = function (XMLHttpRequest) {
 
 
 ShopifyAPI.addItemFromForm = function (form, callback, errorCallback) {
+  
   var $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()(document.body),
       params = {
     type: 'POST',
@@ -13778,6 +13779,7 @@ ShopifyAPI.addItemFromForm = function (form, callback, errorCallback) {
       }
 
       $body.trigger('ajaxCart.afterAddItem', [line_item, form]);
+      $('#CartLink').trigger('click');
     },
     error: function error(XMLHttpRequest, textStatus) {
       if (typeof errorCallback === 'function') {
@@ -13846,9 +13848,7 @@ var ajaxCart = function () {
 
   var _init; // Sqrl placeholder
 
-
   var _Sqrl; // Private general variables
-
 
   var settings, isUpdating, $body, currentNote; // Private plugin variables
 
@@ -13875,6 +13875,7 @@ var ajaxCart = function () {
 
 
   _init = function _init(options) {
+
     // Default settings
     settings = {
       formSelector: 'form[action^="/cart/add"]',
@@ -13888,6 +13889,8 @@ var ajaxCart = function () {
       enableQtySelectors: true
     }; // Override defaults with arguments
 
+    
+
     jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend(settings, options); // Select DOM elements
 
     $formContainer = jquery__WEBPACK_IMPORTED_MODULE_0___default()(settings.formSelector);
@@ -13896,6 +13899,9 @@ var ajaxCart = function () {
     $cartCountSelector = jquery__WEBPACK_IMPORTED_MODULE_0___default()(settings.cartCountSelector);
     $cartCostSelector = jquery__WEBPACK_IMPORTED_MODULE_0___default()(settings.cartCostSelector); // General Selectors
 
+    //$addToCart = $('#AddToCart--header')
+    //$formContainer = $('#AddToCartForm--header')
+
     $body = jquery__WEBPACK_IMPORTED_MODULE_0___default()('body'); // Track cart activity status
 
     isUpdating = false; // Setup ajax quantity selectors on the any template if enableQtySelectors is true
@@ -13903,7 +13909,6 @@ var ajaxCart = function () {
     if (settings.enableQtySelectors) {
       qtySelectors();
     } // Take over the add to cart form submit action if ajax enabled
-
 
     if (!settings.disableAjaxCart && $addToCart.length) {
       formOverride();
@@ -13952,7 +13957,7 @@ var ajaxCart = function () {
 
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.qty-error').remove();
       ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
-    });
+    }); 
   };
 
   itemAddedCallback = function itemAddedCallback() {
@@ -25420,7 +25425,7 @@ var isEmpty_default = /*#__PURE__*/__webpack_require__.n(isEmpty);
 /* harmony default export */ var header = (register('header', {
   onLoad: function onLoad() {
     var _this = this;
-
+    
     this.$container = jquery_default()(this.container);
     this.accessibleNav();
     this.template = this.$container.attr('data-template');
@@ -25428,6 +25433,16 @@ var isEmpty_default = /*#__PURE__*/__webpack_require__.n(isEmpty);
     this.$announcementBar = jquery_default()('.announcement-bar', this.$container);
     this.$headerPlaceholder = jquery_default()('[data-header-placeholder]', this.$container);
     this.$bannerImage = jquery_default()('[data-banner-image]', this.$container);
+
+    var moduleId = this.$container.attr('data-section-id') || this.$container.attr('data-module-id');
+    
+    this.selectors = {
+      addToCart: '[data-add-to-cart]',
+      addToCartText: '[data-add-to-cart-text]',
+      afterAddToCartTrigger: '[data-after-add-cart-trigger]'
+    };
+
+    this.$afterAddToCartTrigger = jquery_default()(this.selectors.afterAddToCartTrigger, this.$container);
 
     if (this.$container.attr('data-sticky-header') && !this.$container.attr('data-sticky-header-with-banner-and-announcement') && !this.$container.attr('data-sticky-header-with-banner-and-no-announcement')) {
       this.$container.parents('div').addClass('sticky-header-container');
@@ -25562,7 +25577,7 @@ var isEmpty_default = /*#__PURE__*/__webpack_require__.n(isEmpty);
       jquery_default()(window).on('resize', debounce_default()(resizeHandler, 400));
     } // Enabled ajax cart if no products
 
-
+    
     if (theme.data.cartMethod === 'modal' && this.template.indexOf('product') === -1) {
       ajax_cart["a" /* default */].init({
         formSelector: '#AddToCartForm',
@@ -25571,7 +25586,44 @@ var isEmpty_default = /*#__PURE__*/__webpack_require__.n(isEmpty);
         cartCountSelector: '#CartCount',
         enableQtySelectors: true,
         moneyFormat: theme.moneyFormat,
-        moneyWithCurrencyFormat: theme.moneyWithCurrencyFormat
+        moneyWithCurrencyFormat: theme.moneyWithCurrencyFormat,
+        formSelector: '#AddToCartForm--' + moduleId,
+        addToCartSelector: '#AddToCart--' + moduleId,
+      });
+      jquery_default()(document.body).on('ajaxCart.beforeChangeItem', function (evt, cart) {
+        jquery_default()('[data-ajax-cart-spinner]').removeClass('hide');
+      });
+      jquery_default()(document.body).on('ajaxCart.afterChangeItem', function (evt, cart) {
+        jquery_default()('[data-ajax-cart-spinner]').addClass('hide');
+
+        this.$afterAddToCartTrigger = jquery_default()(this.selectors.afterAddToCartTrigger, this.$container);
+      });
+      jquery_default()(document.body).on('ajaxCart.afterAddItem', function (evt, line_item, form) {
+        var $currentContainer = jquery_default()(form).parents('[data-product-block],[data-section-type="header"]');
+        var $currentSection = jquery_default()(form).parents('[data-section-type]');
+        //var $addToCartComplete = jquery_default()(self.selectors.addToCartComplete, $currentContainer);
+        //var $addToCart = jquery_default()(self.selectors.addToCart, $currentContainer);
+        //this.$afterAddToCartTrigger = jquery_default()(this.selectors.afterAddToCartTrigger, this.$container);
+        if (!jquery_default()('.site-header').hasClass('active')) {
+          if (theme.data.openModalOnAddToCart) {
+            jquery_default()('#CartContainer').empty();
+            var spinner = jquery_default()('#spinner').html();
+            jquery_default()('#CartContainer').html(spinner);
+            jquery_default()('#CartLink').trigger('focus');
+            jquery_default()('#CartLink').trigger('click');
+            Object(a11y["g" /* markForRefocusOnModalClose */])($addToCart[0]);
+            setTimeout(function () {
+              Object(a11y["c" /* forceFocus */])(document.getElementById('CartContainer'));
+            }, 50);
+          } else {
+            if (self.addToCartStatusLiveRegion) {
+              self.addToCartStatusLiveRegion.update(theme.strings.addedToCart);
+            }
+            $addToCart.removeClass('adding-to-cart ');
+            $addToCartComplete.removeClass('hide');
+            $currentSection.trigger('cascade:redraw', 0);
+          }
+        }
       });
       jquery_default()(document.body).on('ajaxCart.beforeChangeItem', function (evt, cart) {
         jquery_default()('[data-ajax-cart-spinner]').removeClass('hide');
@@ -25579,13 +25631,16 @@ var isEmpty_default = /*#__PURE__*/__webpack_require__.n(isEmpty);
       jquery_default()(document.body).on('ajaxCart.afterChangeItem', function (evt, cart) {
         jquery_default()('[data-ajax-cart-spinner]').addClass('hide');
       });
+      this.$afterAddToCartTrigger.click(function (e) {
+        e.preventDefault();
+        jquery_default()('#CartLink').trigger('click');
+      });      
     } else if (this.template.indexOf('cart') !== -1) {
       ajax_cart["a" /* default */].init({
         enableQtySelectors: true,
         moneyFormat: theme.moneyFormat
       });
     } // arrow button when banner is activated
-
 
     var $bannerScroll = jquery_default()('[data-banner-scroll]', this.$container);
     $bannerScroll.click(function (e) {
@@ -28379,6 +28434,7 @@ jquery_bridget_default()('masonry', masonry_default.a, jquery_default.a);
 /* harmony default export */ var collection = (register('collection', {
   onLoad: function onLoad() {
     this.$container = jquery_default()(this.container);
+    this.template = this.$container.attr('data-template');
     this.$changeView = jquery_default()("[data-change-view]", this.$container);
     this.$tagList = jquery_default()("[data-tag-list]", this.$container);
     this.$tagExpand = jquery_default()("[data-tags-expand]", this.$container);
@@ -28402,6 +28458,16 @@ jquery_bridget_default()('masonry', masonry_default.a, jquery_default.a);
 
     var _this = this;
 
+    var moduleId = this.$container.attr('data-section-id') || this.$container.attr('data-module-id');
+    
+    this.selectors = {
+      addToCart: '[data-add-to-cart]',
+      addToCartText: '[data-add-to-cart-text]',
+      afterAddToCartTrigger: '[data-after-add-cart-trigger]'
+    };
+
+    this.$afterAddToCartTrigger = jquery_default()(this.selectors.afterAddToCartTrigger, this.$container);
+
     this.$tagExpand.on("click", function () {
       jquery_default()(this).parents("ul").find("li").removeClass("hide");
       jquery_default()(this).parents(".collection__sticky-tags").removeClass("lg--up--sticky");
@@ -28418,6 +28484,72 @@ jquery_bridget_default()('masonry', masonry_default.a, jquery_default.a);
 
       jquery_default()(this).addClass("hide");
     });
+
+    if (theme.data.cartMethod === 'modal' && this.template.indexOf('product') === -1) {
+      ajax_cart["a" /* default */].init({
+        formSelector: '#AddToCartForm',
+        cartContainer: '#CartContainer',
+        addToCartSelector: '#AddToCart',
+        cartCountSelector: '#CartCount',
+        enableQtySelectors: true,
+        moneyFormat: theme.moneyFormat,
+        moneyWithCurrencyFormat: theme.moneyWithCurrencyFormat,
+        formSelector: '#AddToCartForm--' + moduleId,
+        addToCartSelector: '#AddToCart--' + moduleId,
+      });
+      jquery_default()(document.body).on('ajaxCart.beforeChangeItem', function (evt, cart) {
+        jquery_default()('[data-ajax-cart-spinner]').removeClass('hide');
+      });
+      jquery_default()(document.body).on('ajaxCart.afterChangeItem', function (evt, cart) {
+        jquery_default()('[data-ajax-cart-spinner]').addClass('hide');
+  
+        this.$afterAddToCartTrigger = jquery_default()(this.selectors.afterAddToCartTrigger, this.$container);
+      });
+      jquery_default()(document.body).on('ajaxCart.afterAddItem', function (evt, line_item, form) {
+        var $currentContainer = jquery_default()(form).parents('[data-product-block],[data-section-type="collection"]');
+        var $currentSection = jquery_default()(form).parents('[data-section-type]');
+        //var $addToCartComplete = jquery_default()(self.selectors.addToCartComplete, $currentContainer);
+        //var $addToCart = jquery_default()(self.selectors.addToCart, $currentContainer);
+        //this.$afterAddToCartTrigger = jquery_default()(this.selectors.afterAddToCartTrigger, this.$container);
+        if (!jquery_default()('.site-header').hasClass('active')) {
+          if (theme.data.openModalOnAddToCart) {
+            jquery_default()('#CartContainer').empty();
+            var spinner = jquery_default()('#spinner').html();
+            jquery_default()('#CartContainer').html(spinner);
+            jquery_default()('#CartLink').trigger('focus');
+            jquery_default()('#CartLink').trigger('click');
+            Object(a11y["g" /* markForRefocusOnModalClose */])($addToCart[0]);
+            setTimeout(function () {
+              Object(a11y["c" /* forceFocus */])(document.getElementById('CartContainer'));
+            }, 50);
+          } else {
+            if (self.addToCartStatusLiveRegion) {
+              self.addToCartStatusLiveRegion.update(theme.strings.addedToCart);
+            }
+            $addToCart.removeClass('adding-to-cart ');
+            $addToCartComplete.removeClass('hide');
+            $currentSection.trigger('cascade:redraw', 0);
+          }
+        }
+      });
+      jquery_default()(document.body).on('ajaxCart.beforeChangeItem', function (evt, cart) {
+        jquery_default()('[data-ajax-cart-spinner]').removeClass('hide');
+      });
+      jquery_default()(document.body).on('ajaxCart.afterChangeItem', function (evt, cart) {
+        jquery_default()('[data-ajax-cart-spinner]').addClass('hide');
+      });
+      this.$afterAddToCartTrigger.click(function (e) {
+        e.preventDefault();
+        jquery_default()('#CartLink').trigger('click');
+      });      
+    } else if (this.template.indexOf('cart') !== -1) {
+      ajax_cart["a" /* default */].init({
+        enableQtySelectors: true,
+        moneyFormat: theme.moneyFormat
+      });
+    } // arrow button when banner is activated
+
+
   },
   filterToggle: function filterToggle() {
     this.$container.on("click", "[data-tag-filter-mobile-trigger]", function (evt) {

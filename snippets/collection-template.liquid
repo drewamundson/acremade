@@ -8,7 +8,7 @@
   assign posts_per_row_desktop = section.settings.posts_per_row_desktop
 -%}
 
-<section class="collection section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-type="collection" data-section-id="{{ section.id }}" {% if settings.fade_in_items %}data-fade-in="true"{% endif %}>
+<section class="collection section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-type="collection" data-template="{{ template.name }}" data-section-id="{{ section.id }}" {% if settings.fade_in_items %}data-fade-in="true"{% endif %}>
   <div class="max-site-width px2 lg--up--px3">
 
     {% assign layout = '' %}

@@ -582,8 +582,55 @@
                               {{ theProduct.description }}
                             </div>
                           {% endif %}
-                          <button class="AddToCartButton mt2 btn border--none relative border--none bg--primary-text color--primary-text--overlay p1 px2 inline-block" data-id="{{ theProduct.variants.first.id }}">Add to cart</button>
-                        </div>             
+                          {%- assign module_id = section.id -%}
+                          {%- assign product_form_id = 'product-form-' | append: module_id -%}
+                          <div id="AddToCartForm--{{ module_id }}" class="form-vertical">
+                            {%- assign product_form_id = 'product-form-' | append: module_id -%}
+                            {% form 'product', theProduct, id: product_form_id %}
+                              <input
+                                type="hidden"
+                                name="id"
+                                value="{{ theProduct.selected_or_first_available_variant.id }}"
+                                {% if variant_picker_enabled %}
+                                  disabled
+                                {% endif %}
+                                data-product-select
+                              >
+                              {%- liquid
+                                  assign show_payment_button = false
+                              -%}
+                              <div class="add-to-cart-container max-width--1 {% unless current_variant.available %}hide-pay-buttons{% endunless %}  {% if show_payment_button %}cta-content--pay-buttons{% endif %}" data-add-to-cart-container>
+                                <button
+                                  class="btn border--none btn--add-to-cart relative color-scheme--{{ section_color }} {% if show_payment_button %}bg--transparent color--{{ section_color }}-text border--{{ section_color }}-text hv--{{ section_color }}-accent hv--border--{{ section_color }}-accent {% else %}border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay hover-bg--{{ section_color }}{% endif %} p1 full--w block"
+                                  type="submit"
+                                  name="add"
+                                  id="AddToCart--{{ section.id }}"
+                                  data-add-to-cart
+                                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                                    <span class="add-to-cart-text" data-add-to-cart-text>
+                                      {% if current_variant.available %}
+                                        {{ 'products.product.add_to_cart' | t }}
+                                      {% else %}
+                                        {{ 'products.product.sold_out' | t }}
+                                      {% endif %}
+                                    </span>
+                                    {%- unless settings.open_modal_on_add_to_cart -%}
+                                    <div class="spinner {% if show_payment_button %}color--{{ section_color }}-text{% else %}color--{{ section_color }}-background{% endif %}"></div>
+                                    {%- endunless -%}
+                                </button>
+                                {% if show_payment_button %}
+                                  <div class="mt2 payment-button-wrapper color--{{ section_color }}">{{ form | payment_button }}</div>
+                                {% endif %}
+                              </div>
+
+                              {%- unless settings.open_modal_on_add_to_cart -%}
+                              <div class="font-size__basic mt2 hide {% unless show_payment_button %}mt3{% endunless %} {% if show_pickup_availability %}mb3{% endif %}" data-add-to-cart-complete>
+                                {{ 'products.product.added_to_cart' | t }}!<br/>{{ 'products.product.add_to_cart_confirm_html' | t: cart_url: routes.cart_url, link_url: routes.all_products_collection_url, section_color: section_color }}.
+                              </div>
+                              {%- endunless -%}
+                            {% endform %}
+                          </div>
+                        </div>
                       </div>
                     {% endif %}
 
@@ -1027,33 +1074,3 @@
   }
 
 {% endstylesheet %}
-
-{% javascript %}
-  var addProductToCart = function(data, successCallback, errorCallback){
-    $.ajax({ url: '/cart/add.js', type: 'post', dataType: 'json',
-      data: data,
-      success: function(data, textStatus, jqXHR) {
-        if (textStatus === 'success') {
-          //Utilities.updateCart(successCallback, true);
-          
-          setTimeout(function(){
-            
-          }, 3000);
-        }
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        errorCallback 
-          ? errorCallback(jqXHR.responseJSON.description)
-          : alert(jqXHR.responseJSON.description);
-      }
-    });
-  };
-
-  $('.AddToCartButton').on('click', function(e){
-    e.preventDefault();
-    var $me = $(this),
-        me_var = $me.attr('data-id');
-
-    addProductToCart({id: me_var, quantity:1});
-  });
-{% endjavascript %}
