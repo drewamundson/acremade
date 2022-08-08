@@ -47,8 +47,7 @@
 
 <div class="lg--up--flex items--center product-grid-item t--list-and-grid relative{% if current_variant.unit_price_measurement %} has-unit-price{% endif %}">
   {%- assign featured_media = product.featured_media.preview_image -%}
-  {% unless featured_media == blank %}
-    <a href="{{ product.url | within: collection }}" class="relative lg--up--two-fifths">
+    <div class="relative lg--up--two-fifths">
       {% if settings.products_show_badges %}
         {% if on_sale or sold_out %}
           <div class="absolute top--0 right--0 pt2 pr2 z2">
@@ -69,14 +68,50 @@
         {%- assign ratio = 1 -%}
       {%- endif -%}
 
-      {%- render 'responsive-image' with
+      {% comment %} {%- render 'responsive-image' with
           image: featured_media
           max_width: 2000,
           max_height: 2000,
           section_color: section_color,
           responsive_image_counter: loop_index,
           image_id: product.featured_media.id,
-      -%}
+      -%} {% endcomment %}
+
+      <div class="Slick plp-slick" data-slick='{
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "dots": false,
+        "arrows": false,
+        "responsive": [
+          {
+            "breakpoint": 782,
+            "settings": {
+            }
+          }
+        ]		
+      }'>
+        {% for image in product.media %}
+          <div>
+            {%- render 'responsive-image' with
+                image: image
+                max_width: 1000,
+                max_height: 1000,
+                section_color: section_color,
+                responsive_image_counter: loop_index,
+                image_id: image.id,
+            -%}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="flex justify--center mt2">
+        {% for image in product.media %}
+          <button class="{% if forloop.first %}Active{% endif %} plp-slick-thumb" data-index="{{ forloop.index }}">
+            <img src="{{ image | img_url: '1024x' }}" alt="{{ image.alt }}" />
+          </button>
+        {% endfor %}
+      </div>
+
 
       {% comment %} {% if product.media.size > 1 and settings.products_show_second_image_on_hover %}
         {% assign hover_image = product.media[1] %}
@@ -86,11 +121,11 @@
              data-parent-fit="cover">
         </div>
       {% endif %} {% endcomment %}
-    </a>
-  {% endunless %}
+    </div>
+  
   <div class="lg--up--three-fifths lg--up--px3">
     <div class="lg--up--pl2">
-      <h2 class="color--{{ section_color }}-text m0 mt2 p1">{{ product.title }}</h2>
+      <h2 class="color--{{ section_color }}-text m0 mt2 p1"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h2>
       {% if settings.products_show_vendor and product.vendor != blank %}
       <p class="color--{{ section_color }}-meta m0 font-size__basic p1">{{ product.vendor }}</p>
       {% endif %}
@@ -212,3 +247,52 @@
     </div>
   </div>
 </div>
+
+<style>
+.plp-slick .slick-arrow {
+  display: none!important;
+}
+.plp-slick-thumb {
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0 10px;
+  position: relative;
+}
+.plp-slick-thumb:after {
+  content: '';
+  position: absolute;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border: 1px solid #ccc;
+}
+.plp-slick-thumb.Active:after {
+  border-color: black;
+}
+.plp-slick-thumb img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+</style>
+
+<script>
+  (function(){
+    $('.Slick').slick();
+    $('.plp-slick-thumb').on('click', function(){
+      var $me = $(this),
+          this_slide = $me.attr('data-index'),
+          me_slick = $me.closest('.relative').find('.Slick');
+
+      if(!$me.hasClass('Active')){
+        $me.addClass('Active').siblings().removeClass('Active');
+        me_slick.slick('slickGoTo', this_slide - 1);
+      }
+    })
+  })(jQuery);
+</script>

@@ -1,20 +1,26 @@
 {%- assign section_color = section.settings.color_scheme -%}
 
-<section class="page section-with-padding color--{{ section_color }}-text pb0">
+<section class="page section-with-padding color--{{ section_color }}-text pb0 relative">
+
+  {% if section.settings.highlight_graphic %}
+    <img class="graphic absolute" src="{{ section.settings.highlight_graphic | img_url: '1024x' }}" alt="{{ section.settings.highlight_graphic.alt }}" />
+  {% endif %}
+
   <div class="max-site-width px2 lg--up--px3">
-    {%- if section.settings.highlight_heading != blank -%}
       <div class="lg--up--four-fifths md--up--pr2 wh-text">
         <div class="md--up--pr2">
-          <div class="hl-heading m0 f--heading font-weight-normal font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ section.settings.highlight_heading }}</div>
+          <div class="hl-heading m0 f--heading font-weight-normal font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">
+            Free from the things that 
+            <strong><span class="underline"><span style="position:relative;z-index:1;">take</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">the</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">satisfaction</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">out</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">of</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">eating</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">well.</span></span></strong>
+          </div>
         </div>
       </div>
-    {%- endif -%}
   </div>
       
   {%- if section.blocks.size > 0 -%}
     <div class="color-block bg--{{ section_color }}-background">
       <div class="max-site-width px2 lg--up--px3">
-        <div class="lg--up--one-whole lg--up--mt3 lg--up--pt3">
+        <div class="lg--up--one-whole lg--up--mt3 lg--up--pt3 relative">
           <ul class="flex flex--wrap px1 py3 lg--up--p2 m0 flex--wrap">
             {%- for block in section.blocks -%}
               {%- assign hl = block.settings.highlight -%}
@@ -55,9 +61,14 @@
       "content": "Header text"
     },
     {
-      "type": "richtext",
+      "type": "textarea",
       "id": "highlight_heading",
       "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "highlight_graphic",
+      "label": "Graphic"
     }
   ],
   "blocks": [
@@ -106,5 +117,25 @@
     line-height: 1.4;
     overflow-wrap: break-word;
     word-wrap: break-word;
+  }
+  .graphic { 
+    right: 0;
+    top: 0;
+    width: 30%; 
+  }    
+  .underline {
+    position: relative;
+    z-index: 1; 
+    padding-right: .24em;  
+  }
+  .underline:after {
+    content: '';
+    width: 100%;
+    height: 60%;
+    position: absolute; 
+    bottom: 0;
+    left: 0; 
+    z-index: 0;
+    background: rgb(224, 193, 63);
   }
 {% endstylesheet %}

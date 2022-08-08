@@ -484,12 +484,12 @@
         {% assign feature_image = block.settings.image %}
         {% assign feature_image_mobile = block.settings.image_mobile %}
 
-          <div class="banner pt3 flex flex--wrap items--center relative {% if block.settings.image_style == 'fit_content' %}mt5{% else %}min-full--h full--w{% endif %} js banner_image full--w" data-banner-image>
+          <div class="banner pt3 flex flex--wrap relative {% if block.settings.image_style == 'fit_content' %}mt5{% else %}min-full--h full--w{% endif %} js banner_image full--w" data-banner-image>
 
             {% if cta_url != blank or heading != blank %}
               <div class="px2 lg--up-px4 pb4 wd--p4 z2 relative one-whole mt5 lg--up--one-half mobile-order-2">
                 {% assign content_position = content_position | split: ' ' %}
-                <div class="table full {% if section.settings.show_announcement %}{% if section.settings.home_page_only == false or template.name == 'index' %}pt3 lg--up--mt4 lg--up--pl2{% endif %}{% endif %}">
+                <div class="table full {% if section.settings.show_announcement %}{% if section.settings.home_page_only == false or template.name == 'index' %}lg--up--pl2{% endif %}{% endif %}">
                   <div class="table-cell {{ content_position[0] }} {{ content_position[1] }} lg--up--pl2">
                     <div class="inline-block {{ text_align }}">
                       <div class="">
