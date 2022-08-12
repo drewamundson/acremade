@@ -484,10 +484,10 @@
         {% assign feature_image = block.settings.image %}
         {% assign feature_image_mobile = block.settings.image_mobile %}
 
-          <div class="banner pt3 flex flex--wrap relative {% if block.settings.image_style == 'fit_content' %}mt5{% else %}min-full--h full--w{% endif %} js banner_image full--w" data-banner-image>
+          <div class="banner pt3 flex items--center flex--wrap relative {% if block.settings.image_style == 'fit_content' %}{% else %}min-full--h full--w{% endif %} js banner_image full--w mt4" data-banner-image>
 
             {% if cta_url != blank or heading != blank %}
-              <div class="px2 lg--up-px4 pb4 wd--p4 z2 relative one-whole mt5 lg--up--one-half mobile-order-2">
+              <div class="px2 lg--up-px4 wd--p4 z2 relative one-whole lg--up--one-half mobile-order-2 pb4 lg--up--pb3 mt4">
                 {% assign content_position = content_position | split: ' ' %}
                 <div class="table full {% if section.settings.show_announcement %}{% if section.settings.home_page_only == false or template.name == 'index' %}lg--up--pl2{% endif %}{% endif %}">
                   <div class="table-cell {{ content_position[0] }} {{ content_position[1] }} lg--up--pl2">
@@ -640,7 +640,7 @@
             {% endif %}
 
             {% if block.settings.image_style == 'fit_content' %}
-              <div class="px2 lg--up-px2 wd--p4 z1 one-whole lg--up--one-half mt4 mobile-order-1">
+              <div class="lg--up-px2 wd--p4 z1 one-whole lg--up--one-half mobile-order-1 mt4 lg--up--mt3">
                 <div {% if feature_image_mobile %}class="md--dn--hide"{% endif %}>
                   {% render 'responsive-image' with
                     image: feature_image,

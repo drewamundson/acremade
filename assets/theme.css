@@ -2749,6 +2749,10 @@ Flex
   flex-direction: row;
 }
 
+.flex--column {
+  flex-direction: column;
+}
+
 .flex--row-reverse {
   flex-direction: row-reverse;
 }
@@ -2951,6 +2955,9 @@ Flex
   }
   .lg--up--justify--end {
     justify-content: flex-end;
+  }
+  .lg--up--flex--column {
+    flex-direction: column;
   }
   /* 1.lg--up-- Fix for Chrome 44 bug.lg--up-- https://code.lg--up--google.lg--up--com/p/chromium/issues/detail?id=506893 */
 }

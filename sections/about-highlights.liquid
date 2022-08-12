@@ -6,22 +6,24 @@
     <img class="graphic absolute" src="{{ section.settings.highlight_graphic | img_url: '1024x' }}" alt="{{ section.settings.highlight_graphic.alt }}" />
   {% endif %}
 
-  <div class="max-site-width px2 lg--up--px3">
+  <div class="max-site-width px2 lg--up--px3 pb3 pt2">
       <div class="lg--up--four-fifths md--up--pr2 wh-text">
+        <div class="md--up--pr2">
         <div class="md--up--pr2">
           <div class="hl-heading m0 f--heading font-weight-normal font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">
             Free from the things that 
             <strong><span class="underline"><span style="position:relative;z-index:1;">take</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">the</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">satisfaction</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">out</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">of</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">eating</span></span></strong><strong><span class="underline"><span style="position:relative;z-index:1;">well.</span></span></strong>
+          </div>
           </div>
         </div>
       </div>
   </div>
       
   {%- if section.blocks.size > 0 -%}
-    <div class="color-block bg--{{ section_color }}-background">
+    <div class="color-block bg--{{ section_color }}-background"> 
       <div class="max-site-width px2 lg--up--px3">
-        <div class="lg--up--one-whole lg--up--mt3 lg--up--pt3 relative">
-          <ul class="flex flex--wrap px1 py3 lg--up--p2 m0 flex--wrap">
+        <div class="lg--up--one-whole lg--up--mt3 lg--up--pt3 lg--up--pb2 relative wh-text">
+          <ul class="flex flex--wrap px1 py1 lg--up--p2 m0 flex--wrap">
             {%- for block in section.blocks -%}
               {%- assign hl = block.settings.highlight -%}
               {%- if hl != blank -%}
@@ -119,9 +121,10 @@
     word-wrap: break-word;
   }
   .graphic { 
-    right: 0;
-    top: 0;
-    width: 30%; 
+    right: 0; 
+    top: 42%;
+    transform: translateY(-50%);
+    width: 22%; 
   }    
   .underline {
     position: relative;

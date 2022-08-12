@@ -16,7 +16,7 @@
             </h3>
           {% endif %}
         </div>
-        <div class="mt2 mb2 pl2 pr2 lg--up--mb3 lg--up--px0 lg--up--pr4 flex flex--wrap" id="video-buttons">
+        <div class="mt2 mb2 pl2 pr2 lg--up--mb3 lg--up--px0 lg--up--pr4 flex flex--wrap flex--column lg--up--flex--row" id="video-buttons">
           {% for block in section.blocks %}
             {% if block.settings.video_title != blank %}
               <button class='VideoButton mr2 mb2 inline-block p0 {% if forloop.first %}Active{% endif %} color--tertiary-text' data-video="{{forloop.index | minus: 1 }}">
@@ -153,6 +153,10 @@
 {% endjavascript %}
 
 {% stylesheet %}
+  .flex--column {
+    flex-direction: column;
+  }
+
   #video-buttons button {
     appearance: none;
     background: transparent;
@@ -170,26 +174,25 @@
     border-bottom: 2px solid transparent;
   }
 
-  #video-buttons button:after {
-    content: '';
-    display: block;
-    width: 2px;
-    height: 14px;
-    background: black;
-    margin-left: 20px;
-  }
-
-  #video-buttons button:last-child:after {
-    display: none;
-  }
-
   #video-buttons button.Active span {
     border-bottom-color: black;
   }
 
-  .video-toggle {
-
+  @media only screen and (min-width: 990px) {
+    #video-buttons button:after {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 14px;
+      background: black;
+      margin-left: 20px;
+    }
+    #video-buttons button:last-child:after {
+      display: none;
+    }    
+    .lg--up--flex--row {
+      flex-direction: row;
+    }
   }
-
 
 {% endstylesheet %}
