@@ -193,7 +193,7 @@
                     {% when '@app' %}
                       {% render block %}
                     {% when 'text' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
                         <p class="f--body font-size--ml m0 flex items--center">
                           {% render 'product-icon',
                              icon: block.settings.icon,
@@ -209,7 +209,7 @@
                         </h1>
                       </div>
                     {% when 'price' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
                         <div class="font-size--ml" data-price-wrapper>
                           <span {% if current_variant.compare_at_price > current_variant.price %}class="color--{{ section_color }}-accent"{% endif %} data-product-price>
                             {% if settings.currency_code_enable %}
@@ -276,7 +276,7 @@
                         assign variant_picker_enabled = true
                         assign hide_drop_down_labels = block.settings.hide_drop_down_labels
                       %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 mb2" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--max-width--1 md--up--pt0 lg--up--px3 mb2" {{ block.shopify_attributes }}>
                         {% unless product.has_only_default_variant %}
                           {% for option in product.options_with_values %}
                             <div class="selector-wrapper js mt2 font-size--m">
@@ -318,7 +318,7 @@
                         {% endunless %}
                       </div>
                     {% when 'quantity_selector' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 my2">
+                      <div class="px2 max-width--3 md--max-width--1 md--up--pt0 lg--up--px3 my2">
                         <div class="mt2 font-size--m flex items--center" {{ block.shopify_attributes }}>
                           <div class="pr2">
                             <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
@@ -336,7 +336,7 @@
                       </div>
                     {% when 'buy_buttons' %}
                       {% assign show_pickup_availability = block.settings.show_pickup_availability %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 my3" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--max-width--1 md--up--pt0 lg--up--px3 my3" {{ block.shopify_attributes }}>
                         <div id="AddToCartForm--{{ module_id }}" class="form-vertical">
                           {%- assign product_form_id = 'product-form-' | append: module_id -%}
                           {% form 'product', product, id: product_form_id %}
@@ -398,7 +398,7 @@
                         </div>
                       {% endif %}
                     {% when 'supporting_links' %}
-                      <div class="px2 max-width--2 lg--up--px3 font-size--s my2" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 lg--up--px3 font-size--s my2" {{ block.shopify_attributes }}>
                         {% for supporting_link in block.settings.linklist.links %}
                           <a href="{{ supporting_link.url }}"
                              class="inline-block mr1 color--{{ section_color }}-text link-underline border-bottom--transparent hv--border-bottom--{{ section_color }}-text">
@@ -1167,3 +1167,11 @@
     ]
   }
 {% endschema %}
+
+{% stylesheet %}
+@media only screen and (min-width: 750px) {
+  .md--max-width--1 {
+    max-width: 24rem; 
+  }
+}
+{% endstylesheet %}

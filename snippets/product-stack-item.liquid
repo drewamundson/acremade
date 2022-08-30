@@ -90,7 +90,7 @@
           }
         ]		
       }'>
-        {% for image in product.media %}
+        {% for image in product.media limit: 2 %}
           <div>
             {%- render 'responsive-image' with
                 image: image
@@ -105,7 +105,7 @@
       </div>
 
       <div class="flex justify--center mt2">
-        {% for image in product.media %}
+        {% for image in product.media limit: 2 %}
           <button class="{% if forloop.first %}Active{% endif %} plp-slick-thumb" data-index="{{ forloop.index }}">
             <img src="{{ image | img_url: '1024x' }}" alt="{{ image.alt }}" />
           </button>
@@ -125,11 +125,11 @@
   
   <div class="lg--up--three-fifths lg--up--px3">
     <div class="lg--up--pl2">
-      <h2 class="color--{{ section_color }}-text m0 mt2 p1"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h2>
+      <h2 class="color--{{ section_color }}-text m0"><a href="{{ product.url | within: collection }}">{{ product.title }}</a></h2>
       {% if settings.products_show_vendor and product.vendor != blank %}
-      <p class="color--{{ section_color }}-meta m0 font-size__basic p1">{{ product.vendor }}</p>
+      <p class="color--{{ section_color }}-meta m0 mt1 font-size__basic">{{ product.vendor }}</p>
       {% endif %}
-      <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0  font-size__basic p1">
+      <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0 mt1 font-size__basic">
         {% if sold_out %}
           <span class="sold-out color--{{ section_color }}-meta {% if on_sale %}mr1{% endif %}">{{ 'products.product.sold_out' | t }}</span>
         {% else %}
@@ -179,7 +179,7 @@
           </s>
         {% endif %}
       </p>
-      <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0  font-size__small p1" data-unit-price-wrapper>
+      <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0 mt1 font-size__small" data-unit-price-wrapper>
         <span data-unit-price>
           {{- current_variant.unit_price | money -}}
         </span>
@@ -194,11 +194,11 @@
         </span>
       </p>
       {% if product.description != blank %}
-        <div class="m0 font-size__basic">{{ product.description }}</div>
+        <div class="m0 mt1 font-size__basic">{{ product.description }}</div>
       {% endif %}
       {%- assign module_id = section.id -%}
       {%- assign product_form_id = 'product-form-' | append: module_id -%}
-      <div id="AddToCartForm--{{ module_id }}" class="form-vertical">
+      <div id="AddToCartForm--{{ module_id }}" class="form-vertical mt3">
         {%- assign product_form_id = 'product-form-' | append: module_id -%}
         {% form 'product', product, id: product_form_id %}
           <input
@@ -280,19 +280,3 @@
   object-fit: cover;
 }
 </style>
-
-<script>
-  (function(){
-    $('.Slick').slick();
-    $('.plp-slick-thumb').on('click', function(){
-      var $me = $(this),
-          this_slide = $me.attr('data-index'),
-          me_slick = $me.closest('.relative').find('.Slick');
-
-      if(!$me.hasClass('Active')){
-        $me.addClass('Active').siblings().removeClass('Active');
-        me_slick.slick('slickGoTo', this_slide - 1);
-      }
-    })
-  })(jQuery);
-</script>

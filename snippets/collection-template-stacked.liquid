@@ -704,3 +704,19 @@
 
   </div>
 </section>
+
+<script>
+  (function(){
+    $('.Slick').slick();
+    $('.plp-slick-thumb').on('click', function(){
+      var $me = $(this),
+          this_slide = $me.attr('data-index'),
+          me_slick = $me.closest('.relative').find('.Slick');
+
+      if(!$me.hasClass('Active')){
+        $me.addClass('Active').siblings().removeClass('Active');
+        me_slick.slick('slickGoTo', this_slide - 1);
+      }
+    })
+  })(jQuery);
+</script>
