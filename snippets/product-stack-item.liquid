@@ -34,6 +34,9 @@
   Assign a variant to show unit prices.
 {%- endcomment -%}
 
+{% assign metafields = product.metafields.acremade %}
+{%- assign pics = metafields['plp_images'] -%}
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 {% if product.price_varies and product.variants.size > 1 %}
@@ -77,6 +80,7 @@
           image_id: product.featured_media.id,
       -%} {% endcomment %}
 
+      <a href="{{ product.url | within: collection }}">
       <div class="Slick plp-slick" data-slick='{
         "slidesToShow": 1,
         "slidesToScroll": 1,
@@ -90,26 +94,50 @@
           }
         ]		
       }'>
-        {% for image in product.media limit: 2 %}
-          <div>
-            {%- render 'responsive-image' with
-                image: image
-                max_width: 1000,
-                max_height: 1000,
-                section_color: section_color,
-                responsive_image_counter: loop_index,
-                image_id: image.id,
-            -%}
-          </div>
-        {% endfor %}
+        {%- if pics -%}
+          {%- for image in pics.value -%}
+            <div>
+              {%- render 'responsive-image' with
+                  image: image
+                  max_width: 1000,
+                  max_height: 1000,
+                  section_color: section_color,
+                  responsive_image_counter: loop_index,
+                  image_id: image.id,
+              -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for image in product.media -%}
+            <div>
+              {%- render 'responsive-image' with
+                  image: image
+                  max_width: 1000,
+                  max_height: 1000,
+                  section_color: section_color,
+                  responsive_image_counter: loop_index,
+                  image_id: image.id,
+              -%}
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
       </div>
+      </a>
 
-      <div class="flex justify--center mt2">
-        {% for image in product.media limit: 2 %}
-          <button class="{% if forloop.first %}Active{% endif %} plp-slick-thumb" data-index="{{ forloop.index }}">
-            <img src="{{ image | img_url: '1024x' }}" alt="{{ image.alt }}" />
-          </button>
-        {% endfor %}
+      <div class="flex flex--wrap justify--center mt2">
+        {%- if pics -%}
+          {%- for image in pics.value -%}
+            <button class="{% if forloop.first %}Active{% endif %} plp-slick-thumb" data-index="{{ forloop.index }}">
+              <img src="{{ image | img_url: '1024x' }}" alt="{{ image.alt }}" />
+            </button>
+          {%- endfor -%}
+        {%- else -%}
+          {% for image in product.media %}
+            <button class="{% if forloop.first %}Active{% endif %} plp-slick-thumb" data-index="{{ forloop.index }}">
+              <img src="{{ image | img_url: '1024x' }}" alt="{{ image.alt }}" />
+            </button>
+          {% endfor %}
+        {% endif %}
       </div>
 
 
@@ -257,7 +285,7 @@
   border: none;
   background: transparent;
   padding: 0;
-  margin: 0 10px;
+  margin: 0 10px 20px 10px;
   position: relative;
 }
 .plp-slick-thumb:after {
@@ -275,8 +303,12 @@
 }
 .plp-slick-thumb img {
   display: block;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
+}
+.slick-slider .slick-track {
+  display: flex;
+  align-items: center;
 }
 </style>

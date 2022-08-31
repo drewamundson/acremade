@@ -596,13 +596,25 @@
           {% if layout == 'grid' %}
             <div class="grid grid--uniform sm--grid--half-gutter mtn3 lg--up--mtn4">
               {% for product in collection.products %}
-                <div class="product-grid-item grid__item sm--{{ posts_per_row_mobile }} md--up--{{ posts_per_row_desktop }} mt3 lg--up--mt4">
-                    {%- render 'product-grid-item',
-                        product: product,
-                        section_color: section_color,
-                        loop_index: forloop.index0,
-                    -%}
-                </div>
+                {% if customer and customer.tags contains 'wholesale' %}
+                  <div class="product-grid-item grid__item sm--{{ posts_per_row_mobile }} md--up--{{ posts_per_row_desktop }} mt3 lg--up--mt4">
+                      {%- render 'product-grid-item',
+                          product: product,
+                          section_color: section_color,
+                          loop_index: forloop.index0,
+                      -%}
+                  </div>
+                {% else %}
+                  {% unless product.tags contains 'wholesale' %}
+                    <div class="product-grid-item grid__item sm--{{ posts_per_row_mobile }} md--up--{{ posts_per_row_desktop }} mt3 lg--up--mt4">
+                        {%- render 'product-grid-item',
+                            product: product,
+                            section_color: section_color,
+                            loop_index: forloop.index0,
+                        -%}
+                    </div>
+                  {% endunless %}
+                {% endif %}
               {% else %}
                 {% for i in (1..section.settings.no_products) %}
                 <div class="product-grid-item grid__item  lg--up--one-third">
@@ -628,29 +640,55 @@
 
                 {% liquid assign col_count_desktop = 1 %}
 
-                {% for product in collection.products %}
+                {% if customer and customer.tags contains 'wholesale' %}
+                  {% for product in collection.products %}                    
                     {%- liquid
                       if forloop.last
                         assign last_col = true
                       endif
                     -%}
-                  {% capture mobile_count %}{% cycle '1', '2' %}{% endcapture %}
-
-                  <div class="item item--large-gap item--desktop--half item--mobile--full {% if forloop.first %}item--first{% endif %}  {% if last_col %}item--last{% endif %}  {% if settings.fade_in_items %}fade-in{% endif %}">
-                    <div class="item__inner {% if mobile_count == '1' %}md--dn--pr4{% else %}md--dn--pl4{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
-                      {%- render 'product-grid-item',
-                          product: product,
-                          section_color: section_color,
-                          loop_index: forloop.index0,
-                      -%}
+                    {% capture mobile_count %}{% cycle '1', '2' %}{% endcapture %}
+                    <div class="item item--large-gap item--desktop--half item--mobile--full {% if forloop.first %}item--first{% endif %}  {% if last_col %}item--last{% endif %}  {% if settings.fade_in_items %}fade-in{% endif %}">
+                      <div class="item__inner {% if mobile_count == '1' %}md--dn--pr4{% else %}md--dn--pl4{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
+                        {%- render 'product-grid-item',
+                            product: product,
+                            section_color: section_color,
+                            loop_index: forloop.index0,
+                        -%}
+                      </div>
                     </div>
-                  </div>
+                    {% assign col_count_desktop = col_count_desktop | plus: 1 %}
+                    {% if col_count_desktop == 5 %}
+                      {% assign col_count_desktop = 1 %}
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  {% for product in collection.products %}
+                    {% unless product.tags contains 'wholesale' %}
+                      {%- liquid
+                        if forloop.last
+                          assign last_col = true
+                        endif
+                      -%}
+                      {% capture mobile_count %}{% cycle '1', '2' %}{% endcapture %}
 
-                  {% assign col_count_desktop = col_count_desktop | plus: 1 %}
-                  {% if col_count_desktop == 5 %}
-                    {% assign col_count_desktop = 1 %}
-                  {% endif %}
-                {% endfor %}
+                      <div class="item item--large-gap item--desktop--half item--mobile--full {% if forloop.first %}item--first{% endif %}  {% if last_col %}item--last{% endif %}  {% if settings.fade_in_items %}fade-in{% endif %}">
+                        <div class="item__inner {% if mobile_count == '1' %}md--dn--pr4{% else %}md--dn--pl4{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
+                          {%- render 'product-grid-item',
+                              product: product,
+                              section_color: section_color,
+                              loop_index: forloop.index0,
+                          -%}
+                        </div>
+                      </div>
+
+                      {% assign col_count_desktop = col_count_desktop | plus: 1 %}
+                      {% if col_count_desktop == 5 %}
+                        {% assign col_count_desktop = 1 %}
+                      {% endif %}
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
 
               </cascading-content>
             </div>

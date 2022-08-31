@@ -600,7 +600,6 @@
 
             <div class="grid-stack mtn3 lg--up--mtn4">
               {% if customer and customer.tags contains 'wholesale' %}
-                  
                 {% for product in collection.products %}
                   <div class="product-grid-item mt3 lg--up--mt4">
                       {%- render 'product-stack-item',

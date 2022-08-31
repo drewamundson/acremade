@@ -478,9 +478,18 @@
         {%- assign cta_url = block.settings.cta_url -%}
         {%- assign content_position = block.settings.content_position -%}
         {%- assign text_align = block.settings.text_align -%}
+
         {%- assign fp = block.settings.featured_product -%}
-        {% assign theProduct = all_products[fp] %}
+        {%- assign fpw = block.settings.featured_product_wholesale -%}
+
+        {%- if customer and customer.tags contains 'wholesale' and fpw -%}
+          {% assign theProduct = all_products[fpw] %}
+        {%- else -%}
+          {% assign theProduct = all_products[fp] %}
+        {%- endif -%}
+        
         {% assign theProductImage = theProduct.featured_image %}
+
         {% assign feature_image = block.settings.image %}
         {% assign feature_image_mobile = block.settings.image_mobile %}
 
@@ -494,7 +503,7 @@
                     <div class="inline-block {{ text_align }}">
                       <div class="">
                         {% if heading != blank %}
-                          <h2 class="color--{{ section_color }}-text f--heading font-size--xxxl line-height--8 pm--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ heading }}</h2>
+                          <h2 class="color--{{ section_color }}-text f--heading font-size--xxxl line-height--8 pm--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13 m0">{{ heading }}</h2>
                         {% endif %}
                         {% if cta_url != blank %}
                           <a class="mt2 btn border--none relative border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay {% if section_color == 'white' or section_color == 'black' %}hover-bg--primary{% else %}hover-bg--{{ section_color }}{% endif %} p1 px2 inline-block" href="{{ cta_url }}">
@@ -527,7 +536,7 @@
                       <div id="featured-product" class="flex mt2 pb2 lg--up--pb0">
                         <div>
                           <h3 class="color--{{ section_color }}-text">{{theProduct.title}}</h3>
-                          <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-text{% endif %} m0 font-size__basic">
+                          <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-text{% endif %} m0 font-size__basic mb1">
                             {% if sold_out %}
                               <span class="sold-out color--{{ section_color }}-meta {% if on_sale %}mr1{% endif %}">{{ 'products.product.sold_out' | t }}</span>
                             {% else %}
@@ -601,7 +610,7 @@
                               -%}
                               <div class="add-to-cart-container max-width--1 {% unless current_variant.available %}hide-pay-buttons{% endunless %}  {% if show_payment_button %}cta-content--pay-buttons{% endif %}" data-add-to-cart-container>
                                 <button
-                                  class="btn border--none btn--add-to-cart relative color-scheme--{{ section_color }} {% if show_payment_button %}bg--transparent color--{{ section_color }}-text border--{{ section_color }}-text hv--{{ section_color }}-accent hv--border--{{ section_color }}-accent {% else %}border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay hover-bg--{{ section_color }}{% endif %} p1 full--w block"
+                                  class="btn border--none btn--add-to-cart relative color-scheme--{{ section_color }} {% if show_payment_button %}bg--transparent color--{{ section_color }}-text border--{{ section_color }}-text hv--{{ section_color }}-accent hv--border--{{ section_color }}-accent {% else %}border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay {% if section_color == 'white' or section_color == 'black' %}hover-bg--primary{% else %} hover-bg--{{ section_color }}{% endif %}{% endif %} p1 full--w block"
                                   type="submit"
                                   name="add"
                                   id="AddToCart--{{ section.id }}"
@@ -938,6 +947,11 @@
             "id": "featured_product",
             "label": "Product"
           },
+          {
+            "type": "product",
+            "id": "featured_product_wholesale",
+            "label": "Product (Wholesale)"
+          },          
           {
             "type": "header",
             "content": "Content"

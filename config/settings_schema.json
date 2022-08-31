@@ -266,6 +266,10 @@
         "label": "Color scheme",
         "options": [
           {
+            "value": "primary",
+            "label": "Primary"
+          },          
+          {
             "value": "secondary",
             "label": "Secondary"
           },

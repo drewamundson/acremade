@@ -1169,6 +1169,32 @@
 {% endschema %}
 
 {% stylesheet %}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e0c13f;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e0c13f;
+}
+
+.product__media-container .flickity-slider {
+  display: flex;
+  align-items: center;
+}
+
 @media only screen and (min-width: 750px) {
   .md--max-width--1 {
     max-width: 24rem; 
