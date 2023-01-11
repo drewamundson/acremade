@@ -7,8 +7,22 @@
           "type": "title",
           "settings": {}
         },
+        "4a6c91a1-6925-4349-95f2-965a11cf6ae8": {
+          "type": "shopify:\/\/apps\/product-reviews\/blocks\/star_rating\/bae150af-8da8-48b2-9867-398188115e5f",
+          "settings": {
+            "stars_fill_color": "#000000",
+            "star_size": 15,
+            "text_align": "flex-start",
+            "product": "{{product}}",
+            "stars_text_empty": "No reviews"
+          }
+        },
         "price": {
           "type": "price",
+          "settings": {}
+        },
+        "9cb7fbf2-9e4f-40b3-81d8-119fb261662f": {
+          "type": "description",
           "settings": {}
         },
         "variant_picker": {
@@ -21,6 +35,12 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "b93f31a2-3583-48fa-b4ac-620ba63faaa4": {
+          "type": "shopify:\/\/apps\/recharge-subscriptions\/blocks\/subscription-widget\/371eed76-0b44-4869-9813-730372ea378e",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -31,9 +51,12 @@
       },
       "block_order": [
         "title",
+        "4a6c91a1-6925-4349-95f2-965a11cf6ae8",
         "price",
+        "9cb7fbf2-9e4f-40b3-81d8-119fb261662f",
         "variant_picker",
         "quantity_selector",
+        "b93f31a2-3583-48fa-b4ac-620ba63faaa4",
         "buy_buttons"
       ],
       "settings": {
@@ -45,62 +68,48 @@
         "description_color_scheme": "primary"
       }
     },
-    "1642799884c205f40f": {
-      "type": "cascade",
-      "blocks": {
-        "1642799884a8400ce1-0": {
-          "type": "rich_text",
-          "settings": {
-            "heading": "The best scramble, no eggs needed.",
-            "rich_text": "<p>Acremade uses ingredients that have actually been diverted from the food chain’s waste stream—what before was used as extra plant-material fertilizer, is now a clean, delicious source of plant protein.<\/p>",
-            "cta_url": "",
-            "cta_text": "Shop now",
-            "text_align": "text-align--left",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        },
-        "1642799884a8400ce1-2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/100-acremade-nutrition_labels_replacer.png",
-            "url": "",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        },
-        "1642799884a8400ce1-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Stocksy_comp_3822025.jpg",
-            "url": "",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        }
-      },
-      "block_order": [
-        "1642799884a8400ce1-0",
-        "1642799884a8400ce1-2",
-        "1642799884a8400ce1-1"
-      ],
+    "product-split": {
+      "type": "product-split",
+      "disabled": true,
       "settings": {
-        "first_item": "left",
-        "color_scheme": "tertiary"
+        "color_scheme": "primary",
+        "heading": "Heading goes here",
+        "text": ""
       }
     },
     "recommendations": {
       "type": "product-recommendations",
+      "disabled": true,
       "settings": {
         "show_product_recommendations": true,
         "product_recommendations_heading": "You may also like",
         "color_scheme": "secondary"
       }
+    },
+    "1662586499b93531a4": {
+      "type": "apps",
+      "blocks": {
+        "3241c737-c92e-4cf4-b767-44140420dd91": {
+          "type": "shopify:\/\/apps\/product-reviews\/blocks\/reviews\/bae150af-8da8-48b2-9867-398188115e5f",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "3241c737-c92e-4cf4-b767-44140420dd91"
+      ],
+      "settings": {
+        "title": "Product Reviews",
+        "subheading": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "color_scheme": "primary"
+      }
     }
   },
   "order": [
     "main",
-    "1642799884c205f40f",
-    "recommendations"
+    "product-split",
+    "recommendations",
+    "1662586499b93531a4"
   ]
 }

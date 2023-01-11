@@ -1,0 +1,83 @@
+{
+  "sections": {
+    "highlights": {
+      "type": "about-highlights",
+      "blocks": {
+        "14dda3a2-7bd7-4fe7-993b-e03b93b4e599": {
+          "type": "highlight",
+          "settings": {
+            "highlight": "<p><strong>Questionable Sourcing: <\/strong>Our peas are sourced from domestic growers and not shipped overseas<br\/><\/p>"
+          }
+        },
+        "01565e49-8cdf-4507-b038-6a46b11f9e98": {
+          "type": "highlight",
+          "settings": {
+            "highlight": "<p><strong>Glyphosate-Residue: <\/strong>Our contracted growers are banned from using desiccants (like Roundup)<br\/><\/p>"
+          }
+        },
+        "77414bab-c3c8-4beb-9d87-a04b40c25bb0": {
+          "type": "highlight",
+          "settings": {
+            "highlight": "<p><strong>GMOs: <\/strong>AcreMade only purchases non- GMO peas of a patented variety<br\/><\/p>"
+          }
+        },
+        "b1971d06-6b86-4003-9593-156bbf9bef40": {
+          "type": "highlight",
+          "settings": {
+            "highlight": "<p><strong>Allergens: <\/strong>AcreMade products are made without any of the top 8 allergens<br\/><\/p>"
+          }
+        },
+        "010152e4-ee6b-4f9c-bb9e-86997fd7f081": {
+          "type": "highlight",
+          "settings": {
+            "highlight": "<p><strong>Animals\/Factory Farms & Associated Risks: <\/strong>Ethical and disease-related concerns associated with animal agriculture (like Avian Flu)<br\/><\/p>"
+          }
+        },
+        "5644bccb-0046-47e9-8c04-6310ba4ef423": {
+          "type": "highlight",
+          "settings": {
+            "highlight": "<p><strong>Large Carbon Footprint: <\/strong>Plant based food have a smaller footprint than their animal counterparts, with peas among the crops with the smallest environmental impact<br\/><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "14dda3a2-7bd7-4fe7-993b-e03b93b4e599",
+        "01565e49-8cdf-4507-b038-6a46b11f9e98",
+        "77414bab-c3c8-4beb-9d87-a04b40c25bb0",
+        "b1971d06-6b86-4003-9593-156bbf9bef40",
+        "010152e4-ee6b-4f9c-bb9e-86997fd7f081",
+        "5644bccb-0046-47e9-8c04-6310ba4ef423"
+      ],
+      "settings": {
+        "color_scheme": "tertiary",
+        "highlight_heading": "<p>Free from the things that <strong style=\"display: block;position:relative;\"><span>take the satisfaction out of eating well.<\/span><span class=\"underline bg--tertiary-background\"><\/span><\/strong>\n<\/p>",
+        "highlight_graphic": "shopify:\/\/shop_images\/100-PeaPlant_Illustration-min.png"
+      }
+    },
+    "165835178846ffc5e3": {
+      "type": "video",
+      "settings": {
+        "title": "",
+        "subheading": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "video_url": "https:\/\/player.vimeo.com\/video\/683525127?color=00ff00",
+        "color_scheme": "primary"
+      }
+    },
+    "about": {
+      "type": "about-header",
+      "settings": {
+        "color_scheme": "tertiary",
+        "about_img": "shopify:\/\/shop_images\/home-omelet_skillet.jpg",
+        "about_heading": "MEET THE MIGHTY PEA",
+        "about_text": "Acremade is free from the things that take the fun out of eating well. Whether you're an allergy household, an ethical vegan, an environmental steward, or just plant-curious, we give egg-free egg lovers something to cluck about."
+      }
+    }
+  },
+  "order": [
+    "highlights",
+    "165835178846ffc5e3",
+    "about"
+  ]
+}

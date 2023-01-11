@@ -2749,6 +2749,10 @@ Flex
   flex-direction: row;
 }
 
+.flex--column {
+  flex-direction: column;
+}
+
 .flex--row-reverse {
   flex-direction: row-reverse;
 }
@@ -2951,6 +2955,9 @@ Flex
   }
   .lg--up--justify--end {
     justify-content: flex-end;
+  }
+  .lg--up--flex--column {
+    flex-direction: column;
   }
   /* 1.lg--up-- Fix for Chrome 44 bug.lg--up-- https://code.lg--up--google.lg--up--com/p/chromium/issues/detail?id=506893 */
 }
@@ -3295,6 +3302,9 @@ html.no-js .visibility--hidden--js-only {
   }
   .md--up--text-align--right {
     text-align: right;
+  }
+  .md--max-width--1 {
+    max-width: 24rem; 
   }
 }
 
@@ -3713,6 +3723,14 @@ $colors: (
 
 .hv--div--border-bottom--primary-text:hover > div {
   border-bottom: 1px solid var(--color-primary-text);
+}
+
+.bg--base-background {
+  background: #fff;
+}
+
+.color--base-text {
+  color: var(--color-primary-text);
 }
 
 .color--primary-background {
@@ -4637,6 +4655,9 @@ h5,
 }
 
 @media only screen and (min-width: 480px) {
+  .pm--font-size--xxxxxxl {
+    font-size: 3.5rem;
+  }  
   .pm--font-size--xxxxxl {
     font-size: 3rem;
   }
@@ -4712,6 +4733,9 @@ h5,
 }
 
 @media only screen and (min-width: 1400px) {
+  .wd--font-size--xxxxxxxl {
+    font-size: 4.5rem;
+  }  
   .wd--font-size--xxxxxxl {
     font-size: 3.5rem;
   }

@@ -31,9 +31,9 @@
         endif
       -%}
 
-      <div class="{% if product.media.size > 1 %}lg--up--seven-eighths{% endif %} mx--auto">
-        <div class="grid">
-          <div class="grid__item md--up--one-half">
+      <div class="{% if product.media.size > 1 %}lg--up--whole{% endif %} mx--auto">
+        <div class="flex flex--wrap">
+          <div class="one-whole lg--grid__item md--up--one-half">
             <div class="product__images relative md--up--text-align--right font-size--0">
               {% if featured_media != blank %}
                 {% capture featured_media_class %}one-whole md--up--five-sixths{% endcapture %}
@@ -185,15 +185,17 @@
             endif
           %}
 
-          <div class="grid__item md--up--one-half{% if current_variant.unit_price_measurement %} has-unit-price{% endif %}" data-product-block-container>
+          <div class="one-whole lg--grid__item md--up--one-half{% if current_variant.unit_price_measurement %} has-unit-price{% endif %}" data-product-block-container>
             <div class="{% unless needs_wider_spacing %}wd--pt3 lg--up--pl3 wd--pl4{% endunless %}">
               <div class="mt3">
                 {% for block in section.blocks %}
                   {% case block.type %}
                     {% when '@app' %}
-                      {% render block %}
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
+                        {% render block %}
+                      </div>
                     {% when 'text' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
                         <p class="f--body font-size--ml m0 flex items--center">
                           {% render 'product-icon',
                              icon: block.settings.icon,
@@ -203,13 +205,13 @@
                         </p>
                       </div>
                     {% when 'title' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3" {{ block.shopify_attributes }}>
                         <h1 class="f--heading f--heading font-size__heading m0">
                           {{ product.title }}
                         </h1>
                       </div>
                     {% when 'price' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
                         <div class="font-size--ml" data-price-wrapper>
                           <span {% if current_variant.compare_at_price > current_variant.price %}class="color--{{ section_color }}-accent"{% endif %} data-product-price>
                             {% if settings.currency_code_enable %}
@@ -255,7 +257,7 @@
                         </div>
 
                         {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
-                        <div class="font-size--s mt1 mb3">
+                        <div class="font-size--s mt1 mb2">
                           {%- if shop.taxes_included -%}
                             {{ 'products.product.include_taxes' | t }}
                           {%- endif -%}
@@ -266,8 +268,8 @@
                           {%- endif -%}
                         </div>
                         {%- endif -%}
-                        {%- form 'product', product, id: 'product-form-installment' -%}
-                          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-product-select>
+                        {%- form 'product', product, data-productid: product.id, id: 'product-form-installment' -%}
+                          <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.selected_or_first_available_variant.id }}" data-product-select>
                           {{ form | payment_terms }}
                         {%- endform -%}
                       </div>
@@ -276,7 +278,7 @@
                         assign variant_picker_enabled = true
                         assign hide_drop_down_labels = block.settings.hide_drop_down_labels
                       %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 mb2" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--max-width--1 md--up--pt0 lg--up--px3 mb2" {{ block.shopify_attributes }}>
                         {% unless product.has_only_default_variant %}
                           {% for option in product.options_with_values %}
                             <div class="selector-wrapper js mt2 font-size--m">
@@ -301,7 +303,7 @@
                             </div>
                           {% endfor %}
                           <noscript>
-                            <select name="id"
+                            <select name="id" data-productid="{{ product.id }}"
                                     class="no-js bg--transparent border--{{ section_color }}-text color--{{ section_color }}-text p1 block full--w font-size--sm my3"
                                     form="product-form-{{ module_id }}"
                                     >
@@ -318,7 +320,7 @@
                         {% endunless %}
                       </div>
                     {% when 'quantity_selector' %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 my2">
+                      <div class="px2 max-width--3 md--max-width--1 md--up--pt0 lg--up--px3 my2">
                         <div class="mt2 font-size--m flex items--center" {{ block.shopify_attributes }}>
                           <div class="pr2">
                             <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
@@ -336,12 +338,12 @@
                       </div>
                     {% when 'buy_buttons' %}
                       {% assign show_pickup_availability = block.settings.show_pickup_availability %}
-                      <div class="px2 max-width--1 md--up--pt0 lg--up--px3 my3" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--max-width--1 md--up--pt0 lg--up--px3 my3" {{ block.shopify_attributes }}>
                         <div id="AddToCartForm--{{ module_id }}" class="form-vertical">
                           {%- assign product_form_id = 'product-form-' | append: module_id -%}
-                          {% form 'product', product, id: product_form_id %}
+                          {% form 'product', product, data-productid: product.id, id: product_form_id %}
                             <input type="hidden"
-                                   name="id"
+                                   name="id" data-productid="{{ product.id }}"
                                    value="{{ product.selected_or_first_available_variant.id }}"
                                    {% if variant_picker_enabled %}
                                    disabled
@@ -398,7 +400,7 @@
                         </div>
                       {% endif %}
                     {% when 'supporting_links' %}
-                      <div class="px2 max-width--2 lg--up--px3 font-size--s my2" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 lg--up--px3 font-size--s my2" {{ block.shopify_attributes }}>
                         {% for supporting_link in block.settings.linklist.links %}
                           <a href="{{ supporting_link.url }}"
                              class="inline-block mr1 color--{{ section_color }}-text link-underline border-bottom--transparent hv--border-bottom--{{ section_color }}-text">
@@ -437,9 +439,9 @@
                         </div>
                       </div>
                     {% when 'description' %}
-                      <div class="px2 max-width--2 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
+                      <div class="px2 max-width--3 md--up--pt0 lg--up--px3 my1" {{ block.shopify_attributes }}>
                         {% if product.description != empty or product.description != '' %}
-                          <div class="mt3 rte font-size__basic" data-product-description>
+                          <div class="mt2 rte font-size__basic" data-product-description>
                             {{ product.description }}
                           </div>
                         {% endif %}
@@ -531,13 +533,14 @@
       </div>
 
     </div>
-    <div>
+
+    {% comment %} <div>
       {% for block in section.blocks %}
         {% if block.type == '@app' %}
           {% render block %}
         {% endif %}
       {% endfor %}
-    </div>
+    </div> {% endcomment %}
 
     {% unless product == empty %}
       <script type="application/json" data-product-json>
@@ -584,7 +587,7 @@
       </script>
     {% endunless %}
   </section>
-  {% if section.settings.enable_full_width_description and product.description != empty %}
+  {% comment %} {% if section.settings.enable_full_width_description and product.description != empty %}
     {%- liquid
       assign description_color_scheme = section.settings.description_color_scheme
       if section_color == description_color_scheme
@@ -603,7 +606,7 @@
         </div>
       </div>
     </section>
-  {% endif %}
+  {% endif %} {% endcomment %}
 </div>
 
 
@@ -1167,3 +1170,37 @@
     ]
   }
 {% endschema %}
+
+{% stylesheet %}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e0c13f;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #e0c13f;
+}
+
+.product__media-container .flickity-slider {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 750px) {
+  .md--max-width--1 {
+    max-width: 24rem; 
+  }
+}
+{% endstylesheet %}

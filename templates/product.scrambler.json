@@ -89,6 +89,10 @@
         "color_scheme": "tertiary"
       }
     },
+    "product-split": {
+      "type": "product-split",
+      "settings": {}
+    },
     "recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -101,6 +105,7 @@
   "order": [
     "main",
     "1642799884c205f40f",
+    "product-split",
     "recommendations"
   ]
 }

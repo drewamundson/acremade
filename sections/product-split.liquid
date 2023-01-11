@@ -1,0 +1,74 @@
+{%- assign section_color = section.settings.color_scheme -%}
+{%- assign font_size = 'font-size__basic' -%}
+{%- if section.settings.image -%}
+  {%- assign feature_image = section.settings.image -%}
+{%- else -%}
+  {%- assign placeholder = true -%}
+{%- endif -%} 
+
+
+
+<section class="section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-id="{{ section.id }}">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="flex items--center flex--wrap">
+    
+      <div class="one-whole lg--up--grid__item lg--up--one-half lg--up-px3">
+        {% if section.settings.heading %}
+          <h2 class="m0 font-size__heading-mobile-full">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text %}
+          <div class="richtext font-size__basic mt2">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="one-whole lg--up--grid__item lg--up--one-half lg--up-px3">
+        {% if section.settings.image  %}
+          {% render 'responsive-image' with
+            image: feature_image,
+            max_width: 1000,
+            max_height: 1000,
+            section_color: section_color,
+          %}
+        {% endif %} 
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Product split",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+         { "value": "primary", "label": "Primary"},
+         { "value": "secondary", "label": "Secondary"},
+         { "value": "tertiary", "label": "Tertiary"}
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Title",
+      "default": "Heading goes here"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ]
+}
+{% endschema %}

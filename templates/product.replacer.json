@@ -11,6 +11,10 @@
           "type": "price",
           "settings": {}
         },
+        "1afd9b8b-9df3-40cf-bdf9-69b2b0f245d6": {
+          "type": "description",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -32,6 +36,7 @@
       "block_order": [
         "title",
         "price",
+        "1afd9b8b-9df3-40cf-bdf9-69b2b0f245d6",
         "variant_picker",
         "quantity_selector",
         "buy_buttons"
@@ -47,6 +52,7 @@
     },
     "1642799884c205f40f": {
       "type": "cascade",
+      "disabled": true,
       "blocks": {
         "1642799884a8400ce1-0": {
           "type": "rich_text",
@@ -89,6 +95,15 @@
         "color_scheme": "tertiary"
       }
     },
+    "product-split": {
+      "type": "product-split",
+      "settings": {
+        "color_scheme": "tertiary",
+        "image": "shopify:\/\/shop_images\/whyacremade-waffle.jpg",
+        "heading": "Bake without cracking a single shell",
+        "text": "<p>Acremade Plant-Based Egg Replacer powder is the perfect substitute ingredient for everyone from home bakers to commercial operations. It’s all thanks to the mighty pea, ensuring your next baking masterpiece is plant-powered perfection. From your first bite to the last, we promise, you won’t miss a thing.<\/p>"
+      }
+    },
     "recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -101,6 +116,7 @@
   "order": [
     "main",
     "1642799884c205f40f",
+    "product-split",
     "recommendations"
   ]
 }

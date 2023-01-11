@@ -2,6 +2,7 @@
   "sections": {
     "cascade-0": {
       "type": "cascade",
+      "disabled": true,
       "blocks": {
         "rich-text-0": {
           "type": "rich_text",
@@ -49,6 +50,7 @@
       "blocks": {
         "55105277-4119-42ba-bcd6-f7a6f3fa9dea": {
           "type": "section_break",
+          "disabled": true,
           "settings": {}
         },
         "1642734512510f64b6-1": {
@@ -65,6 +67,7 @@
         },
         "1642734512510f64b6-0": {
           "type": "video",
+          "disabled": true,
           "settings": {
             "video_url": "https:\/\/vimeo.com\/683404863",
             "use_high_res_image": true,
@@ -80,11 +83,12 @@
       ],
       "settings": {
         "first_item": "left",
-        "color_scheme": "primary"
+        "color_scheme": "base"
       }
     },
     "1645474002c4ba4b52": {
       "type": "image-with-text",
+      "disabled": true,
       "settings": {
         "feature_image": "shopify:\/\/shop_images\/home-acremade_scrambler_feature.jpg",
         "heading": "Scrambler",
@@ -99,6 +103,7 @@
     },
     "164633370323941418": {
       "type": "image-with-text",
+      "disabled": true,
       "settings": {
         "feature_image": "shopify:\/\/shop_images\/204-acremade-replacement-paperbag.jpg",
         "heading": "Replacer",
@@ -113,6 +118,7 @@
     },
     "cascade-2": {
       "type": "cascade",
+      "disabled": true,
       "blocks": {
         "heading-0": {
           "type": "heading",
@@ -165,6 +171,7 @@
     },
     "1642805256b5388896": {
       "type": "image-with-text",
+      "disabled": true,
       "settings": {
         "feature_image": "shopify:\/\/shop_images\/home-scramble_scoop.jpg",
         "heading": "",
@@ -176,6 +183,72 @@
         "section_color_overlay": "primary",
         "color_scheme": "secondary"
       }
+    },
+    "1657641462a18bbc2f": {
+      "type": "video-module",
+      "blocks": {
+        "165764146227201bed-0": {
+          "type": "video",
+          "settings": {
+            "video_title": "Bringing Eggs to the Egg-less",
+            "video_url": "https:\/\/vimeo.com\/697100568",
+            "use_high_res_image": true
+          }
+        },
+        "354839c8-0914-4c30-b374-e56868a38028": {
+          "type": "video",
+          "settings": {
+            "video_title": "AcreMade Scramble",
+            "video_url": "https:\/\/vimeo.com\/697092102",
+            "use_high_res_image": true
+          }
+        },
+        "8fe47a0f-6326-4dbd-9d1c-a46ec2ee5319": {
+          "type": "video",
+          "settings": {
+            "video_title": "AcreMade Bake",
+            "video_url": "https:\/\/vimeo.com\/697092274",
+            "use_high_res_image": true
+          }
+        },
+        "a177dac0-058c-4e8f-b4c1-e5b543f7c098": {
+          "type": "video",
+          "settings": {
+            "video_title": "AcreMade Omelet",
+            "video_url": "https:\/\/vimeo.com\/697090955",
+            "use_high_res_image": true
+          }
+        },
+        "f7972829-f011-442d-aaf8-6bdd438dee84": {
+          "type": "video",
+          "disabled": true,
+          "settings": {
+            "video_title": "Cookie",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "use_high_res_image": true
+          }
+        },
+        "dbcab3ec-0f99-4a1d-8d1a-84ca0a5af487": {
+          "type": "video",
+          "settings": {
+            "video_title": "The Conscientious Choice",
+            "video_url": "https:\/\/vimeo.com\/697099998",
+            "use_high_res_image": true
+          }
+        }
+      },
+      "block_order": [
+        "165764146227201bed-0",
+        "354839c8-0914-4c30-b374-e56868a38028",
+        "8fe47a0f-6326-4dbd-9d1c-a46ec2ee5319",
+        "a177dac0-058c-4e8f-b4c1-e5b543f7c098",
+        "f7972829-f011-442d-aaf8-6bdd438dee84",
+        "dbcab3ec-0f99-4a1d-8d1a-84ca0a5af487"
+      ],
+      "settings": {
+        "title": "A WORLD OF POTENTIAL, MADE FROM PEAS",
+        "subheading": ""
+      }
     }
   },
   "order": [
@@ -184,6 +257,7 @@
     "1645474002c4ba4b52",
     "164633370323941418",
     "cascade-2",
-    "1642805256b5388896"
+    "1642805256b5388896",
+    "1657641462a18bbc2f"
   ]
 }

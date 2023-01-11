@@ -63,6 +63,10 @@
       ],
       "settings": {}
     },
+    "product-split": {
+      "type": "product-split",
+      "settings": {}
+    },
     "recommendations": {
       "type": "product-recommendations",
       "settings": {}
@@ -71,6 +75,7 @@
   "order": [
     "main",
     "cascade",
+    "product-split",
     "recommendations"
   ]
 }

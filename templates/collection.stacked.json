@@ -1,11 +1,12 @@
 {
   "sections": {
     "main": {
-      "type": "main-collection",
+      "type": "main-collection--stacked",
       "settings": {
         "color_scheme": "primary",
         "no_posts": 12,
-        "show_collection_image": false,
+        "posts_per_row_desktop": "one-third",
+        "posts_per_row_mobile": "one-half",
         "enable_facet_filtering": false,
         "enable_sort_filter": false
       }

@@ -1,5 +1,15 @@
 {
   "sections": {
+    "wholesale": {
+      "type": "wholesale-header",
+      "settings": {
+        "color_scheme": "primary",
+        "wholesale_img": "shopify:\/\/shop_images\/PURIS_EGG_04_213768-2000x1333-282f2dd.jpg",
+        "wholesale_heading": "Add allergy-friendly, vegan eggs to your offering, today.",
+        "wholesale_text": "If you are interested in AcreMade products on your menu, please fill out the following wholesale application and we will reply in 1-2 business days. We look forward to working with you to bring delicious plant-based foods to your customers.",
+        "wholesale_form_snippet": "<div style=\"margin:0 auto;\" class=\"pxFormGenerator\" id=\"nZ1fjN6F_WrBfbwErGoLPw\"><\/div>"
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -9,6 +19,7 @@
     },
     "1642997618fdcca612": {
       "type": "cascade",
+      "disabled": true,
       "blocks": {
         "16429976186156816d-0": {
           "type": "heading",
@@ -61,28 +72,9 @@
         "color_scheme": "primary"
       }
     },
-    "16429993153d0e663c": {
-      "type": "richtext",
-      "blocks": {
-        "16429993152f0d6554-0": {
-          "type": "richtext",
-          "settings": {
-            "richtext": "<p>Plants are the only solution for sustainably feeding the earth’s growing population. Even with all the interest and good intentions in the marketplace, conventional agriculture is solidly in the lead. That’s why Acremade exists: to fulfill a vision of <strong>a future where plant-based takes the lead<\/strong>, resetting the world’s expectations for satisfaction, affordability and sustainability.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "16429993152f0d6554-0"
-      ],
-      "settings": {
-        "title": "A world of potential, born from a single pea.",
-        "cta_url": "shopify:\/\/blogs\/news",
-        "cta_text": "",
-        "color_scheme": "tertiary"
-      }
-    },
     "16466586982725ba3a": {
       "type": "cascade",
+      "disabled": true,
       "blocks": {
         "1646658697079f6e0b-0": {
           "type": "rich_text",
@@ -127,21 +119,43 @@
     },
     "1643087462e6c84bb5": {
       "type": "video",
+      "disabled": true,
       "settings": {
         "title": "",
         "subheading": "",
         "cta_url": "",
         "cta_text": "Shop Now",
         "video_url": "https:\/\/vimeo.com\/683525127",
-        "color_scheme": "primary"
+        "color_scheme": "secondary"
+      }
+    },
+    "16429993153d0e663c": {
+      "type": "richtext",
+      "blocks": {
+        "16429993152f0d6554-0": {
+          "type": "richtext",
+          "settings": {
+            "richtext": "<p>If you're interested in integrating plant-based eggs into your next food innovation or commercial kitchen process, reach out to us for more information.<\/p><p><\/p><p><a href=\"https:\/\/jake-197.myshopify.com\/pages\/contact\" title=\"Contact\"><span style=\"text-decoration:underline\"><strong>Contact Us<\/strong><\/span><\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "16429993152f0d6554-0"
+      ],
+      "settings": {
+        "title": "CRACKING THE SURFACE OF PLANT-BASED EATING",
+        "cta_url": "",
+        "cta_text": "",
+        "color_scheme": "tertiary"
       }
     }
   },
   "order": [
+    "wholesale",
     "main",
     "1642997618fdcca612",
-    "16429993153d0e663c",
     "16466586982725ba3a",
-    "1643087462e6c84bb5"
+    "1643087462e6c84bb5",
+    "16429993153d0e663c"
   ]
 }

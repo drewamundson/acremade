@@ -211,6 +211,15 @@
     {% assign color_active_accent--overlay = secondary_accent_overlay %}
     {% assign color_active_text__faded = settings.color_secondary_text | color_modify: 'alpha', 0.9 %}
     {% assign color_active_background--faded = settings.color_secondary_background | color_modify: 'alpha', 0.9 %}    
+  {% elsif settings.active_header_color_scheme == 'primary' %}
+    {% assign color_active_text = settings.color_primary_text %}
+    {% assign color_active_background = settings.color_primary_background %}
+    {% assign color_active_accent = settings.color_primary_accent %}
+    {% assign color_active_meta = settings.color_primary_meta %}
+    {% assign color_active_text--overlay = secondary_overlay_color %}
+    {% assign color_active_accent--overlay = secondary_accent_overlay %}
+    {% assign color_active_text__faded = settings.color_secondary_text | color_modify: 'alpha', 0.9 %}
+    {% assign color_active_background--faded = settings.color_secondary_background | color_modify: 'alpha', 0.9 %}  
   {% else %}
     {% assign color_active_text = settings.color_tertiary_text %}
     {% assign color_active_background = settings.color_tertiary_background %}

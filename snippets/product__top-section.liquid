@@ -234,7 +234,7 @@
           <div>
 
             <div id="AddToCartForm--{{ module_id }}" class="form-vertical">
-            {% form 'product', product, id: module_id %}
+            {% form 'product', product, data-productid: product.id, id: module_id %}
 
               {{ form | payment_terms }}
 
@@ -264,7 +264,7 @@
                 {% endfor %}
               {% endunless %}
 
-              <select name="id" class="no-js" data-product-select>
+              <select name="id" data-productid="{{ product.id }}" class="no-js" data-product-select>
                 {% for variant in product.variants %}
                   <option
                     {% if variant == current_variant %}selected="selected"{% endif %}
