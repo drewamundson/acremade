@@ -601,7 +601,7 @@
             <div class="grid-stack mtn3 lg--up--mtn4">
               {% if customer and customer.tags contains 'wholesale' %}
                 {% for product in collection.products %}
-                  <div class="product-grid-item mt3 lg--up--mt4">
+                  <div class="product-grid-item mt3 lg--up--mt4 is-whole">
                       {%- render 'product-stack-item',
                           product: product,
                           section_color: section_color,
@@ -622,7 +622,7 @@
 
                 {% for product in collection.products %}
                   {% unless product.tags contains 'wholesale' %}
-                    <div class="product-grid-item mt3 lg--up--mt4">
+                    <div class="product-grid-item mt3 lg--up--mt4 no-whole">
                         {%- render 'product-stack-item',
                             product: product,
                             section_color: section_color,
