@@ -10,6 +10,32 @@
         "wholesale_form_snippet": "<div style=\"margin:0 auto;\" class=\"pxFormGenerator\" id=\"nZ1fjN6F_WrBfbwErGoLPw\"><\/div>"
       }
     },
+    "wholesale_products": {
+      "type": "wholesale-products",
+      "settings": {
+        "wholesale_collection": ""
+      }
+    },
+    "wholesale_video_module": {
+      "type": "wholesale-video-module",
+      "settings": {
+        "title": "",
+        "text": ""
+      },
+      "blocks": {}
+    }, 
+    "wholesale_form": {
+      "type": "wholesale-form",
+      "settings": {
+        "wholesale_form_snippet": "<div style=\"margin:0 auto;\" class=\"pxFormGenerator\" id=\"nZ1fjN6F_WrBfbwErGoLPw\"><\/div>"
+      }
+    },
+    "wholesale_features": {
+      "type": "wholesale-features",
+      "settings": {
+        
+      }
+    },    
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -152,6 +178,10 @@
   },
   "order": [
     "wholesale",
+    "wholesale_products",
+    "wholesale_video_module",
+    "wholesale_form",
+    "wholesale_features",
     "main",
     "1642997618fdcca612",
     "16466586982725ba3a",

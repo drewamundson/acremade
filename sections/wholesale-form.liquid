@@ -1,0 +1,42 @@
+<section class="page section-with-padding color--primary-text bg--white-background">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="lg--up--flex items--center">
+
+      {% if section.settings.wholesale_form_heading != blank %}
+        <div class="lg--up--two-fifths lg--up--pl3">
+          <h3>{{ section.settings.wholesale_form_heading}}</h3>
+        </div>
+      {% endif %}
+
+      {% if section.settings.wholesale_form_snippet_new != blank %}
+        <div class="lg--up--three-fifths">
+          {{ section.settings.wholesale_form_snippet_new }}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section> 
+
+{% schema %}
+{
+  "name": "Wholesale Form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Wholesale application form"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_form_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_form_snippet_new",
+      "label": "Wholesale form snippet.",
+      "info": "Get this code from the Form Builder App"
+    }
+  ]
+}
+{% endschema %}

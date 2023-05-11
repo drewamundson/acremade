@@ -1,46 +1,94 @@
 {%- assign section_color = section.settings.color_scheme -%}
+{%- assign has_two_pics = false -%}
+{%- if section.settings.wholesale_img_2 and section.settings.wholesale_heading_2 != blank -%}
+  {%- assign has_two_pics = true -%}
+{%- endif -%}
 
-<section class="page section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background">
-  <div class="max-site-width px2 lg--up--px3">
-    <div class="lg--up--flex items--center">
-    
-      {% if section.settings.wholesale_heading != blank or section.settings.wholesale_text != blank %}
-        <div class="lg--up--one-half md--up--pr2 wh-text">
-          <div class="md--up--pr2">
-            {% if section.settings.wholesale_heading != blank %}
-              <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ section.settings.wholesale_heading }}</h2>
-            {% endif %}
-            {% if section.settings.wholesale_text != blank %}
-              <div class="font-size__basic mt3">
-                <p>{{ section.settings.wholesale_text }}</p>
+<section class="page section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background {% unless has_two_pics %}pt-0 pb-0{% endunless %}">
+  <div class="max-site-width {% if has_two_pics %}px2 md--up--px3{% endif %}">
+    <div class="{% if has_two_pics %}lg--up--px3{% else %}px2 pb2 md--up--pb0 lg--up--pb0 md--up--px0{% endif %}">
+
+      <div class="md--up--flex items--center">
+        {% if has_two_pics %}
+
+          {% if section.settings.wholesale_heading != blank or section.settings.wholesale_text != blank %}
+            <a href="#egg-products" class="scrollTrigger block {% if section.settings.wholesale_heading_2 != blank %}lg--up--two-thirds {% endif %} wh-text-2">
+
+              {% assign image = section.settings.wholesale_img %}
+              <div class="image-holder mb2 md--up--mb2 lg--up--mb0">
+                {% render 'responsive-image' with
+                  image: image,
+                  max_width: 900,
+                  max_height: 900,
+                  section_color: section_color,
+                %}
               </div>
-            {% endif %}
-          </div>
-        </div>
-      {% endif %}
 
-      {% if section.settings.wholesale_img %}
-        <div class="lg--up--one-half">
-          {% assign image = section.settings.wholesale_img %}
-          <div class="image-holder {% if col_count_mobile == 2 or col_count_mobile == 3 %}seven-eighths mx--auto{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
-            {% render 'responsive-image' with
-              image: image,
-              max_width: 2000,
-              max_height: 2000,
-              section_color: section_color,
-            %}
-          </div>
-        </div>
-      {% endif %}
+              <div class="md--up--pr2">
+                {% if section.settings.wholesale_heading != blank %}
+                  <h1 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxl pm--line-height--11 wd--font-size--xxxxl wd--line-height--13">{{ section.settings.wholesale_heading }}</h1>
+                {% endif %}
+                {% if section.settings.wholesale_text != blank %}
+                  <div class="font-size__basic mt1">
+                    <p>{{ section.settings.wholesale_text }}</p>
+                  </div>
+                {% endif %}
+              </div>
+            </a>
+          {% endif %}
+
+          <a href="#feature-section" class="scrollTrigger block lg--up--one-third md--up--pr2">
+            {% assign image2 = section.settings.wholesale_img_2 %}
+            <div class="image-holder mb2">
+              {% render 'responsive-image' with
+                image: image2,
+                max_width: 2000,
+                max_height: 2000,
+                section_color: section_color,
+              %}
+            </div>
+
+            <div class="md--up--pr2">
+              <h2 class="m0 f--heading font-size--xl line-height--7 pm--font-size--xl  md--up--font-size--xxl pm--line-height--11 wd--font-size--xxl wd--line-height--12">{{ section.settings.wholesale_heading_2 }}</h2>
+              {% if section.settings.wholesale_text_2 != blank %}
+                <div class="font-size__basic mt1">
+                  <p>{{ section.settings.wholesale_text_2 }}</p>
+                </div>
+              {% endif %}
+            </div>
+          </a>
+
+        {% else %}
+
+          {% if section.settings.wholesale_heading != blank or section.settings.wholesale_text != blank %}
+            <a href="#egg-products" class="scrollTrigger block md--up--one-half mb2 md--up--mb0 lg--up--mb0">
+              {% assign image = section.settings.wholesale_img %}
+              <div class="image-holder">
+                {% render 'responsive-image' with
+                  image: image,
+                  max_width: 900,
+                  max_height: 900,
+                  section_color: section_color,
+                %}
+              </div>
+            </a>
+
+            <div class="md--up--one-half md--up--pr2 wh-text-2">
+              {% if section.settings.wholesale_heading != blank %}
+                <h1 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ section.settings.wholesale_heading }}</h1>
+              {% endif %}
+              {% if section.settings.wholesale_text != blank %}
+                <div class="font-size__basic mt1">
+                  <p>{{ section.settings.wholesale_text }}</p>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+        {% endif %}
+      </div>
 
     </div>
-
-    {% if section.settings.wholesale_form_snippet != blank %}
-      <div class="mt2 lg--up--mt4">
-        {{ section.settings.wholesale_form_snippet }}
-      </div>
-    {% endif %}
-
   </div>
 </section>
 
@@ -83,15 +131,61 @@
       "default": "Acremade is free from the things that take the fun out of eating well. Whether you're a plant-based home cook, an allergy household, an ethical vegan, an environmental steward, or just plant-curious, we give egg-free egg lovers something to cluck about."
     },
     {
-      "type": "header",
-      "content": "Wholesale application form"
+      "type": "image_picker",
+      "id": "wholesale_img_2",
+      "label": "Image"
     },
     {
       "type": "text",
-      "id": "wholesale_form_snippet",
-      "label": "Wholesale form snippet.",
-      "info": "Get this code from the Form Builder App"
+      "id": "wholesale_heading_2",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "wholesale_text_2",
+      "label": "Text"
     }
   ]
 }
 {% endschema %}
+
+<script>
+  (function($){
+    $('.scrollTrigger').on('click', function(e){
+      e.preventDefault();
+      var $me = $(this),
+          meRef = $me.attr('href'),
+          meScroll = $(meRef),
+          mePos = meScroll.offset().top;
+      
+      $('body, html').animate({scrollTop: mePos});
+    })
+  })(jQuery);
+</script>
+
+{% stylesheet %}
+  .wh-text-2 {
+    padding-left: 0;
+  }
+  .pt-0 {
+    padding-top: 0!important;
+  }
+  .pb-0 {
+    padding-bottom: 0!important;
+  }
+  @media only screen and (min-width: 750px){
+    .wh-text-2 {
+      padding-left: 5%; 
+    }
+  }
+  @media only screen and (min-width: 990px){
+    .wh-text-2 {
+      padding-left: 5%; 
+    }
+  }
+  @media only screen and (min-width: 1240px){
+    .wh-text-2 {
+      padding-left: 6%; 
+    }
+  }  
+{% endstylesheet %}

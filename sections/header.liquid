@@ -131,7 +131,7 @@
                     {%- assign child_list_handle = link.title | handleize -%}
                     {% if linklists[child_list_handle].links != blank %}
                       <li class="nav__item site-nav--has-submenu{% if link.active %} site-nav--active{% endif %}  inline-block">
-                        <button class="site-nav__link border--none bg--transparent py0 {{ header_underline_link }} px1 block header__link no-wrap pointer {% if forloop.last %}site-nav__link--last{% endif %}"
+                        <button class="t--header-navigation site-nav__link border--none bg--transparent py0 {{ header_underline_link }} px1 block header__link no-wrap pointer {% if forloop.last %}site-nav__link--last{% endif %}"
                                 data-active-header-trigger
                                 data-active-target="navigation"
                                 data-first-level-link="desktop"
@@ -1143,6 +1143,11 @@
     .mobile-order-1 {
       order: 2;
     }
+  }
+
+  .site-nav__chevron-down svg,
+  .site-nav__chevron-up svg {
+    margin: 0;
   }
 
 {% endstylesheet %}

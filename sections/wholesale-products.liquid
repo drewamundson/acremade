@@ -1,0 +1,91 @@
+{%- assign section_color = section.settings.color_scheme -%}
+{%- assign wc = section.settings.wholesale_collection -%}
+{%- assign wc_products = collections[wc] -%}
+{%- assign wc_prods = wc_products.products -%}
+
+<section class="page section-with-padding color--primary-text bg--white-background" id="egg-products">
+  <div class="max-site-width px2 lg--up--px4">
+    <div class="lg--up--px4">
+      <div class="display-grid">
+
+        {%- for product in wc_prods -%}
+          {%- render 'product-wholesale-item',
+            product: product,
+            section_color: section_color,
+            loop_index: forloop.index0,
+          -%}        
+        {%- endfor -%}
+
+        {% comment %} <div class="lg--up--one-half md--up--pr2 wh-text">
+          <div class="md--up--pr2">
+            <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13"></h2>
+            <div class="font-size__basic mt3"></div>
+          </div>
+        </div>
+      
+        <div class="lg--up--one-half">
+          <div class="image-holder lg--up--five-sixths lg--up--mx--auto">
+            {% render 'responsive-image' with
+              image: image,
+              max_width: 2000,
+              max_height: 2000,
+              section_color: section_color,
+            %}
+          </div>
+        </div> {% endcomment %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wholesale Products",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Wholesale Products"
+    },
+    {
+       "type": "collection",
+       "id": "wholesale_collection",
+       "label": "Collection"
+    }    
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+    .display-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      grid-row-gap: 30px;
+    }
+  .bg--white-background {
+    background: #fff; 
+  }
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .icon {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-position: center center;
+    margin: 0 10px 10px 0;
+  }
+  @media only screen and (min-width: 750px){
+    .display-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 70px;
+    }    
+  }
+  @media only screen and (min-width: 990px){
+    .display-grid {
+      gap: 150px;
+    } 
+  }
+{% endstylesheet %}
