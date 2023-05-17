@@ -51,8 +51,6 @@
   {%- if metafields.wholesale_image -%}
     {%- assign featured_media = metafields.wholesale_image.value -%}
   {%- endif -%}
-
-  {{ featured_media }}
   
   {% comment %} {% for pic in metafields.wholesale_image.value %}
     {{ pic | img_url: '1024x' }}
@@ -100,25 +98,31 @@
 
     </div>
   {% endunless %}
-  <h3 class="color--{{ section_color }}-text m0 mt3 font-size__basi">{{ product.title }}</h3>
-  <p class="mt2">
+  <h3 class="color--{{ section_color }}-text m0 mt3 font-size--l md--up--font-size--l">
+    {% if metafields.wholesale_title != blank %}
+      {{ metafields.wholesale_title }}
+    {% else %}
+      {{ product.title }}
+    {% endif %}
+  </h3>
+  {% comment %} <p class="mt2">
     {% if metafields.wholesale_description != blank %}
       {{ metafields.wholesale_description }}
     {% else %}
       {{ product.description }}
     {% endif %}
-  </p>
+  </p> {% endcomment %}
 
-  <div class="icons mt2">
+  {% comment %} <div class="icons mt2">
     {% for tag in product.tags %}
       {% if tag contains 'icon-' %} 
         <div class="{{ tag | remove: 'icon-' }} icon"></div>
       {% endif %}
     {% endfor %}
-  </div>
+  </div> {% endcomment %}
 
-  <div class="mw-2 mt2 btn border--none btn--add-to-cart relative color-scheme--black border--none bg--black-text color--black-text--overlay hover-bg--primary p1 full--w block">
-    <span class="add-to-cart-text">View More</span>
+  <div class="mw-1 mt2 btn border--none btn--add-to-cart relative color-scheme--black border--none bg--black-text color--black-text--overlay hover-bg--primary p1 full--w block">
+    <span class="add-to-cart-text font-size--xs">View More</span>
   </div>
 
 </a>

@@ -4,18 +4,19 @@
   {%- assign has_two_pics = true -%}
 {%- endif -%}
 
-<section class="page section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background {% unless has_two_pics %}pt-0 pb-0{% endunless %}">
+<section class="oh relative page pad-none color--{{ section_color }}-text bg--{{ section_color }}-background {% unless has_two_pics %}pt-0 pb-0{% endunless %}">
+  <img class="plant-graphic absolute" src="{{ 'pea-plant.png' | asset_url }}" alt="Acremade - Pea Plant" />
   <div class="max-site-width {% if has_two_pics %}px2 md--up--px3{% endif %}">
-    <div class="{% if has_two_pics %}lg--up--px3{% else %}px2 pb2 md--up--pb0 lg--up--pb0 md--up--px0{% endif %}">
+    <div class="{% if has_two_pics %}pb2 big-pad{% else %}px2 pb2 md--up--pb0 lg--up--pb0 md--up--px0{% endif %}">
 
       <div class="md--up--flex items--center">
         {% if has_two_pics %}
 
           {% if section.settings.wholesale_heading != blank or section.settings.wholesale_text != blank %}
-            <a href="#egg-products" class="scrollTrigger block {% if section.settings.wholesale_heading_2 != blank %}lg--up--two-thirds {% endif %} wh-text-2">
+            <a href="#egg-products" class="relative scrollTrigger block {% if section.settings.wholesale_heading_2 != blank %}lg--up--three-fifths {% endif %} wh-text-2-right">
 
               {% assign image = section.settings.wholesale_img %}
-              <div class="image-holder mb2 md--up--mb2 lg--up--mb0">
+              <div class="image-holder">
                 {% render 'responsive-image' with
                   image: image,
                   max_width: 900,
@@ -24,12 +25,12 @@
                 %}
               </div>
 
-              <div class="md--up--pr2">
+              <div class="text-bg">
                 {% if section.settings.wholesale_heading != blank %}
-                  <h1 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxl pm--line-height--11 wd--font-size--xxxxl wd--line-height--13">{{ section.settings.wholesale_heading }}</h1>
+                  <h1 class="m0 f--heading font-size--xxxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxl pm--line-height--10 wd--font-size--xxxxl wd--line-height--11">{{ section.settings.wholesale_heading }}</h1>
                 {% endif %}
                 {% if section.settings.wholesale_text != blank %}
-                  <div class="font-size__basic mt1">
+                  <div class="font-size__basic text-p">
                     <p>{{ section.settings.wholesale_text }}</p>
                   </div>
                 {% endif %}
@@ -37,9 +38,9 @@
             </a>
           {% endif %}
 
-          <a href="#feature-section" class="scrollTrigger block lg--up--one-third md--up--pr2">
+          <a href="#feature-section" class="relative scrollTrigger block lg--up--two-fifths">
             {% assign image2 = section.settings.wholesale_img_2 %}
-            <div class="image-holder mb2">
+            <div class="image-holder">
               {% render 'responsive-image' with
                 image: image2,
                 max_width: 2000,
@@ -48,10 +49,10 @@
               %}
             </div>
 
-            <div class="md--up--pr2">
-              <h2 class="m0 f--heading font-size--xl line-height--7 pm--font-size--xl  md--up--font-size--xxl pm--line-height--11 wd--font-size--xxl wd--line-height--12">{{ section.settings.wholesale_heading_2 }}</h2>
+            <div class="text-bg">
+              <h2 class="m0 f--heading font-size--xl line-height--6 pm--font-size--xl  md--up--font-size--xl pm--line-height--6 wd--font-size--xl wd--line-height--8">{{ section.settings.wholesale_heading_2 }}</h2>
               {% if section.settings.wholesale_text_2 != blank %}
-                <div class="font-size__basic mt1">
+                <div class="font-size__basic text-p">
                   <p>{{ section.settings.wholesale_text_2 }}</p>
                 </div>
               {% endif %}
@@ -164,6 +165,14 @@
 </script>
 
 {% stylesheet %}
+  .oh {
+    overflow: hidden;
+  }
+  .plant-graphic { 
+    right: 0; 
+    top: 0;
+    width: 30%; 
+  } 
   .wh-text-2 {
     padding-left: 0;
   }
@@ -173,19 +182,59 @@
   .pb-0 {
     padding-bottom: 0!important;
   }
+  .text-bg {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(100% - 80px);
+    background: rgba(255,255,255,.9);
+    z-index: 1;
+  }
+  .text-bg h1,
+  .text-bg h2 {
+    background: rgba(0,0,0,.93);
+    color: #fff;
+    padding: 8px 12px;
+    width: 100%;
+  }
+  .text-bg p {
+    margin-bottom: 0;
+  }
+  .text-p {
+    padding: 12px 20px;
+  }
+  .big-pad {
+    padding-bottom: 120px;
+  }
+  .pad-none {
+    padding-top: 20px!important;
+  }
   @media only screen and (min-width: 750px){
     .wh-text-2 {
       padding-left: 5%; 
+    }
+    .wh-text-2-right {
+      margin-right: 5%; 
+    }
+    .big-pad {
+      padding-bottom: 160px;
     }
   }
   @media only screen and (min-width: 990px){
     .wh-text-2 {
       padding-left: 5%; 
     }
+    .wh-text-2-right {
+      margin-right: 5%; 
+    }    
   }
   @media only screen and (min-width: 1240px){
     .wh-text-2 {
       padding-left: 6%; 
     }
+    .wh-text-2-right {
+      margin-right: 6%; 
+    }    
   }  
 {% endstylesheet %}

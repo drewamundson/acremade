@@ -1,0 +1,159 @@
+{%- assign section_color = section.settings.color_scheme -%}
+
+<section class="page section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="mw600">
+        
+        <h1 class="mb3">{{ page.title }}</h1> 
+
+        <div>
+          {% for block in section.blocks %}
+            {% if block.settings.faq_question != blank and block.settings.faq_answer != blank %}
+            <div class="mb2 py1 accItem">
+              <div class="AccTrigger" role="button" aria-controls="acc-{{ forloop.index }}" aria-expanded="false">
+                <h3 class="">
+                  {{ block.settings.faq_question}}
+                </h3>
+                <div class="plus">
+                  <span class="horz"></span>
+                  <span class="vert"></span>
+                </div>
+              </div>
+              <div class="AccContent" aria-hidden="true" id="acc-{{ forloop.index }}">
+                <div class="py2">
+                  {{ block.settings.faq_answer }}
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ page",
+  "settings": [
+    {
+      "type":      "header",
+      "content":   "Color"
+    },
+    {
+       "type": "select",
+       "id": "color_scheme",
+       "label": "Color scheme",
+       "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+       ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ", 
+      "settings": [
+        {
+          "id": "faq_question",
+          "type": "text",
+          "label": "Question"
+        },
+        {
+          "id": "faq_answer",
+          "type": "textarea",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "category": "FAQ",
+      "blocks": [
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]  
+}
+{% endschema %}
+
+<script>
+  (function($){
+
+  var $accTrigger = $('.AccTrigger'),
+	  $acc = $('.AccContent');
+
+  // accordian content
+  $accTrigger.click(function(e){
+	  e.preventDefault();
+	var $me = $(this),
+		$content = $me.next('.AccContent');
+
+	$acc.slideUp();
+	if($me.hasClass('Open')){
+	  $me.removeClass('Open');
+	  return false;
+	}
+	$accTrigger.removeClass('Open');
+	$me.addClass('Open');
+	$content.slideToggle();
+  });
+
+
+
+  })(jQuery);
+</script>
+
+{% stylesheet %}
+.mw600 {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.accItem {
+  border-bottom: 1px solid;
+}
+.AccTrigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.AccTrigger.Open {
+  .plus .vert {
+    display: none;
+  }
+}
+.AccContent {
+  display: none;
+}
+.plus {
+  width: 21px;
+  height: 21px;
+  position: relative;
+}
+.plus span {
+  position: absolute;
+  background: #000;
+}
+.horz {
+  width: 100%;
+  height: 2px;
+  left: 0;
+  top: 9px;
+}
+.vert {
+  width: 2px;
+  height: 100%;
+  left: 9px;
+  top: 0;
+}
+
+{% endstylesheet %}

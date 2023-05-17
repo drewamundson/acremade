@@ -4,37 +4,38 @@
 {%- assign wc_prods = wc_products.products -%}
 
 <section class="page section-with-padding color--primary-text bg--white-background" id="egg-products">
-  <div class="max-site-width px2 lg--up--px4">
-    <div class="lg--up--px4">
-      <div class="display-grid">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="mb2">
+      <h2 class="mb3 font-size--xxl">Wholesale Offerings</h2>
+    </div>
+    <div class="display-grid pt3">
 
-        {%- for product in wc_prods -%}
-          {%- render 'product-wholesale-item',
-            product: product,
-            section_color: section_color,
-            loop_index: forloop.index0,
-          -%}        
-        {%- endfor -%}
+      {%- for product in wc_prods -%}
+        {%- render 'product-wholesale-item',
+          product: product,
+          section_color: section_color,
+          loop_index: forloop.index0,
+        -%}        
+      {%- endfor -%}
 
-        {% comment %} <div class="lg--up--one-half md--up--pr2 wh-text">
-          <div class="md--up--pr2">
-            <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13"></h2>
-            <div class="font-size__basic mt3"></div>
-          </div>
+      {% comment %} <div class="lg--up--one-half md--up--pr2 wh-text">
+        <div class="md--up--pr2">
+          <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13"></h2>
+          <div class="font-size__basic mt3"></div>
         </div>
-      
-        <div class="lg--up--one-half">
-          <div class="image-holder lg--up--five-sixths lg--up--mx--auto">
-            {% render 'responsive-image' with
-              image: image,
-              max_width: 2000,
-              max_height: 2000,
-              section_color: section_color,
-            %}
-          </div>
-        </div> {% endcomment %}
-
       </div>
+    
+      <div class="lg--up--one-half">
+        <div class="image-holder lg--up--five-sixths lg--up--mx--auto">
+          {% render 'responsive-image' with
+            image: image,
+            max_width: 2000,
+            max_height: 2000,
+            section_color: section_color,
+          %}
+        </div>
+      </div> {% endcomment %}
+
     </div>
   </div>
 </section>
@@ -57,11 +58,11 @@
 {% endschema %}
 
 {% stylesheet %}
-    .display-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-row-gap: 30px;
-    }
+  .display-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 30px;
+  }
   .bg--white-background {
     background: #fff; 
   }
@@ -78,14 +79,17 @@
   }
   @media only screen and (min-width: 750px){
     .display-grid {
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 70px;
     }    
   }
   @media only screen and (min-width: 990px){
+
+  }
+  @media only screen and (min-width: 1380px){
     .display-grid {
-      gap: 150px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
     } 
   }
 {% endstylesheet %}
