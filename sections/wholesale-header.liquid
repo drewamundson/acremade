@@ -13,7 +13,7 @@
         {% if has_two_pics %}
 
           {% if section.settings.wholesale_heading != blank or section.settings.wholesale_text != blank %}
-            <a href="#egg-products" class="relative scrollTrigger block {% if section.settings.wholesale_heading_2 != blank %}lg--up--three-fifths {% endif %} wh-text-2-right">
+            <a href="#egg-products" class="mb2 md--up--mb0 relative scrollTrigger block {% if section.settings.wholesale_heading_2 != blank %}lg--up--three-fifths {% endif %} wh-text-2-right">
 
               {% assign image = section.settings.wholesale_img %}
               <div class="image-holder">
@@ -27,7 +27,7 @@
 
               <div class="text-bg">
                 {% if section.settings.wholesale_heading != blank %}
-                  <h1 class="m0 f--heading font-size--xxxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxl pm--line-height--10 wd--font-size--xxxxl wd--line-height--11">{{ section.settings.wholesale_heading }}</h1>
+                  <h1 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxl pm--line-height--10 wd--font-size--xxxxl wd--line-height--11">{{ section.settings.wholesale_heading }}</h1>
                 {% endif %}
                 {% if section.settings.wholesale_text != blank %}
                   <div class="font-size__basic text-p">
@@ -169,6 +169,7 @@
     overflow: hidden;
   }
   .plant-graphic { 
+    display: none;
     right: 0; 
     top: 0;
     width: 30%; 
@@ -183,13 +184,7 @@
     padding-bottom: 0!important;
   }
   .text-bg {
-    position: absolute;
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    top: calc(100% - 80px);
-    background: rgba(255,255,255,.9);
-    z-index: 1;
+    background: rgba(255,255,255,.95);
   }
   .text-bg h1,
   .text-bg h2 {
@@ -202,15 +197,26 @@
     margin-bottom: 0;
   }
   .text-p {
-    padding: 12px 20px;
+    padding: 15px 20px;
   }
   .big-pad {
-    padding-bottom: 120px;
+    padding-bottom: 40px;
   }
   .pad-none {
-    padding-top: 20px!important;
+    padding-top: 0px!important;
   }
   @media only screen and (min-width: 750px){
+    .text-bg {
+      position: absolute;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      top: calc(100% - 80px);
+      z-index: 1;
+    }
+    .plant-graphic { 
+      display: block;
+    }     
     .wh-text-2 {
       padding-left: 5%; 
     }
@@ -220,6 +226,9 @@
     .big-pad {
       padding-bottom: 160px;
     }
+    .pad-none {
+      padding-top: 20px!important;
+    }    
   }
   @media only screen and (min-width: 990px){
     .wh-text-2 {

@@ -2,13 +2,14 @@
 {%- assign wc = section.settings.wholesale_collection -%}
 {%- assign wc_products = collections[wc] -%}
 {%- assign wc_prods = wc_products.products -%}
+{%- assign wc_len = wc_prods.size -%}
 
 <section class="page section-with-padding color--primary-text bg--white-background" id="egg-products">
   <div class="max-site-width px2 lg--up--px3">
     <div class="mb2">
-      <h2 class="mb3 font-size--xxl">Wholesale Offerings</h2>
+      <h2 class="mb1 md--up--mb3 lg--up--mb3 font-size--xl md--up--font-size--xxl lg--up--font-size--xxl">Wholesale Offerings</h2>
     </div>
-    <div class="display-grid pt3">
+    <div class="display-grid pt2 md--up--pt3 lg--up--pt3 grid-{{ wc_len }}">
 
       {%- for product in wc_prods -%}
         {%- render 'product-wholesale-item',
@@ -61,7 +62,7 @@
   .display-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 30px;
+    grid-row-gap: 60px;
   }
   .bg--white-background {
     background: #fff; 
@@ -91,5 +92,11 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 30px;
     } 
+    .display-grid.grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .display-grid.grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }    
   }
 {% endstylesheet %}

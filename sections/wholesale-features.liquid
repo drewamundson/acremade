@@ -15,10 +15,10 @@
         {% endif %}
       </div>
 
-      <div class="mt3 md--up--flex items--start">
+      <div class="mt0 md--up--mt3 lg--up--mt3 md--up--flex items--start">
         {% for block in section.blocks %}
           {%- assign featured_media = block.settings.wholesale_feature_image -%}
-          {%- assign classes = 'md--up--one-half px3' -%}
+          {%- assign classes = 'block md--up--one-half px0 md--up--px3 lg--up--px3 mb3 md--up--mb0 lg--up--mb0' -%}
           {% if block.settings.wholesale_feature_url != blank %}
           <a href="{{ block.settings.wholesale_feature_url }}" class="{{ classes }}">
           {% else %}
@@ -45,7 +45,7 @@
           {%- endunless -%}
 
           {% if block.settings.wholesale_feature_heading != blank %}
-            <h4>{{ block.settings.wholesale_feature_heading }}</h4>
+            <h4 class="font-size--xl md--up--font-size--xxl lg--up--font-size--xxl">{{ block.settings.wholesale_feature_heading }}</h4>
           {% endif %}
           {% if block.settings.wholesale_feature_text != blank %}
             <p>{{ block.settings.wholesale_feature_text }}</p>

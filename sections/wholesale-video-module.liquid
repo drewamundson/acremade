@@ -3,16 +3,16 @@
   <div class="max-site-width lg--up--px3">
     <div class="lg--up--flex items--center">
 
-      <div class="lg--up--one-third">
+      <div class="lg--up--two-fifths">
 
         <div class="pb2 pl2 pr2 lg--up--px0 lg--up--pb3 lg--up--pr4">
           {% if section.settings.title != blank %}
-            <h3 class="m0 font-size__heading-mobile-full">
+            <h3 class="m0 font-size--xl md--up--font-size--xxxl lg--up--font-size--xxxl">
               {{ section.settings.title }}
             </h3>
           {% endif %}
           {% if section.settings.subheading != blank %}
-            <h4 class="m0 mt2">
+            <h4 class="m0 mt2 font-size--l md--up--font-size--xl lg--up--font-size--xl">
               {{ section.settings.subheading }}
             </h4>
           {% endif %}
@@ -21,7 +21,7 @@
         <div class="mt2 mb2 pl2 pr2 lg--up--mb3 lg--up--px0 lg--up--pr4 flex flex--wrap flex--column" id="wholesale-video-buttons">
           {% for block in section.blocks %}
             {% if block.settings.video_title != blank %}
-              <button class='VideoButton mr2 mb2 inline-block p0 {% if forloop.first %}Active{% endif %} color--tertiary-text' data-video="{{forloop.index | minus: 1 }}">
+              <button class='VideoButton mr0 md--up--mr2 lg--up--mr2 mb1 md--up--mb2 lg--up--mb2 inline-block p0 {% if forloop.first %}Active{% endif %} color--tertiary-text' data-video="{{forloop.index | minus: 1 }}">
                 <span>{{ block.settings.video_title }}</span>
               </button>
             {% endif %}
@@ -30,7 +30,7 @@
 
       </div>
 
-      <div class="lg--up--two-thirds">
+      <div class="lg--up--three-fifths">
         <div class="Slick" data-slick='{
           "slidesToShow": 1,
           "slidesToScroll": 1,

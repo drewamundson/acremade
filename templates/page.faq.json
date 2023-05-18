@@ -2,13 +2,21 @@
   "sections": {
     "main": {
       "type": "main-page--faq", 
-      "disabled": true,
+      "disabled": false,
       "settings": {
         "color_scheme": "primary"
       }
-    }
+    },
+    "faq-replacer": {
+      "type": "main-page--faq-replacer", 
+      "disabled": false,
+      "settings": {
+        "color_scheme": "primary"
+      }
+    }    
   },
   "order": [
-    "main"
+    "main",
+    "faq-replacer"
   ]
 }
