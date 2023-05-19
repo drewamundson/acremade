@@ -5,7 +5,6 @@
 {%- endif -%}
 
 <section class="oh relative page pad-none color--{{ section_color }}-text bg--{{ section_color }}-background {% unless has_two_pics %}pt-0 pb-0{% endunless %}">
-  <img class="plant-graphic absolute" src="{{ 'pea-plant.png' | asset_url }}" alt="Acremade - Pea Plant" />
   <div class="max-site-width {% if has_two_pics %}px2 md--up--px3{% endif %}">
     <div class="{% if has_two_pics %}pb2 big-pad{% else %}px2 pb2 md--up--pb0 lg--up--pb0 md--up--px0{% endif %}">
 
@@ -168,12 +167,6 @@
   .oh {
     overflow: hidden;
   }
-  .plant-graphic { 
-    display: none;
-    right: 0; 
-    top: 0;
-    width: 30%; 
-  } 
   .wh-text-2 {
     padding-left: 0;
   }
@@ -214,9 +207,6 @@
       top: calc(100% - 80px);
       z-index: 1;
     }
-    .plant-graphic { 
-      display: block;
-    }     
     .wh-text-2 {
       padding-left: 5%; 
     }

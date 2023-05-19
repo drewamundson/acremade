@@ -179,11 +179,11 @@
               </nav>
             </div>
           </div>
-          <div class="header-table__center align--middle text-align--center flex--grow--1  md--dn--flex--1-basis-auto lg--up--flex--grow--0 lg--justify--center lg--items--center">
+          <div style="max-width:100px;" class="header-table__center align--middle text-align--center flex--grow--1  md--dn--flex--1-basis-auto lg--up--flex--grow--0 lg--justify--center lg--items--center">
             {% if template.name == 'index' %}
-              <h1 class="header__logo m0 lg--up--px3 {% if section.settings.logo != blank %}font-size--0{% endif %} md--dn--px1">
+              <h1 class="header__logo m0 lg--up--px1 {% if section.settings.logo != blank %}font-size--0{% endif %} md--dn--px1">
             {% else %}
-              <div class="header__logo {% unless section.settings.logo != blank %}h1{% else %}font-size--0{% endunless %} m0  lg--up--px3 md--dn--px1">
+              <div class="header__logo {% unless section.settings.logo != blank %}h1{% else %}font-size--0{% endunless %} m0  lg--up--px1 md--dn--px1">
             {% endif %}
                 <a href="{{ routes.root_url }}" class="font-size--xl line-height--4 color--{{ section_color }}-text color--header-active f--heading site-logo mx--auto{% if section.settings.logo != blank %} site-header__logo-image{% endif %}">
                   {% if section.settings.logo != blank %}
@@ -749,7 +749,7 @@
 {% stylesheet %}
   .header-display-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     grid-row-gap: 80px;
     align-items: baseline;
@@ -822,7 +822,7 @@
 
   @media only screen and (min-width: 750px){
     .header-display-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 40px;
     }
    
@@ -830,7 +830,7 @@
 
   @media only screen and (min-width: 990px){
     .header-display-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
   }
