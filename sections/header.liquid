@@ -179,7 +179,7 @@
               </nav>
             </div>
           </div>
-          <div style="max-width:100px;" class="header-table__center align--middle text-align--center flex--grow--1  md--dn--flex--1-basis-auto lg--up--flex--grow--0 lg--justify--center lg--items--center">
+          <div style="max-width:200px;" class="header-table__center align--middle text-align--center flex--grow--1  md--dn--flex--1-basis-auto lg--up--flex--grow--0 lg--justify--center lg--items--center">
             {% if template.name == 'index' %}
               <h1 class="header__logo m0 lg--up--px1 {% if section.settings.logo != blank %}font-size--0{% endif %} md--dn--px1">
             {% else %}
@@ -416,8 +416,8 @@
                       <div>
                     {%- endif -%}
                       {% if block.settings[txt] != blank %}
-                        <div class="text-center mb2">
-                          <h3 class="font-size--m bg-text inline">
+                        <div class="text-center mb1 md--up--mb2 lg--up--mb2">
+                          <h3 class="font-size--m md--up--font-size--l lg--up--font-size--l bg-text inline">
                             <span>{{ block.settings[txt] }}</span>
                           </h3>
                         </div>
@@ -749,7 +749,7 @@
 {% stylesheet %}
   .header-display-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 30px;
     grid-row-gap: 80px;
     align-items: baseline;

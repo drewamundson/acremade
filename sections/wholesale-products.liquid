@@ -12,15 +12,13 @@
     <div class="display-grid pt2 md--up--pt3 lg--up--pt3 grid-{{ wc_len }}">
 
       {% for block in section.blocks %}
-
-        {% if block.settings.link != blank %}
-        <a href="{{ block.settings.link }}" class="product-grid-item block t--list-and-grid relative">
+        {% if block.settings.w_link != blank %}
+        <a href="{{ block.settings.w_link }}" class="product-grid-item block t--list-and-grid relative">
         {% else %}
         <div class="product-grid-item block t--list-and-grid relative">
         {% endif %}
           {%- assign featured_media = block.settings.w_prod -%}
           {%- assign featured_media_hover = block.settings.w_prod_hover -%}
-      
 
           {% unless featured_media == blank %}
             <div class="relative">
@@ -32,7 +30,7 @@
                 {%- assign ratio = 1 -%}
               {%- endif -%}
 
-              <div>
+              <div {% if featured_media_hover %}class="has-hover"{% endif %}>
                 {%- render 'responsive-image' with
                     image: featured_media
                     max_width: 2000,
@@ -49,15 +47,6 @@
                       data-parent-fit="cover">
                   </div>
                 {% endif %}
-
-                {% comment %} {%- render 'responsive-image' with
-                    image: featured_media_hover
-                    max_width: 2000,
-                    max_height: 2000,
-                    section_color: section_color,
-                    responsive_image_counter: loop_index,
-                    image_id: block.settings.id
-                -%} {% endcomment %}
               </div>
 
             </div>
@@ -66,7 +55,7 @@
             {{ block.settings.w_title }}
           </h3>
 
-        {% if block.settings.link != blank %}
+        {% if block.settings.w_link != blank %}
             <div class="mw-1 mt2 btn border--none btn--add-to-cart relative color-scheme--black border--none bg--black-text color--black-text--overlay hover-bg--primary p1 full--w block">
               <span class="add-to-cart-text font-size--xs">View More</span>
             </div>
@@ -76,32 +65,6 @@
         {% endif %}
 
       {% endfor %}
-
-      {% comment %} {%- for product in wc_prods -%}
-        {%- render 'product-wholesale-item',
-          product: product,
-          section_color: section_color,
-          loop_index: forloop.index0,
-        -%}        
-      {%- endfor -%} {% endcomment %}
-
-      {% comment %} <div class="lg--up--one-half md--up--pr2 wh-text">
-        <div class="md--up--pr2">
-          <h2 class="m0 f--heading font-size--xxl line-height--7 pm--font-size--xxxxl  md--up--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13"></h2>
-          <div class="font-size__basic mt3"></div>
-        </div>
-      </div>
-    
-      <div class="lg--up--one-half">
-        <div class="image-holder lg--up--five-sixths lg--up--mx--auto">
-          {% render 'responsive-image' with
-            image: image,
-            max_width: 2000,
-            max_height: 2000,
-            section_color: section_color,
-          %}
-        </div>
-      </div> {% endcomment %}
 
     </div>
   </div>
@@ -163,6 +126,9 @@
 {% endschema %}
 
 {% stylesheet %}
+  .has-hover:hover img {
+    opacity: 0;
+  }
   .display-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);

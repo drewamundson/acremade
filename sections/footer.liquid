@@ -91,7 +91,7 @@
 
                 <div class="grid__item md--up--two-thirds mt2 lg--up--one-whole lg--up--mt2 lg--up--text-align--left">
                   {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, TikTok, Snapchat, Tumblr, YouTube, Vimeo, Linkedin' | split: ', ' -%}
-                  <style>.list--reset {display:flex;align-items:flex-start;}</style>
+                  <style>#shopify-section-footer .list--reset {display:flex;align-items:flex-start;}</style>
                   <ul class="list--reset p0 m0 mxn1">
                     {% for social in social_accounts %}
                       {%- assign social_handle = social | handleize -%}

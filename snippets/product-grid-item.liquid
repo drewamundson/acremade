@@ -36,6 +36,11 @@
 
 {% assign current_variant = product.selected_or_first_available_variant %}
 
+{%- assign comingSummer = false -%}
+{%- if product.tags contains 'coming' -%}
+  {%- assign comingSummer = true -%}
+{%- endif -%}
+
 {% if product.price_varies and product.variants.size > 1 %}
   {% for variant in product.variants %}
     {% if variant.price == product.price_min %}
@@ -94,68 +99,71 @@
   {% if settings.products_show_vendor and product.vendor != blank %}
   <p class="color--{{ section_color }}-meta m0 font-size__basic">{{ product.vendor }}</p>
   {% endif %}
-  <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0  font-size__basic">
-    {% if sold_out %}
-      <span class="sold-out color--{{ section_color }}-meta {% if on_sale %}mr1{% endif %}">{{ 'products.product.sold_out' | t }}</span>
-    {% else %}
-      <span {% if on_sale %}class="mr1"{% endif %}>
-        {% if settings.currency_code_enable %}
-          {% if on_sale %}
-            {% if product.price_varies %}
-              {% assign sale_price = product.price | money_with_currency %}
-              {{ 'products.product.from_text_html' | t: price: sale_price }}
+
+  {%- unless comingSummer -%}
+    <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0  font-size__basic">
+      {% if sold_out %}
+        <span class="sold-out color--{{ section_color }}-meta {% if on_sale %}mr1{% endif %}">{{ 'products.product.sold_out' | t }}</span>
+      {% else %}
+        <span {% if on_sale %}class="mr1"{% endif %}>
+          {% if settings.currency_code_enable %}
+            {% if on_sale %}
+              {% if product.price_varies %}
+                {% assign sale_price = product.price | money_with_currency %}
+                {{ 'products.product.from_text_html' | t: price: sale_price }}
+              {% else %}
+                {{ product.price | money_with_currency }}
+              {% endif %}
             {% else %}
-              {{ product.price | money_with_currency }}
+              {% if product.price_varies %}
+                {% assign price = product.price | money_with_currency %}
+                {{ 'products.product.from_text_html' | t: price: price }}
+              {% else %}
+                {{ product.price | money_with_currency }}
+              {% endif %}
             {% endif %}
           {% else %}
-            {% if product.price_varies %}
-              {% assign price = product.price | money_with_currency %}
-              {{ 'products.product.from_text_html' | t: price: price }}
+            {% if on_sale %}
+              {% if product.price_varies %}
+                {% assign sale_price = product.price | money %}
+                {{ 'products.product.from_text_html' | t: price: sale_price }}
+              {% else %}
+                {{ product.price | money }}
+              {% endif %}
             {% else %}
-              {{ product.price | money_with_currency }}
+              {% if product.price_varies %}
+                {% assign price = product.price | money %}
+                {{ 'products.product.from_text_html' | t: price: price }}
+              {% else %}
+                {{ product.price | money }}
+              {% endif %}
             {% endif %}
           {% endif %}
-        {% else %}
-          {% if on_sale %}
-            {% if product.price_varies %}
-              {% assign sale_price = product.price | money %}
-              {{ 'products.product.from_text_html' | t: price: sale_price }}
-            {% else %}
-              {{ product.price | money }}
-            {% endif %}
+        </span>
+      {% endif %}
+      {% if on_sale and sold_out != true %}
+        <s class="color--{{ section_color }}-meta">
+          {% if settings.currency_code_enable %}
+            {{ product.compare_at_price | money_with_currency }}
           {% else %}
-            {% if product.price_varies %}
-              {% assign price = product.price | money %}
-              {{ 'products.product.from_text_html' | t: price: price }}
-            {% else %}
-              {{ product.price | money }}
-            {% endif %}
+            {{ product.compare_at_price | money }}
           {% endif %}
-        {% endif %}
+        </s>
+      {% endif %}
+    </p>
+    <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0  font-size__small" data-unit-price-wrapper>
+      <span data-unit-price>
+        {{- current_variant.unit_price | money -}}
       </span>
-    {% endif %}
-    {% if on_sale and sold_out != true %}
-      <s class="color--{{ section_color }}-meta">
-        {% if settings.currency_code_enable %}
-          {{ product.compare_at_price | money_with_currency }}
-        {% else %}
-          {{ product.compare_at_price | money }}
-        {% endif %}
-      </s>
-    {% endif %}
-  </p>
-  <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-meta{% endif %} m0  font-size__small" data-unit-price-wrapper>
-    <span data-unit-price>
-      {{- current_variant.unit_price | money -}}
-    </span>
-    <span>/</span>
-    <span data-unit-price-measurement-reference-value>
-    {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
-      {{- current_variant.unit_price_measurement.reference_value -}}
-    {%- endif -%}
-    </span>
-    <span data-unit-price-measurement-reference-unit>
-      {{- current_variant.unit_price_measurement.reference_unit -}}
-    </span>
-  </p>
+      <span>/</span>
+      <span data-unit-price-measurement-reference-value>
+      {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+        {{- current_variant.unit_price_measurement.reference_value -}}
+      {%- endif -%}
+      </span>
+      <span data-unit-price-measurement-reference-unit>
+        {{- current_variant.unit_price_measurement.reference_unit -}}
+      </span>
+    </p>
+  {%- endunless -%}
 </a>

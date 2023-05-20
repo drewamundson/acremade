@@ -248,17 +248,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     // accordian content
     $accTrigger.click(function(e){
       e.preventDefault();
-    var $me = $(this),
+      var $me = $(this),
       $content = $me.next('.AccContent');
 
-    $acc.slideUp();
-    if($me.hasClass('Open')){
-      $me.removeClass('Open');
-      return false;
-    }
-    $accTrigger.removeClass('Open');
-    $me.addClass('Open');
-    $content.slideToggle();
+      $acc.slideUp().attr('aria-hidden', true);
+      if($me.hasClass('Open')){
+        $me.removeClass('Open').attr('aria-expanded', false);
+        return false;
+      }
+      $accTrigger.removeClass('Open').attr('aria-expanded', false);
+      $me.addClass('Open').attr('aria-expanded', true);
+      $content.slideToggle().attr('aria-hidden', false);
     });
 
   })(jQuery);

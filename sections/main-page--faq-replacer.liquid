@@ -7,7 +7,7 @@
       {% for block in section.blocks %}
         {% if block.settings.faq_question_replacer != blank and block.settings.faq_answer_replacer != blank %}
         <div class="mb0 py2 accItem">
-          <div class="AccTrigger" role="button" aria-controls="acc-{{ forloop.index }}" aria-expanded="false">
+          <div class="AccTrigger" role="button" tabindex="0" aria-controls="acc-{{ forloop.index }}" aria-expanded="false">
             <h3 class="mb0 font-size--m md--up--font-size--m lg--up--font-size--m">
               {{ block.settings.faq_question_replacer }}
             </h3>
