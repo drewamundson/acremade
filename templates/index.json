@@ -56,8 +56,8 @@
         "1642734512510f64b6-1": {
           "type": "rich_text",
           "settings": {
-            "heading": "Meet the mighty pea.",
-            "rich_text": "<p>Acremade is new, but our roots grow deep. Built on a foundation of 40 years of plant-based food expertise, we've developed an egg* made from yellow field peas, a nutritious and planet-friendly pulse that fills hungry bellies while fueling a regenerative food system at the same time.<\/p>",
+            "heading": "Eggs* made from peas.",
+            "rich_text": "<p>AcreMade is new, but our roots grow deep. Built on 40 years of plant-based food expertise, we've developed an egg* made from yellow field peas, a nutritious and planet-friendly pulse that fills hungry bellies while fueling a regenerative food system at the same time.<\/p>",
             "cta_url": "shopify:\/\/pages\/about",
             "cta_text": "Learn More",
             "text_align": "text-align--left",
@@ -246,7 +246,7 @@
         "dbcab3ec-0f99-4a1d-8d1a-84ca0a5af487"
       ],
       "settings": {
-        "title": "A WORLD OF POTENTIAL, MADE FROM PEAS",
+        "title": "UNLOCK WORLDS OF PLANT-BASED  POTENTIAL",
         "subheading": ""
       }
     }

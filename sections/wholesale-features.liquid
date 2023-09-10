@@ -1,0 +1,137 @@
+<section class="section-with-padding color--primary-text bg--light-background" id="feature-section">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="lg--up--px3">
+      
+      <div class="pb2 pl2 pr2 md--up--pb4 lg--up--pb4 lg--up--px0 lg--up--pr4 text-center">
+        {% if section.settings.title != blank %}
+          <h3 class="m0 font-size__heading-mobile-full">
+            {{ section.settings.title }}
+          </h3>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <h4 class="m0 mt2">
+            {{ section.settings.subheading }}
+          </h4>
+        {% endif %}
+      </div>
+
+      <div class="mt0 md--up--mt3 lg--up--mt3 md--up--flex items--start">
+        {% for block in section.blocks %}
+          {%- assign featured_media = block.settings.wholesale_feature_image -%}
+          {%- assign classes = 'block md--up--one-half px0 md--up--px3 lg--up--px3 mb3 md--up--mb0 lg--up--mb0' -%}
+          {% if block.settings.wholesale_feature_url != blank %}
+          <a href="{{ block.settings.wholesale_feature_url }}" class="{{ classes }}">
+          {% else %}
+          <div class="{{ classes }}">
+          {% endif %}
+
+          {% unless featured_media == blank %}
+            {%- assign ratio = preview_image.aspect_ratio -%}
+            {%- assign force_crop = false -%}
+            {%- if ratio < 0.5 -%}
+              {%- assign force_crop = true -%}
+              {%- assign ratio = 1 -%}
+            {%- endif -%}
+            <div class="mb2">
+              {%- render 'responsive-image' with
+                  image: featured_media
+                  max_width: 2000,
+                  max_height: 2000,
+                  section_color: 'primary',
+                  responsive_image_counter: forloop.index,
+                  image_id: featured_media.id,
+              -%}
+            </div>
+          {%- endunless -%}
+
+          {% if block.settings.wholesale_feature_heading != blank %}
+            <h4 class="font-size--xl md--up--font-size--xxl lg--up--font-size--xxl">{{ block.settings.wholesale_feature_heading }}</h4>
+          {% endif %}
+          {% if block.settings.wholesale_feature_text != blank %}
+            <p>{{ block.settings.wholesale_feature_text }}</p>
+          {% endif %}
+          <div class="mw-1 mt3 btn border--none btn--add-to-cart relative color-scheme--black border--none bg--black-text color--black-text--overlay hover-bg--primary p1 full--w block">
+            <span class="add-to-cart-text font-size--xs">View More</span>
+          </div>        
+
+          {% if block.settings.wholesale_feature_url != blank %}
+          </a>
+          {% else %}
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wholesale Features",
+  "class": "section-wholesale-features",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "id": "subheading",
+      "type": "text",
+      "label": "Sub-heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Select", 
+      "settings": [
+        {
+          "id": "wholesale_feature_image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "wholesale_feature_heading",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "wholesale_feature_text",
+          "type": "textarea",
+          "label": "Text"
+        },
+        {
+          "id": "wholesale_feature_url",
+          "type": "url",
+          "label": "Url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature",
+      "blocks": [
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .bg--light-background {
+    background-color: var(--color-primary-background);
+  }
+  .mw-2 {
+    max-width: 200px;
+  }
+  .mw-1 {
+    max-width: 150px;
+  }
+{% endstylesheet %}

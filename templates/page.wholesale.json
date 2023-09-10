@@ -4,10 +4,156 @@
       "type": "wholesale-header",
       "settings": {
         "color_scheme": "primary",
-        "wholesale_img": "shopify:\/\/shop_images\/PURIS_EGG_04_213768-2000x1333-282f2dd.jpg",
-        "wholesale_heading": "Add allergy-friendly, vegan eggs to your offering, today.",
-        "wholesale_text": "If you are interested in AcreMade products on your menu, please fill out the following wholesale application and we will reply in 1-2 business days. We look forward to working with you to bring delicious plant-based foods to your customers.",
-        "wholesale_form_snippet": "<div style=\"margin:0 auto;\" class=\"pxFormGenerator\" id=\"nZ1fjN6F_WrBfbwErGoLPw\"><\/div>"
+        "wholesale_img": "shopify:\/\/shop_images\/PURIS_EGG_024121.jpg",
+        "wholesale_heading": "PLANT-BASED EGG SOLUTIONS",
+        "wholesale_text": "Whether you seek convenience-first or culinary-forward, frozen or a pantry staple, AcreMade has a delicious product for each person and occasion. The first ingredient in AcreMade products is US grown, processed, and packed pea protein, traceable to the grower.",
+        "wholesale_img_2": "shopify:\/\/shop_images\/PURIS_CHICKEN_12_201931.jpg",
+        "wholesale_heading_2": "Plant-Based Meat Solutions",
+        "wholesale_text_2": "AcreMade has developed plant-based, allergen friendly, meat alternatives that bring plant-based food center-plate. See what's possible with AcreMade's Naked Protein Bites and SoLow ground, made using peas that are grown, processed, and packed in the US and Canada."
+      }
+    },
+    "wholesale_products": {
+      "type": "wholesale-products",
+      "blocks": {
+        "3eefc716-0a50-4fc5-95b8-557c5f7e8632": {
+          "type": "select",
+          "settings": {
+            "w_prod": "shopify:\/\/shop_images\/Egg-Substitute-Box_2_1.png",
+            "w_prod_hover": "shopify:\/\/shop_images\/Screen_Shot_2023-05-19_at_1.16.09_PM_1_1.jpg",
+            "w_title": "Plant-Based Egg Substitute Foodservice Case",
+            "w_link": "shopify:\/\/products\/wholesale-case"
+          }
+        },
+        "fbc4e359-b772-4140-bd1e-1c5156abf9f9": {
+          "type": "select",
+          "settings": {
+            "w_prod": "shopify:\/\/shop_images\/Frozen-Patty-Box_1_1.png",
+            "w_prod_hover": "shopify:\/\/shop_images\/Egg-Patty_Plate_1.png",
+            "w_title": "Frozen Plant-Based Egg Patty Foodservice Case",
+            "w_link": "shopify:\/\/products\/frozen-plant-based-egg-patty-foodservice-case"
+          }
+        },
+        "6bbd0eac-1717-4f52-b665-d08ed4fd2b01": {
+          "type": "select",
+          "settings": {
+            "w_prod": "shopify:\/\/shop_images\/Egg_Replacer_V1_1_1.png",
+            "w_prod_hover": "shopify:\/\/shop_images\/DSC07825-2_1_1.jpg",
+            "w_title": "Plant-Based Egg Replacer for Baking",
+            "w_link": "shopify:\/\/products\/plant-based-egg-replacer-for-baking"
+          }
+        },
+        "103ed6f3-6257-4488-99ec-4587d9e4256a": {
+          "type": "select",
+          "settings": {
+            "w_prod": "shopify:\/\/shop_images\/Scramble_Cup_V3_D3_1_1.png",
+            "w_prod_hover": "shopify:\/\/shop_images\/MicrosoftTeams-image_20.jpg",
+            "w_title": "Plant-Based Protein Scramble Cups",
+            "w_link": "shopify:\/\/products\/plant-based-protein-scramble-cups"
+          }
+        }
+      },
+      "block_order": [
+        "3eefc716-0a50-4fc5-95b8-557c5f7e8632",
+        "fbc4e359-b772-4140-bd1e-1c5156abf9f9",
+        "6bbd0eac-1717-4f52-b665-d08ed4fd2b01",
+        "103ed6f3-6257-4488-99ec-4587d9e4256a"
+      ],
+      "settings": {
+        "wholesale_collection": "wholesale"
+      }
+    },
+    "wholesale_video_module": {
+      "type": "wholesale-video-module",
+      "blocks": {
+        "98e11553-3e47-4942-8341-0d0968270bab": {
+          "type": "video",
+          "settings": {
+            "video_title": "Purple Potato Frittata",
+            "video_url": "https:\/\/youtu.be\/YscRSOrMbdI",
+            "use_high_res_image": true
+          }
+        },
+        "2f99a7df-b432-4247-a25a-13fbf70ad0f9": {
+          "type": "video",
+          "settings": {
+            "video_title": "Roasted Oyster Mushroom & Kale Strata",
+            "video_url": "https:\/\/youtu.be\/8MUii0eNIvU",
+            "use_high_res_image": true
+          }
+        },
+        "c7173440-c7b4-4c66-a4ac-0111c039d12b": {
+          "type": "video",
+          "settings": {
+            "video_title": "Rolled Omelet",
+            "video_url": "https:\/\/youtu.be\/q9W6Pg7NhhM",
+            "use_high_res_image": true
+          }
+        },
+        "57a3ee2b-d6e3-4af0-a47c-06cce7019e73": {
+          "type": "video",
+          "settings": {
+            "video_title": "French Toast",
+            "video_url": "https:\/\/youtu.be\/Nh6tJ4xXMY8",
+            "use_high_res_image": true
+          }
+        },
+        "e40db9cb-c52b-4efd-9770-458e4b7ca452": {
+          "type": "video",
+          "settings": {
+            "video_title": "Creme Brûlée",
+            "video_url": "https:\/\/youtu.be\/pzLeKupV5AU",
+            "use_high_res_image": true
+          }
+        }
+      },
+      "block_order": [
+        "98e11553-3e47-4942-8341-0d0968270bab",
+        "2f99a7df-b432-4247-a25a-13fbf70ad0f9",
+        "c7173440-c7b4-4c66-a4ac-0111c039d12b",
+        "57a3ee2b-d6e3-4af0-a47c-06cce7019e73",
+        "e40db9cb-c52b-4efd-9770-458e4b7ca452"
+      ],
+      "settings": {
+        "title": "Chef Series Recipe Videos",
+        "subheading": ""
+      }
+    },
+    "wholesale_form": {
+      "type": "wholesale-form",
+      "settings": {
+        "wholesale_form_heading": "Get in touch about Acremade wholesale.",
+        "wholesale_form_snippet_new": ""
+      }
+    },
+    "wholesale_features": {
+      "type": "wholesale-features",
+      "blocks": {
+        "fe3fffc6-c14f-4916-8359-4eabfda6d583": {
+          "type": "select",
+          "settings": {
+            "wholesale_feature_image": "shopify:\/\/shop_images\/AcreMade_Burger_1_1.jpg",
+            "wholesale_feature_heading": "SoLow Plant-Based Ground",
+            "wholesale_feature_text": "AcreMade delights with the full flavor and juicy texture meat-lovers crave, but with 25% less sodium found in other plant-based meats. Available in patties or ground, one serving packs 20g of protein, is a good source of fiber, and has no cholesterol thanks to Non-GMO, North American grown, processed and packed pea ingredients. A crave-able, sustainable choice.",
+            "wholesale_feature_url": ""
+          }
+        },
+        "c10b6c96-9717-42dd-a06f-95f55074e8db": {
+          "type": "select",
+          "settings": {
+            "wholesale_feature_image": "shopify:\/\/shop_images\/AcreMade_Chicken_1_1.jpg",
+            "wholesale_feature_heading": "Naked Protein Bites",
+            "wholesale_feature_text": "AcreMade Naked Protein Bites are a protein packed, allergen friendly, US grown-and-made solution for eaters everywhere. At 33g protein per serving, 4g of dietary fiber, and a 5 ingredient label, AcreMade Naked Protein Bites are a first-of-its-kind solution that gives chefs a brand new ingredient to expand their vegan offerings.",
+            "wholesale_feature_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "fe3fffc6-c14f-4916-8359-4eabfda6d583",
+        "c10b6c96-9717-42dd-a06f-95f55074e8db"
+      ],
+      "settings": {
+        "title": "AcreMade Meat Alternatives",
+        "subheading": "Plant-Based solutions that give the power back to the chef."
       }
     },
     "main": {
@@ -16,146 +162,14 @@
       "settings": {
         "color_scheme": "primary"
       }
-    },
-    "1642997618fdcca612": {
-      "type": "cascade",
-      "disabled": true,
-      "blocks": {
-        "16429976186156816d-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "We bring eggs* to the eggless.",
-            "text_align": "text-align--left",
-            "font_size": "large",
-            "block_width_mobile": "half",
-            "block_width": "half"
-          }
-        },
-        "16429976186156816d-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Ezra-eggs.jpg",
-            "url": "",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        },
-        "16429976186156816d-2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/DSC02420.jpg",
-            "url": "",
-            "block_width_mobile": "full",
-            "block_width": "half"
-          }
-        },
-        "16429976186156816d-3": {
-          "type": "text",
-          "settings": {
-            "rich_text": "<p>Acremade is free from the things that take the fun out of eating well. Whether you're a plant-based home cook, an allergy household, an ethical vegan, an environmental steward, or just plant-curious, we give egg-free egg lovers something to cluck about.<\/p>",
-            "cta_url": "shopify:\/\/collections\/all",
-            "cta_text": "Give Acremade a Try",
-            "text_align": "text-align--left",
-            "block_width_mobile": "half",
-            "block_width": "half"
-          }
-        }
-      },
-      "block_order": [
-        "16429976186156816d-0",
-        "16429976186156816d-1",
-        "16429976186156816d-2",
-        "16429976186156816d-3"
-      ],
-      "settings": {
-        "first_item": "left",
-        "color_scheme": "primary"
-      }
-    },
-    "16466586982725ba3a": {
-      "type": "cascade",
-      "disabled": true,
-      "blocks": {
-        "1646658697079f6e0b-0": {
-          "type": "rich_text",
-          "settings": {
-            "heading": "",
-            "rich_text": "",
-            "cta_url": "",
-            "cta_text": "Shop now",
-            "text_align": "text-align--left",
-            "block_width_mobile": "half",
-            "block_width": "half"
-          }
-        },
-        "1646658697079f6e0b-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/whyacremade-waffle.jpg",
-            "url": "",
-            "block_width_mobile": "half",
-            "block_width": "half"
-          }
-        },
-        "1646658697079f6e0b-2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/whyacremade-cookies.jpg",
-            "url": "",
-            "block_width_mobile": "half",
-            "block_width": "half"
-          }
-        }
-      },
-      "block_order": [
-        "1646658697079f6e0b-0",
-        "1646658697079f6e0b-1",
-        "1646658697079f6e0b-2"
-      ],
-      "settings": {
-        "first_item": "left",
-        "color_scheme": "tertiary"
-      }
-    },
-    "1643087462e6c84bb5": {
-      "type": "video",
-      "disabled": true,
-      "settings": {
-        "title": "",
-        "subheading": "",
-        "cta_url": "",
-        "cta_text": "Shop Now",
-        "video_url": "https:\/\/vimeo.com\/683525127",
-        "color_scheme": "secondary"
-      }
-    },
-    "16429993153d0e663c": {
-      "type": "richtext",
-      "blocks": {
-        "16429993152f0d6554-0": {
-          "type": "richtext",
-          "settings": {
-            "richtext": "<p>If you're interested in integrating plant-based eggs into your next food innovation or commercial kitchen process, reach out to us for more information.<\/p><p><\/p><p><a href=\"https:\/\/jake-197.myshopify.com\/pages\/contact\" title=\"Contact\"><span style=\"text-decoration:underline\"><strong>Contact Us<\/strong><\/span><\/a><\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "16429993152f0d6554-0"
-      ],
-      "settings": {
-        "title": "CRACKING THE SURFACE OF PLANT-BASED EATING",
-        "cta_url": "",
-        "cta_text": "",
-        "color_scheme": "tertiary"
-      }
     }
   },
   "order": [
     "wholesale",
-    "main",
-    "1642997618fdcca612",
-    "16466586982725ba3a",
-    "1643087462e6c84bb5",
-    "16429993153d0e663c"
+    "wholesale_products",
+    "wholesale_video_module",
+    "wholesale_form",
+    "wholesale_features",
+    "main"
   ]
 }

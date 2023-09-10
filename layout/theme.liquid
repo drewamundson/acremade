@@ -230,6 +230,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   {% section 'footer' %}
   {% section 'popup' %}
+  {% section 'product-icons' %}
 
   {% comment %}
     Ajaxify your cart with this plugin.
@@ -237,6 +238,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {% render 'ajax-cart-template' %}
+
+<script>
+  (function($){
+
+    var $accTrigger = $('.AccTrigger'),
+      $acc = $('.AccContent');
+
+    // accordian content
+    $accTrigger.click(function(e){
+      e.preventDefault();
+      var $me = $(this),
+      $content = $me.next('.AccContent');
+
+      $acc.slideUp().attr('aria-hidden', true);
+      if($me.hasClass('Open')){
+        $me.removeClass('Open').attr('aria-expanded', false);
+        return false;
+      }
+      $accTrigger.removeClass('Open').attr('aria-expanded', false);
+      $me.addClass('Open').attr('aria-expanded', true);
+      $content.slideToggle().attr('aria-hidden', false);
+    });
+
+  })(jQuery);
+</script>
+
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSN4QFD"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

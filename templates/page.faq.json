@@ -1,0 +1,156 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page--faq",
+      "blocks": {
+        "c4074c1d-4ae3-4626-a9bd-daf24f6d0989": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Can I cook this in the microwave?",
+            "faq_answer": "Yes, along with being cooked conventionally on a stove top AcreMade Egg Substitute works great cooking in the microwave.  We recommend microwaving for 45 seconds to 1 minute, but time may vary depending on microwave power."
+          }
+        },
+        "30633cb2-2b5d-49b2-be73-832a6bbf5439": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Can I cook this in the oven?",
+            "faq_answer": "Yes, utilizing a oven is a preferred method when utilizing AcreMade Egg Substitute to make more complex egg dishes including quiches, egg bakes, or egg bites.  Go to our website AcreMade.com for more indepth recipes."
+          }
+        },
+        "2b08a8ac-e227-4c88-aca4-0ff7c48b6859": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Does it work in baking?",
+            "faq_answer": "Yes, AcreMade Egg Substitute can also be used in a wide array of your favorite baking recipes.  From french toast, to cookies and brownies the product is quite versatile.  We do recommend not using to fully replace eggs in more complex recipes including most cakes."
+          }
+        },
+        "3c13f4da-f99b-4131-bac8-555a4fe15748": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Does it work in mayo?",
+            "faq_answer": "Yes, AcreMade Egg Substitute works to make mayo as well as other emulsified spreads.  We do note the inherent risks of consuming this product uncooked due to the possibility of harmful bacteria."
+          }
+        },
+        "76f64b12-8db4-4181-9ee3-75e47e94a95f": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "How long does it keep on the counter?",
+            "faq_answer": "After preparing the product if it is not used within 2-3 hours store in the refridgerator."
+          }
+        },
+        "93ad3488-21f2-482f-9a79-3b9a3557cadc": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "How long does it keep in the fridge?",
+            "faq_answer": "The product can be kept in the refridgerator for 3-4 day.  Note product thickening may occur and extra cold water may need to be added to make the product thinner."
+          }
+        },
+        "0f79160b-ab1c-40b8-9232-d3d5bd1e2e93": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Do I need to store in the fridge?",
+            "faq_answer": "No, AcreMade Egg Substitute is a shelf-stable powder with a shelf-life of two years."
+          }
+        },
+        "451ccbb0-5d0f-4f66-928d-354083146fe3": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Can I store cooked Substitute in the fridge? Can I freeze it?",
+            "faq_answer": "AcreMade Egg Substitute can be stored in the refridgerator post cooking.  For the best experience we recommend reheating to bring back some elasticity and springiness."
+          }
+        },
+        "ff43a289-50b5-41c0-922a-ece64e7c937d": {
+          "type": "faq",
+          "settings": {
+            "faq_question": "Can I eat batter made using Substitute?",
+            "faq_answer": "AcreMade Egg Substitute contains two ingredients (Lupin Flour & Pea Starch) that are not considered ready to eat.  We do not recommend consuming the product in a uncooked state for this reason."
+          }
+        }
+      },
+      "block_order": [
+        "c4074c1d-4ae3-4626-a9bd-daf24f6d0989",
+        "30633cb2-2b5d-49b2-be73-832a6bbf5439",
+        "2b08a8ac-e227-4c88-aca4-0ff7c48b6859",
+        "3c13f4da-f99b-4131-bac8-555a4fe15748",
+        "76f64b12-8db4-4181-9ee3-75e47e94a95f",
+        "93ad3488-21f2-482f-9a79-3b9a3557cadc",
+        "0f79160b-ab1c-40b8-9232-d3d5bd1e2e93",
+        "451ccbb0-5d0f-4f66-928d-354083146fe3",
+        "ff43a289-50b5-41c0-922a-ece64e7c937d"
+      ],
+      "settings": {
+        "color_scheme": "primary"
+      }
+    },
+    "faq-replacer": {
+      "type": "main-page--faq-replacer",
+      "blocks": {
+        "e0bc4fed-4816-4452-8c51-492d7e580395": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "Can I make standalone eggs with this?",
+            "faq_answer_replacer": "No"
+          }
+        },
+        "3fdf4a0e-cefd-457c-a3fb-3fd68ff5e601": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "Does it work in mayo?",
+            "faq_answer_replacer": "Yes, the leavening in the formula has no impacty upon flavor or texture"
+          }
+        },
+        "3c3ba3d3-6c42-4f08-8729-00864e16d3e4": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "Does it work in all cakes?",
+            "faq_answer_replacer": "Most cakes except Angel Food cakes"
+          }
+        },
+        "141018f7-ca47-4f03-a97d-0869a9d4c7fb": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "Can RTE Replacer replace egg whites?",
+            "faq_answer_replacer": "Yes, but the color will not be as white"
+          }
+        },
+        "ad13f2fb-2c12-4330-85fc-aaee229d4ef4": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "How do I mix RTE replacer?",
+            "faq_answer_replacer": "Slowly add the water to the powder and stir to remove any lumps.  Push through a seive if lumps remain."
+          }
+        },
+        "134b0ec6-b65c-4e7f-b596-8363394b86fd": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "Do cakes made using Replacer keep longer?",
+            "faq_answer_replacer": "Unknown.  No shelf life tests.  Freeze if not eating right away!!!"
+          }
+        },
+        "52eca1e1-34d5-47cd-a332-b9b3e18a2e15": {
+          "type": "faq_replacer",
+          "settings": {
+            "faq_question_replacer": "Can I eat batter made using Replacer?",
+            "faq_answer_replacer": "Yes, IF the flour & other ingredients are RTE."
+          }
+        }
+      },
+      "block_order": [
+        "e0bc4fed-4816-4452-8c51-492d7e580395",
+        "3fdf4a0e-cefd-457c-a3fb-3fd68ff5e601",
+        "3c3ba3d3-6c42-4f08-8729-00864e16d3e4",
+        "141018f7-ca47-4f03-a97d-0869a9d4c7fb",
+        "ad13f2fb-2c12-4330-85fc-aaee229d4ef4",
+        "134b0ec6-b65c-4e7f-b596-8363394b86fd",
+        "52eca1e1-34d5-47cd-a332-b9b3e18a2e15"
+      ],
+      "settings": {
+        "color_scheme": "primary"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq-replacer"
+  ]
+}

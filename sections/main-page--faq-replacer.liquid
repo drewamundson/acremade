@@ -1,0 +1,82 @@
+<section class="page mb3 color--{{ section_color }}-text bg--{{ section_color }}-background">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="mw750">
+
+      <h2 class="mb1 font-size--xl md--up--font-size--xxl lg--up--font-size--xxl">Egg Replacer</h2> 
+
+      {% for block in section.blocks %}
+        {% if block.settings.faq_question_replacer != blank and block.settings.faq_answer_replacer != blank %}
+        <div class="mb0 py2 accItem">
+          <div class="AccTrigger" role="button" tabindex="0" aria-controls="acc-{{ forloop.index }}" aria-expanded="false">
+            <h3 class="mb0 font-size--m md--up--font-size--m lg--up--font-size--m">
+              {{ block.settings.faq_question_replacer }}
+            </h3>
+            <div class="plus">
+              <span class="horz"></span>
+              <span class="vert"></span>
+            </div>
+          </div>
+          <div class="AccContent" aria-hidden="true" id="acc-{{ forloop.index }}">
+            <div class="py2">
+              {{ block.settings.faq_answer_replacer }}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "FAQ Replacer",
+  "settings": [
+    {
+      "type":      "header",
+      "content":   "Color"
+    },
+    {
+       "type": "select",
+       "id": "color_scheme",
+       "label": "Color scheme",
+       "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+       ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_replacer",
+      "name": "FAQ", 
+      "settings": [
+        {
+          "id": "faq_question_replacer",
+          "type": "text",
+          "label": "Question"
+        },
+        {
+          "id": "faq_answer_replacer",
+          "type": "textarea",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Replacer",
+      "category": "FAQ Replacer",
+      "blocks": [
+        {
+          "type": "faq_replacer"
+        }
+      ]
+    }
+  ]  
+}
+{% endschema %}

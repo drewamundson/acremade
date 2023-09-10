@@ -1,0 +1,128 @@
+<!-- /snippets/product-grid-item.liquid -->
+{% comment %}
+
+  This snippet is used to showcase each product during the loop,
+  'for product in collection.products' in collection.liquid.
+
+{% endcomment %}
+
+{% comment %}
+  Set the default grid_item_width if no variable is set
+{% endcomment %}
+
+{%- unless section_color -%}
+  {%- assign section_color = 'primary' -%}
+{%- endunless -%}
+
+{%- comment -%}
+  Check if the product is on sale and set a variable to be used below.
+{%- endcomment -%}
+{%- assign on_sale = false -%}
+{%- if product.compare_at_price > product.price -%}
+  {%- assign on_sale = true -%}
+{%- endif -%}
+
+{%- comment -%}
+  Check if the product is sold out and set a variable to be used below.
+{%- endcomment -%}
+{%- assign sold_out = true -%}
+{%- if product.available -%}
+  {%- assign sold_out = false -%}
+{%- endif -%}
+
+{%- comment -%}
+  Assign a variant to show unit prices.
+{%- endcomment -%}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign metafields = product.metafields.acremade %}
+
+{% if product.price_varies and product.variants.size > 1 %}
+  {% for variant in product.variants %}
+    {% if variant.price == product.price_min %}
+      {% assign current_variant = variant %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<a href="{{ product.url | within: collection }}" class="product-grid-item block t--list-and-grid relative{% if current_variant.unit_price_measurement %} has-unit-price{% endif %}">
+  {%- assign featured_media = product.featured_media.preview_image -%}
+  {%- if metafields.wholesale_image -%}
+    {%- assign featured_media = metafields.wholesale_image.value -%}
+  {%- endif -%}
+  
+  {% comment %} {% for pic in metafields.wholesale_image.value %}
+    {{ pic | img_url: '1024x' }}
+  {% endfor %} {% endcomment %}
+  {% unless featured_media == blank %}
+    <div class="relative">
+
+      {% if settings.products_show_badges %}
+        {% if on_sale or sold_out %}
+          <div class="absolute top--0 right--0 pt2 pr2 z2">
+            {% if on_sale and sold_out != true %}
+              <div class="product-grid-on-sale p1 font-size--s bg--{{ section_color }}-accent color--{{ section_color }}-accent--overlay">{{ 'products.product.on_sale' | t }}</div>
+            {% endif %}
+            {% if sold_out %}
+              <div class="{% if on_sale %}mt1{% endif %} product-grid-on-sale p1 font-size--s bg--{{ section_color }}-text color--{{ section_color }}-text--overlay">{{ 'products.product.sold_out' | t }}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {%- assign ratio = preview_image.aspect_ratio -%}
+      {%- assign force_crop = false -%}
+      {%- if ratio < 0.5 -%}
+        {%- assign force_crop = true -%}
+        {%- assign ratio = 1 -%}
+      {%- endif -%}
+
+      {%- render 'responsive-image' with
+          image: featured_media
+          max_width: 2000,
+          max_height: 2000,
+          section_color: section_color,
+          responsive_image_counter: loop_index,
+          image_id: product.featured_media.id
+      -%}
+
+      {% comment %} {% if product.media.size > 1 and settings.products_show_second_image_on_hover %}
+        {% assign hover_image = product.media[1] %}
+        <div class="product-item-hover absolute top--0 right--0 bottom--0 left--0 z1 lazyload bg-cover bg--{{ section_color }}-background"
+             data-bgset="{% render 'bgset', image: hover_image %}"
+             data-sizes="auto"
+             data-parent-fit="cover">
+        </div>
+      {% endif %} {% endcomment %}
+
+    </div>
+  {% endunless %}
+  <h3 class="color--{{ section_color }}-text m0 mt2 font-size--m md--up--font-size--m">
+    {% if metafields.wholesale_title != blank %}
+      {{ metafields.wholesale_title }}
+    {% else %}
+      {{ product.title }}
+    {% endif %}
+  </h3>
+  {% comment %} <p class="mt2">
+    {% if metafields.wholesale_description != blank %}
+      {{ metafields.wholesale_description }}
+    {% else %}
+      {{ product.description }}
+    {% endif %}
+  </p> {% endcomment %}
+
+  {% comment %} <div class="icons mt2">
+    {% for tag in product.tags %}
+      {% if tag contains 'icon-' %} 
+        <div class="{{ tag | remove: 'icon-' }} icon"></div>
+      {% endif %}
+    {% endfor %}
+  </div> {% endcomment %}
+
+  <div class="mw-1 mt2 btn border--none btn--add-to-cart relative color-scheme--black border--none bg--black-text color--black-text--overlay hover-bg--primary p1 full--w block">
+    <span class="add-to-cart-text font-size--xs">View More</span>
+  </div>
+
+</a>

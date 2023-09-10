@@ -1,0 +1,53 @@
+<style>
+  {% for block in section.blocks %}
+    {% if block.settings.icon != blank and block.settings.icon_tag != blank %}
+      .{{block.settings.icon_tag}} {
+        background-image: url({{ block.settings.icon | img_url: '200x' }});
+      }
+    {% endif %}
+  {% endfor %}
+</style>
+
+{% schema %}
+{
+  "name": "Product Icons",
+  "class": "section-product-icons",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Select", 
+      "settings": [
+        {
+          "id": "icon",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "icon_tag",
+          "type": "text",
+          "label": "Tag"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon",
+      "blocks": [
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .bg--light-background {
+    background-color: var(--color-primary-background);
+  }
+{% endstylesheet %}

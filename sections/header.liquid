@@ -131,7 +131,7 @@
                     {%- assign child_list_handle = link.title | handleize -%}
                     {% if linklists[child_list_handle].links != blank %}
                       <li class="nav__item site-nav--has-submenu{% if link.active %} site-nav--active{% endif %}  inline-block">
-                        <button class="site-nav__link border--none bg--transparent py0 {{ header_underline_link }} px1 block header__link no-wrap pointer {% if forloop.last %}site-nav__link--last{% endif %}"
+                        <button class="t--header-navigation site-nav__link border--none bg--transparent py0 {{ header_underline_link }} px1 block header__link no-wrap pointer {% if forloop.last %}site-nav__link--last{% endif %}"
                                 data-active-header-trigger
                                 data-active-target="navigation"
                                 data-first-level-link="desktop"
@@ -179,11 +179,11 @@
               </nav>
             </div>
           </div>
-          <div class="header-table__center align--middle text-align--center flex--grow--1  md--dn--flex--1-basis-auto lg--up--flex--grow--0 lg--justify--center lg--items--center">
+          <div style="max-width:200px;" class="header-table__center align--middle text-align--center flex--grow--1  md--dn--flex--1-basis-auto lg--up--flex--grow--0 lg--justify--center lg--items--center">
             {% if template.name == 'index' %}
-              <h1 class="header__logo m0 lg--up--px3 {% if section.settings.logo != blank %}font-size--0{% endif %} md--dn--px1">
+              <h1 class="header__logo m0 lg--up--px1 {% if section.settings.logo != blank %}font-size--0{% endif %} md--dn--px1">
             {% else %}
-              <div class="header__logo {% unless section.settings.logo != blank %}h1{% else %}font-size--0{% endunless %} m0  lg--up--px3 md--dn--px1">
+              <div class="header__logo {% unless section.settings.logo != blank %}h1{% else %}font-size--0{% endunless %} m0  lg--up--px1 md--dn--px1">
             {% endif %}
                 <a href="{{ routes.root_url }}" class="font-size--xl line-height--4 color--{{ section_color }}-text color--header-active f--heading site-logo mx--auto{% if section.settings.logo != blank %} site-header__logo-image{% endif %}">
                   {% if section.settings.logo != blank %}
@@ -372,140 +372,26 @@
   {% if banner_enabled %}
     {% for block in section.blocks %}
       {% if block.type == 'banner' and template.name == 'index' %}
-
         {% assign section_color = block.settings.overlay_text_color %}
-        {% if block.settings.image %}
-        {% comment %} <div class="banner  relative {% unless block.settings.image_style == 'fit_content' %}full--vh full--w{% endunless %} js banner_image full--w" data-banner-image>
 
-          {% assign feature_image = block.settings.image %}
-          {% assign feature_image_mobile = block.settings.image_mobile %}
-          {% if block.settings.image_style == 'fit_content' %}
-            <div {% if feature_image_mobile %}class="md--dn--hide"{% endif %}>
-            {% render 'responsive-image' with
-              image: feature_image,
-              max_width: 2000,
-              max_height: 2000,
-              section_color: section_color,
-              image_class: 'right-side',
-              wrapper_class: 'right-center'
-            %}
-            </div>
-            {% if feature_image_mobile %}
-            <div class="lg--up--hide">
-            {% render 'responsive-image' with
-              image: feature_image_mobile,
-              max_width: 2000,
-              max_height: 2000,
-              section_color: section_color,
-              image_class: 'right-side',
-              wrapper_class: 'right-center'
-            %}
-            </div>
-            {% endif %}
-          {% else %}
-            <div class="lazyload bg-cover absolute top--0 right--0 bottom--0 left--0 {% if feature_image_mobile %}md--dn--hide{% endif %}"
-                data-bgset="{% render 'bgset', image: feature_image %}"
-                data-sizes="auto"
-                data-parent-fit="cover"
-                >
-            </div>
-            {% if feature_image_mobile %}
-            <div class="lazyload bg-cover absolute top--0 right--0 bottom--0 left--0 lg--up--hide"
-                data-bgset="{% render 'bgset', image: feature_image_mobile %}"
-                data-sizes="auto"
-                data-parent-fit="cover"
-                >
-            </div>
-            {% endif %}
-          {% endif %}
-
+        {% if block.settings.image_1 or block.settings.image_2 or block.settings.image_3 or block.settings.image_4 %}
           {%- assign heading = block.settings.heading -%}
+          {%- assign text = block.settings.text -%}
           {%- assign cta_text = block.settings.cta_text -%}
           {%- assign cta_url = block.settings.cta_url -%}
-          {%- assign content_position = block.settings.content_position -%}
-          {%- assign text_align = block.settings.text_align -%}
-          {%- assign fp = block.settings.featured_product -%}
-          {% if cta_url != blank or heading != blank %}
-          <div class="absolute top--0 right--0  bottom--0 left--0  px3 py4 lg--up--px1 wd--p4 z1">
-            {% assign content_position = content_position | split: ' ' %}
-            <div class="table full {% if section.settings.show_announcement %}{% if section.settings.home_page_only == false or template.name == 'index' %}pt3{% endif %}{% endif %}">
-              <div class="table-cell {{ content_position[0] }} {{ content_position[1] }}">
-                <div class="inline-block {{ text_align }} three-quarters lg--up--one-half mt5 pl2">
-                  <div class="">
-                    {% if heading != blank %}
-                      <h2 class="color--{{ section_color }}-text f--heading font-size--xxxl line-height--8 pm--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13">{{ heading }}</h2>
-                    {% endif %}
-                    {% if cta_url != blank %}
-                      <a class="mt2 btn border--none relative border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay {% if section_color == 'white' or section_color == 'black' %}hover-bg--primary{% else %}hover-bg--{{ section_color }}{% endif %} p1 px2 inline-block" href="{{ cta_url }}">
-                        {{ cta_text }}
-                      </a>
-                    {% endif %}
-                  </div>
-                </div>
-
-                {% if fp %}
-                  {% assign theProduct = all_products[fp] %}
-                  <div id="featured-product" class="absolute flex mt2 pl2 pr3">
-                    <div>
-                      <h3 class="color--{{ section_color }}-text">{{theProduct.title}}</h3>
-                      {% if theProduct.description != blank %}
-                        <div class="fp-desc">
-                          {{ theProduct.description }}
-                        </div>
-                      {% endif %}
-                      <button class="AddToCartButton mt2 btn border--none relative border--none bg--primary-text color--primary-text--overlay p1 px2 inline-block" data-id="{{ theProduct.variants.first.id }}">Add to cart</button>
-                    </div>             
-                  </div>
-                {% endif %}
-
-              </div>
-            </div>
-          </div>
-          {% endif %}
-
-          <div class="absolute bottom--0 left--0 right--0 flex items--center justify--center p2 z3">
-            <button aria-label="{{ 'general.accessibility.skip_to_first_section' | t }}"
-                    class="btn border--none border--none bg--transparent color--{{ section_color }}-text hv--primary-accent font-size--l pointer"
-                    data-banner-scroll>
-                    {% render 'icon-arrow-down' %}
-            </button>
-          </div>
-
-        </div> {% endcomment %}
-
-        {%- assign heading = block.settings.heading -%}
-        {%- assign cta_text = block.settings.cta_text -%}
-        {%- assign cta_url = block.settings.cta_url -%}
-        {%- assign content_position = block.settings.content_position -%}
-        {%- assign text_align = block.settings.text_align -%}
-
-        {%- assign fp = block.settings.featured_product -%}
-        {%- assign fpw = block.settings.featured_product_wholesale -%}
-
-        {%- if customer and customer.tags contains 'wholesale' and fpw -%}
-          {% assign theProduct = all_products[fpw] %}
-        {%- else -%}
-          {% assign theProduct = all_products[fp] %}
-        {%- endif -%}
-        
-        {% assign theProductImage = theProduct.featured_image %}
-
-        {% assign feature_image = block.settings.image %}
-        {% assign feature_image_hover = block.settings.image_hover %}
-        {% assign feature_image_mobile = block.settings.image_mobile %}
-        {% assign feature_image_mobile_hover = block.settings.image_mobile_hover %}
-
-          <div class="banner pt3 flex items--center flex--wrap relative {% if block.settings.image_style == 'fit_content' %}{% else %}min-full--h full--w{% endif %} js banner_image full--w mt4" data-banner-image>
-
-            {% if cta_url != blank or heading != blank %}
-              <div class="px2 lg--up-px4 wd--p4 z2 relative one-whole lg--up--one-half mobile-order-2 pb4 lg--up--pb3 mt4">
-                {% assign content_position = content_position | split: ' ' %}
-                <div class="table full {% if section.settings.show_announcement %}{% if section.settings.home_page_only == false or template.name == 'index' %}lg--up--pl2{% endif %}{% endif %}">
-                  <div class="table-cell {{ content_position[0] }} {{ content_position[1] }} lg--up--pl2">
-                    <div class="inline-block {{ text_align }}">
-                      <div class="">
+          {%- assign pics = 'image_1|image_2|image_3|image_4' | split: '|' -%}
+          <div class="pt3">
+            <div class="banner pb4 md--up--pb3 lg--up--pb3 pt3 flex items--center flex--wrap relative js banner_image full--w mt4" data-banner-image>
+              {% if cta_url != blank or heading != blank or text != blank %}
+                <div class="px2 lg--up-px4 wd--p4 z2 relative one-whole pb0 md--up--pb0 lg--up--pb0 mt4 md--up--mt4 lg--up--mt4">
+                  <div class="table full">
+                    <div class="table-cell">
+                      <div class="text-center">
                         {% if heading != blank %}
-                          <h2 class="color--{{ section_color }}-text f--heading font-size--xxxl line-height--8 pm--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxxl wd--line-height--13 m0">{{ heading }}</h2>
+                          <h1 class="color--{{ section_color }}-text f--heading font-size--xxxl line-height--8 pm--font-size--xxxxxl pm--line-height--11 wd--font-size--xxxxxl wd--line-height--13 m0">{{ heading }}</h1>
+                        {% endif %}
+                        {% if text != blank %}
+                          <p class="mt2">{{ text }}</p>
                         {% endif %}
                         {% if cta_url != blank %}
                           <a class="mt2 btn border--none relative border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay {% if section_color == 'white' or section_color == 'black' %}hover-bg--primary{% else %}hover-bg--{{ section_color }}{% endif %} p1 px2 inline-block" href="{{ cta_url }}">
@@ -514,250 +400,75 @@
                         {% endif %}
                       </div>
                     </div>
-
-                    {% if fp %}
-                      {%- comment -%}
-                        Check if the product is on sale and set a variable to be used below.
-                      {%- endcomment -%}
-                      {%- assign on_sale = false -%}
-                      {%- if theProduct.compare_at_price > theProduct.price -%}
-                        {%- assign on_sale = true -%}
-                      {%- endif -%}
-                      {%- comment -%}
-                        Check if the product is sold out and set a variable to be used below.
-                      {%- endcomment -%}
-                      {%- assign sold_out = true -%}
-                      {%- if theProduct.available -%}
-                        {%- assign sold_out = false -%}
-                      {%- endif -%}
-                      {%- comment -%}
-                        Assign a variant to show unit prices.
-                      {%- endcomment -%}
-                      {% assign current_variant = theProduct.selected_or_first_available_variant %}
-
-                      <div id="featured-product" class="flex mt2 pb2 lg--up--pb0">
-                        <div>
-                          <h3 class="color--{{ section_color }}-text">{{theProduct.title}}</h3>
-                          <p class="{% if on_sale %}color--{{ section_color }}-accent{% else %}color--{{ section_color }}-text{% endif %} m0 font-size__basic mb1">
-                            {% if sold_out %}
-                              <span class="sold-out color--{{ section_color }}-meta {% if on_sale %}mr1{% endif %}">{{ 'products.product.sold_out' | t }}</span>
-                            {% else %}
-                              <span {% if on_sale %}class="mr1"{% endif %}>
-                                {% if settings.currency_code_enable %}
-                                  {% if on_sale %}
-                                    {% if theProduct.price_varies %}
-                                      {% assign sale_price = theProduct.price | money_with_currency %}
-                                      {{ 'products.product.from_text_html' | t: price: sale_price }}
-                                    {% else %}
-                                      {{ theProduct.price | money_with_currency }}
-                                    {% endif %}
-                                  {% else %}
-                                    {% if theProduct.price_varies %}
-                                      {% assign price = theProduct.price | money_with_currency %}
-                                      {{ 'products.product.from_text_html' | t: price: price }}
-                                    {% else %}
-                                      {{ theProduct.price | money_with_currency }}
-                                    {% endif %}
-                                  {% endif %}
-                                {% else %}
-                                  {% if on_sale %}
-                                    {% if theProduct.price_varies %}
-                                      {% assign sale_price = theProduct.price | money %}
-                                      {{ 'products.product.from_text_html' | t: price: sale_price }}
-                                    {% else %}
-                                      {{ theProduct.price | money }}
-                                    {% endif %}
-                                  {% else %}
-                                    {% if theProduct.price_varies %}
-                                      {% assign price = theProduct.price | money %}
-                                      {{ 'products.product.from_text_html' | t: price: price }}
-                                    {% else %}
-                                      {{ theProduct.price | money }}
-                                    {% endif %}
-                                  {% endif %}
-                                {% endif %}
-                              </span>
-                            {% endif %}
-                            {% if on_sale and sold_out != true %}
-                              <s class="color--{{ section_color }}-meta">
-                                {% if settings.currency_code_enable %}
-                                  {{ product.compare_at_price | money_with_currency }}
-                                {% else %}
-                                  {{ product.compare_at_price | money }}
-                                {% endif %}
-                              </s>
-                            {% endif %}
-                          </p>
-                          {% if theProduct.description != blank %}
-                            <div class="fp-desc color--{{ section_color }}-text">
-                              {{ theProduct.description }}
-                            </div>
-                          {% endif %}
-                          {%- assign module_id = section.id -%}
-                          {%- assign product_form_id = 'product-form-' | append: module_id -%}
-                          <div id="AddToCartForm--{{ module_id }}" class="form-vertical">
-                            {%- assign product_form_id = 'product-form-' | append: module_id -%}
-                            {% form 'product', theProduct, id: product_form_id %}
-                              <input
-                                type="hidden"
-                                name="id"
-                                value="{{ theProduct.selected_or_first_available_variant.id }}"
-                                {% if variant_picker_enabled %}
-                                  disabled
-                                {% endif %}
-                                data-product-select
-                              >
-                              {%- liquid
-                                  assign show_payment_button = false
-                              -%}
-                              <div class="add-to-cart-container max-width--1 {% unless current_variant.available %}hide-pay-buttons{% endunless %}  {% if show_payment_button %}cta-content--pay-buttons{% endif %}" data-add-to-cart-container>
-                                <button
-                                  class="btn border--none btn--add-to-cart relative color-scheme--{{ section_color }} {% if show_payment_button %}bg--transparent color--{{ section_color }}-text border--{{ section_color }}-text hv--{{ section_color }}-accent hv--border--{{ section_color }}-accent {% else %}border--none bg--{{ section_color }}-text color--{{ section_color }}-text--overlay {% if section_color == 'white' or section_color == 'black' %}hover-bg--primary{% else %} hover-bg--{{ section_color }}{% endif %}{% endif %} p1 full--w block"
-                                  type="submit"
-                                  name="add"
-                                  id="AddToCart--{{ section.id }}"
-                                  data-add-to-cart
-                                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-                                    <span class="add-to-cart-text" data-add-to-cart-text>
-                                      {% if current_variant.available %}
-                                        {{ 'products.product.add_to_cart' | t }}
-                                      {% else %}
-                                        {{ 'products.product.sold_out' | t }}
-                                      {% endif %}
-                                    </span>
-                                    {%- unless settings.open_modal_on_add_to_cart -%}
-                                    <div class="spinner {% if show_payment_button %}color--{{ section_color }}-text{% else %}color--{{ section_color }}-background{% endif %}"></div>
-                                    {%- endunless -%}
-                                </button>
-                                {% if show_payment_button %}
-                                  <div class="mt2 payment-button-wrapper color--{{ section_color }}">{{ form | payment_button }}</div>
-                                {% endif %}
-                              </div>
-
-                              {%- unless settings.open_modal_on_add_to_cart -%}
-                              <div class="font-size__basic mt2 hide {% unless show_payment_button %}mt3{% endunless %} {% if show_pickup_availability %}mb3{% endif %}" data-add-to-cart-complete>
-                                {{ 'products.product.added_to_cart' | t }}!<br/>{{ 'products.product.add_to_cart_confirm_html' | t: cart_url: routes.cart_url, link_url: routes.all_products_collection_url, section_color: section_color }}.
-                              </div>
-                              {%- endunless -%}
-                            {% endform %}
-                          </div>
-                        </div>
-                      </div>
-                    {% endif %}
-
                   </div>
-                </div>
-              </div>
-            {% endif %}
-
-            {% if block.settings.image_style == 'fit_content' %}
-              <div class="lg--up-px2 wd--p4 z1 one-whole lg--up--one-half mobile-order-1 mt4 lg--up--mt3">
-                <div class="{% if feature_image_hover %}relative hover{% endif %} {% if feature_image_mobile %}md--dn--hide{% endif %}">
-                  <div class="main-pic">
-                    {% render 'responsive-image' with
-                      image: feature_image,
-                      max_width: 2000,
-                      max_height: 2000,
-                      section_color: section_color,
-                      image_class: 'right-side',
-                      wrapper_class: 'right-center'
-                    %}
-                  </div>
-                  {% if feature_image_hover %}
-                    <div class="main-pic hover-pic">
-                      {% render 'responsive-image' with
-                        image: feature_image_hover,
-                        max_width: 2000,
-                        max_height: 2000,
-                        section_color: section_color,
-                        image_class: 'right-side',
-                        wrapper_class: 'right-center'
-                      %}
-                    </div>
-                  {% endif %}
-                </div>
-                {% if feature_image_mobile %}
-                  <div class="lg--up--hide {% if feature_image_mobile_hover %}hover{% endif %}">
-                    <div class="main-pic">
-                      {% render 'responsive-image' with
-                        image: feature_image_mobile,
-                        max_width: 2000,
-                        max_height: 2000,
-                        section_color: section_color,
-                        image_class: 'right-side',
-                        wrapper_class: 'right-center'
-                      %}
-                    </div>
-                    {% if feature_image_mobile_hover %}
-                      <div class="hover-pic">
-                        {% render 'responsive-image' with
-                          image: feature_image_mobile_hover,
-                          max_width: 2000,
-                          max_height: 2000,
-                          section_color: section_color,
-                          image_class: 'right-side',
-                          wrapper_class: 'right-center'
-                        %}
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              </div>
-            {% else %}
-                <div class="px3 lg--up--px1 wd--p4 z2 relative one-whole lg--up--one-half mt5 mobile-order-1">
-                  {% render 'responsive-image' with
-                    image: theProductImage,
-                    max_width: 1000,
-                    max_height: 500,
-                    section_color: section_color,
-                    image_class: 'right-side',
-                    wrapper_class: 'right-center'
-                  %}
-                </div>
-
-                <div class="lazyload bg-cover overlay absolute top--0 right--0 bottom--0 left--0 {% if feature_image_mobile %}md--dn--hide{% endif %}"
-                    data-bgset="{% render 'bgset', image: feature_image %}"
-                    data-sizes="auto"
-                    data-parent-fit="cover"
-                    >
-                </div>
-                {% if feature_image_mobile %}
-                <div class="lazyload bg-cover overlay absolute top--0 right--0 bottom--0 left--0 lg--up--hide"
-                    data-bgset="{% render 'bgset', image: feature_image_mobile %}"
-                    data-sizes="auto"
-                    data-parent-fit="cover"
-                    >
                 </div>
               {% endif %}
-            {% endif %}
 
-            <div class="absolute arrow-down flex items--center justify--center p2 z3 lg--up--whole">
-              <button
-                aria-label="{{ 'general.accessibility.skip_to_first_section' | t }}"
-                class="btn border--none border--none bg--transparent color--{{ section_color }}-text hv--primary-accent font-size--l pointer"
-                data-banner-scroll
-              >
-                {% render 'icon-arrow-down' %}
-              </button>
+              <div class="lg--up-px2 wd--p4 z1 one-whole mt3 md--up--mt4 lg--up--mt3">
+                <div class="main-pic header-display-grid pb0 md--up--pb4 lg--up--pb4">
+                  {% for pic in pics %}
+                    {%- assign txt = pic | append: '_text' -%}
+                    {%- assign purl = pic | append: '_url' -%}
+                    {%- if block.settings[pic] -%}
+                    {%- if block.settings[purl] != blank -%}
+                      <a href="{{ block.settings[purl] }}" class="block">
+                    {%- else -%}
+                      <div>
+                    {%- endif -%}
+                      {% if block.settings[txt] != blank %}
+                        <div class="text-center mb1 md--up--mb2 lg--up--mb2">
+                          <h3 class="font-size--m md--up--font-size--l lg--up--font-size--l bg-text inline">
+                            <span>{{ block.settings[txt] }}</span>
+                          </h3>
+                        </div>
+                      {% endif %}                    
+                      {% render 'responsive-image' with
+                        image: block.settings[pic],
+                        max_width: 1000,
+                        max_height: 1000,
+                        section_color: section_color,
+                        image_class: 'contain',
+                        wrapper_class: ''
+                      %}
+                    {%- if block.settings[purl] != blank -%}
+                      </a>
+                    {%- else -%}
+                      </div>
+                    {%- endif -%}
+
+                    {%- endif -%}
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="absolute arrow-down flex items--center justify--center p2 z3 lg--up--whole">
+                <button
+                  aria-label="{{ 'general.accessibility.skip_to_first_section' | t }}"
+                  class="btn border--none border--none bg--transparent color--{{ section_color }}-text hv--primary-accent font-size--l pointer"
+                  data-banner-scroll
+                >
+                  {% render 'icon-arrow-down' %}
+                </button>
+              </div>
+
             </div>
-
           </div>
 
         {% else %}
-        <div class="banner__placeholder  relative {% unless block.settings.image_style == 'fit_content' %}full--vh full--w{% endunless %} bg--placeholder-dark js banner_image full--w"
-          data-banner-image>
+          <div class="banner__placeholder relative bg--placeholder-dark js banner_image full--w"
+            data-banner-image>
 
-          <div class="banner__placeholder-svg full--w full--h color--{{ section_color }}-text {% if block.settings.image_style == 'full_screen' %}flex items--center justify--center{% endif %}" {% if block.settings.image_style == 'fit_content' %}style="padding-bottom: 40%;"{% endif %}>
-            <div class="full {% if block.settings.image_style == 'fit_content' %}absolute top--0 left--0 right--0 bottom--0{% endif %}">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+            <div class="banner__placeholder-svg full--w full--h color--{{ section_color }}-text {% if block.settings.image_style == 'full_screen' %}flex items--center justify--center{% endif %}" {% if block.settings.image_style == 'fit_content' %}style="padding-bottom: 40%;"{% endif %}>
+              <div class="full {% if block.settings.image_style == 'fit_content' %}absolute top--0 left--0 right--0 bottom--0{% endif %}">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+            </div>
+            <div class="absolute bottom--0 left--0 right--0 flex items--center justify--center p2 z3">
+              <button aria-label="{{ 'general.accessibility.skip_to_first_section' | t }}"
+                      class="btn border--none border--none bg--transparent color--{{ section_color }}-text hv--primary-accent font-size--l pointer"
+                      data-banner-scroll>
+                      {% render 'icon-arrow-down' %}
+              </button>
+            </div>
           </div>
-          <div class="absolute bottom--0 left--0 right--0 flex items--center justify--center p2 z3">
-            <button aria-label="{{ 'general.accessibility.skip_to_first_section' | t }}"
-                    class="btn border--none border--none bg--transparent color--{{ section_color }}-text hv--primary-accent font-size--l pointer"
-                    data-banner-scroll>
-                    {% render 'icon-arrow-down' %}
-            </button>
-          </div>
-        </div>
         {% endif %}
 
       {% endif %}
@@ -923,44 +634,68 @@
         "settings": [
           {
             "type": "image_picker",
-            "id": "image",
+            "id": "image_1",
             "label": "Image",
             "info": "1250 x 1400px recommended"
           },
           {
+            "type": "text",
+            "id": "image_1_text",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "image_1_url",
+            "label": "Link"
+          },
+          {
             "type": "image_picker",
-            "id": "image_hover",
-            "label": "Image (hover)",
+            "id": "image_2",
+            "label": "Image",
             "info": "1250 x 1400px recommended"
+          },
+          {
+            "type": "text",
+            "id": "image_2_text",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "image_2_url",
+            "label": "Link"
           },          
           {
             "type": "image_picker",
-            "id": "image_mobile",
-            "label": "Image - mobile (optional)",
-            "info": "800 x 1000px recommended."
+            "id": "image_3",
+            "label": "Image",
+            "info": "1250 x 1400px recommended"
           },
           {
-            "type": "image_picker",
-            "id": "image_mobile_hover",
-            "label": "Image - mobile (hover optional)",
-            "info": "800 x 1000px recommended."
+            "type": "text",
+            "id": "image_3_text",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "image_3_url",
+            "label": "Link"
           },          
           {
-            "type": "select",
-            "id": "image_style",
-            "label": "Image style:",
-            "options": [
-              {
-                "value": "full_screen",
-                "label": "Full Screen"
-              },
-              {
-                "value": "fit_content",
-                "label": "Content"
-              }
-            ],
-            "info": "Use \'Content\' style to avoid image cropping."
+            "type": "image_picker",
+            "id": "image_4",
+            "label": "Image",
+            "info": "1250 x 1400px recommended"
           },
+          {
+            "type": "text",
+            "id": "image_4_text",
+            "label": "Title"
+          },
+          {
+            "type": "url",
+            "id": "image_4_url",
+            "label": "Link"
+          },          
           {
             "type": "select",
             "id": "overlay_text_color",
@@ -982,20 +717,6 @@
           },
           {
             "type": "header",
-            "content": "Product"
-          },
-          {
-            "type": "product",
-            "id": "featured_product",
-            "label": "Product"
-          },
-          {
-            "type": "product",
-            "id": "featured_product_wholesale",
-            "label": "Product (Wholesale)"
-          },          
-          {
-            "type": "header",
             "content": "Content"
           },
           {
@@ -1003,6 +724,11 @@
             "id": "heading",
             "label": "Title"
           },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text"
+          },          
           {
             "type": "url",
             "id": "cta_url",
@@ -1013,70 +739,6 @@
             "id": "cta_text",
             "label": "Button text",
             "default": "Shop Now"
-          },
-          {
-            "type": "select",
-            "id": "content_position",
-            "label": "Content position",
-            "options": [
-              {
-                "value": "text-align--left align--top",
-                "label": "Top Left"
-              },
-              {
-                "value": "text-align--middle align--top",
-                "label": "Top Middle"
-              },
-              {
-                "value": "text-align--right align--top",
-                "label": "Top Right"
-              },              
-              {
-                "value": "text-align--left align--middle",
-                "label": "Middle Left"
-              },
-              {
-                "value": "text-align--center align--middle",
-                "label": "Middle Center"
-              },
-              {
-                "value": "text-align--right align--middle",
-                "label": "Middle Right"
-              },
-              {
-                "value": "text-align--left align--bottom",
-                "label": "Bottom Left"
-              },
-              {
-                "value": "text-align--center align--bottom",
-                "label": "Bottom Center"
-              },
-              {
-                "value": "text-align--right align--bottom",
-                "label": "Bottom Right"
-              }
-            ],
-            "default":   "text-align--center align--middle"
-          },
-          {
-            "type": "select",
-            "id": "text_align",
-            "label": "Text alignment",
-            "options": [
-              {
-                "value": "text-align--left",
-                "label": "Left"
-              },
-              {
-                "value": "text-align--center",
-                "label": "Center"
-              },
-              {
-                "value": "text-align--right",
-                "label": "Right"
-              }
-            ],
-            "default":   "text-align--left"
           }
         ]
       }
@@ -1085,6 +747,13 @@
 {% endschema %}
 
 {% stylesheet %}
+  .header-display-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    grid-row-gap: 80px;
+    align-items: baseline;
+  }
 
   .hover-pic {
     opacity: 0;
@@ -1094,20 +763,32 @@
     width: 100%;
   }
 
+  .bg-text {
+    position: relative;
+  }
+
+  .bg-text span {
+    z-index: 1;
+    padding: 3px 9px;
+    position: relative;    
+  }
+
+  .bg-text:after {
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    background: rgb(224, 193, 63);
+    left: 16px;
+    top: 6px;
+  }
+
   .hover:hover .main-pic {
     opacity: 0;
   }
 
   .hover:hover .hover-pic {
     opacity: 1;
-  }
-
-  .mobile-order-2 {
-    order: 2;
-  }
-
-  .mobile-order-1 {
-    order: 1;
   }
 
   .min-full--h {
@@ -1128,21 +809,35 @@
   .arrow-down {
     left: 50%;
     transform: translateX(-50%);
-    bottom: 10px;
+    bottom: -10px;
+  }
+
+  .arrow-down svg {
+    margin: 0;
   }
 
   .fp-desc p {
     padding-left: 0!important;
   }
 
-  @media only screen and (min-width: 990px){
-    .mobile-order-2 {
-      order: 1;
+  @media only screen and (min-width: 750px){
+    .header-display-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
     }
+   
+  }
 
-    .mobile-order-1 {
-      order: 2;
+  @media only screen and (min-width: 990px){
+    .header-display-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
+  }
+
+  .site-nav__chevron-down svg,
+  .site-nav__chevron-up svg {
+    margin: 0;
   }
 
 {% endstylesheet %}

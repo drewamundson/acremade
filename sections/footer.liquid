@@ -38,46 +38,6 @@
               {% endif %}
             </a>
           </div>
-          <div class="grid__item two-thirds text-align--right lg--up--one-whole lg--up--mt2 lg--up--text-align--left">
-            {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-            <ul class="list--reset p0 m0 mxn1">
-              {% for social in social_accounts %}
-                {%- assign social_handle = social | handleize -%}
-                {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
-                {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
-
-                {% comment %}theme-check-disable MissingTemplate{% endcomment %}
-                {% if settings[social_link] != blank %}
-                  <li class="inline-block">
-                    <a class="color--{{ section_color }}-text px1 font-size--xxs mb1 block" href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-                      {% liquid
-                        case social_handle
-                          when 'facebook'
-                            render 'icon-facebook'
-                          when 'twitter'
-                            render 'icon-twitter'
-                          when 'pinterest'
-                            render 'icon-pinterest'
-                          when 'instagram'
-                            render 'icon-instagram'
-                          when 'snapchat'
-                            render 'icon-snapchat'
-                          when 'tumblr'
-                            render 'icon-tumblr'
-                          when 'youtube'
-                            render 'icon-youtube'
-                          when 'vimeo'
-                            render 'icon-vimeo'
-                        endcase
-                      %}
-                      <span class="icon-fallback-text">{{ social }}</span>
-                    </a>
-                  </li>
-                {% endif %}
-                {% comment %}theme-check-enable MissingTemplate{% endcomment %}
-              {% endfor %}
-            </ul>
-          </div>
         </div>
       </div>
       <div class="grid__item mb3 md--up--one-whole lg--up--six-sevenths">
@@ -128,6 +88,53 @@
                             section_color: section_color
                   -%}
                 {% endif %}
+
+                <div class="grid__item md--up--two-thirds mt2 lg--up--one-whole lg--up--mt2 lg--up--text-align--left">
+                  {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, TikTok, Snapchat, Tumblr, YouTube, Vimeo, Linkedin' | split: ', ' -%}
+                  <style>#shopify-section-footer .list--reset {display:flex;align-items:flex-start;}</style>
+                  <ul class="list--reset p0 m0 mxn1">
+                    {% for social in social_accounts %}
+                      {%- assign social_handle = social | handleize -%}
+                      {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+                      {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+
+                      {% comment %}theme-check-disable MissingTemplate{% endcomment %}
+                      {% if settings[social_link] != blank %}
+                        <li class="inline-block">
+                          <a class="color--{{ section_color }}-text pl1 pr2 md--up--pr0 font-size--xxs mb1 block" href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
+                            {% liquid
+                              case social_handle
+                                when 'facebook'
+                                  render 'icon-facebook'
+                                when 'twitter'
+                                  render 'icon-twitter'
+                                when 'pinterest'
+                                  render 'icon-pinterest'
+                                when 'instagram'
+                                  render 'icon-instagram'
+                                when 'snapchat'
+                                  render 'icon-snapchat'
+                                when 'tumblr'
+                                  render 'icon-tumblr'
+                                when 'youtube'
+                                  render 'icon-youtube'
+                                when 'vimeo'
+                                  render 'icon-vimeo'
+                                when 'tiktok'
+                                  render 'icon-tiktok'
+                                when 'linkedin'
+                                  render 'icon-linkedin'
+                              endcase
+                            %}
+                            <span class="icon-fallback-text">{{ social }}</span>
+                          </a>
+                        </li>
+                      {% endif %}
+                      {% comment %}theme-check-enable MissingTemplate{% endcomment %}
+                    {% endfor %}
+                  </ul>
+                </div>
+
               </div>
             {% endif %}
 
@@ -398,3 +405,14 @@
   }
 
 {% endschema %}
+
+<style>
+  #shopify-section-footer .icon,
+  #shopify-section-footer .icon-wrapper>svg {
+    margin-right: 0;
+    pointer-events: initial;
+  }
+  #shopify-section-footer .icon-wrapper:hover > svg {
+    fill: var(--color-primary-accent);
+  }
+</style>

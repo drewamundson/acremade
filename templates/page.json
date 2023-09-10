@@ -2,13 +2,13 @@
   "sections": {
     "main": {
       "type": "main-page",
-      "disabled": true,
       "settings": {
         "color_scheme": "primary"
       }
     },
     "1643001455e8797284": {
       "type": "image-with-text",
+      "disabled": true,
       "settings": {
         "feature_image": "shopify:\/\/shop_images\/976A9391_27b69ba1-81af-4fd4-8219-3160b2ed5728.jpg",
         "heading": "The finish line just got a whole lot closer",
@@ -23,6 +23,7 @@
     },
     "16430783440e848941": {
       "type": "cascade",
+      "disabled": true,
       "blocks": {
         "1643078344a745d7ab-0": {
           "type": "rich_text",
@@ -79,6 +80,7 @@
     },
     "164633542488864fe4": {
       "type": "richtext",
+      "disabled": true,
       "blocks": {
         "1646335424124ce588-0": {
           "type": "richtext",

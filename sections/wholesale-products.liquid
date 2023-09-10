@@ -1,0 +1,172 @@
+{%- assign section_color = section.settings.color_scheme -%}
+{% comment %} {%- assign wc = section.settings.wholesale_collection -%}
+{%- assign wc_products = collections[wc] -%}
+{%- assign wc_prods = wc_products.products -%}{% endcomment %}
+{%- assign wc_len = section.blocks.size -%}
+
+<section class="page section-with-padding color--primary-text bg--white-background" id="egg-products">
+  <div class="max-site-width px2 lg--up--px3">
+    <div class="mb2">
+      <h2 class="mb1 md--up--mb3 lg--up--mb3 font-size--xl md--up--font-size--xxl lg--up--font-size--xxl">Wholesale Offerings</h2>
+    </div>
+    <div class="display-grid pt2 md--up--pt3 lg--up--pt3 grid-{{ wc_len }}">
+
+      {% for block in section.blocks %}
+        {% if block.settings.w_link != blank %}
+        <a href="{{ block.settings.w_link }}" class="product-grid-item block t--list-and-grid relative">
+        {% else %}
+        <div class="product-grid-item block t--list-and-grid relative">
+        {% endif %}
+          {%- assign featured_media = block.settings.w_prod -%}
+          {%- assign featured_media_hover = block.settings.w_prod_hover -%}
+
+          {% unless featured_media == blank %}
+            <div class="relative">
+
+              {%- assign ratio = preview_image.aspect_ratio -%}
+              {%- assign force_crop = false -%}
+              {%- if ratio < 0.5 -%}
+                {%- assign force_crop = true -%}
+                {%- assign ratio = 1 -%}
+              {%- endif -%}
+
+              <div {% if featured_media_hover %}class="has-hover"{% endif %}>
+                {%- render 'responsive-image' with
+                    image: featured_media
+                    max_width: 2000,
+                    max_height: 2000,
+                    section_color: section_color,
+                    responsive_image_counter: loop_index,
+                    image_id: block.settings.id
+                -%}
+
+                {% if featured_media_hover %}
+                  <div class="product-item-hover absolute top--0 right--0 bottom--0 left--0 z1 lazyload bg-cover bg--{{ section_color }}-background"
+                      data-bgset="{% render 'bgset', image: featured_media_hover %}"
+                      data-sizes="auto"
+                      data-parent-fit="cover">
+                  </div>
+                {% endif %}
+              </div>
+
+            </div>
+          {% endunless %}
+          <h3 class="color--{{ section_color }}-text m0 mt2 font-size--m md--up--font-size--m">
+            {{ block.settings.w_title }}
+          </h3>
+
+        {% if block.settings.w_link != blank %}
+            <div class="mw-1 mt2 btn border--none btn--add-to-cart relative color-scheme--black border--none bg--black-text color--black-text--overlay hover-bg--primary p1 full--w block">
+              <span class="add-to-cart-text font-size--xs">View More</span>
+            </div>
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wholesale Products",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Wholesale Products"
+    },
+    {
+       "type": "collection",
+       "id": "wholesale_collection",
+       "label": "Collection"
+    }    
+  ],
+  "blocks": [
+    {
+      "type": "select",
+      "name": "Select", 
+      "settings": [
+        {
+          "id": "w_prod",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "w_prod_hover",
+          "type": "image_picker",
+          "label": "Hover Image"
+        },        
+        {
+          "id": "w_title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "w_link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wholesale Product",
+      "blocks": [
+        {
+          "type": "select"
+        }
+      ]
+    }
+  ]  
+}
+{% endschema %}
+
+{% stylesheet %}
+  .has-hover:hover img {
+    opacity: 0;
+  }
+  .display-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 60px;
+  }
+  .bg--white-background {
+    background: #fff; 
+  }
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .icon {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-position: center center;
+    margin: 0 10px 10px 0;
+  }
+  @media only screen and (min-width: 750px){
+    .display-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 70px;
+    }    
+  }
+  @media only screen and (min-width: 990px){
+
+  }
+  @media only screen and (min-width: 1380px){
+    .display-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    } 
+    .display-grid.grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .display-grid.grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }    
+  }
+{% endstylesheet %}
