@@ -1,12 +1,10 @@
 {%- assign section_color = section.settings.color_scheme -%}
-
 {%- assign heading_fontsize__mobile_full = 'font-size--xxl line-height--7 md--line-height--7 lg--up--font-size--xxxl lg--up--line-height--9 wd--font-size--xxxxl wd--line-height--11' -%}
 {%- assign heading_fontsize__mobile_half = 'font-size--xl line-height--6 pm--font-size--xxl pm--line-height--7 lg--up--font-size--xxxl lg--up--line-height--8 wd--font-size--xxxxl wd--line-height--11' -%}
 {%- assign font_size = 'font-size--sm md--up--font-size--m line-height--3 lg--up--font-size--ml lg--up--line-height--5' -%}
-
 {% assign text_position = section.settings.text_position %}
 
-<section class="cascade section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-type="cascade" data-section-id="{{ section.id }}">
+<section class="section-with-padding color--{{ section_color }}-text bg--{{ section_color }}-background" data-section-type="" data-section-id="{{ section.id }}">
   <div class="max-site-width px2 lg--up--px3">
     {% if section.blocks.size > 0 %}
       {% comment %}
@@ -15,95 +13,38 @@
       {% liquid
         assign items = section.blocks
         assign using_blocks = true
-
-        assign col_count_desktop = 1
-        assign index = 1
-
-        assign collection_count = section.blocks.size
-        assign remainder =  collection_count | modulo: 2
-        if remainder == 0
-          assign odd_count = false
-        else
-          assign odd_count = true
-        endif
       %}
 
-      <div class="cascading-content">
-        <cascading-content class="items overflow--hidden" item-selector=".item" column-width=".column-sizer" gutter=".item-sizer" percent-position="true" is-layout-instant="true" origin-left="{{ origin_left }}" {% if settings.fade_in_items %}fade-in{% endif %}>
-          <div class="item-sizer"></div>
-          <div class="column-sizer"></div>
-          {% for item in items %}
-            {% liquid
-              assign collection = collections[item.settings.collection]
-              assign title = collection.title
-              assign show_cta = item.settings.show_collection_link
-              assign cta_text = item.settings.cta_text
-              assign heading_class = 'font-size__heading-mobile-full'
-              assign local_color = item.settings.text_color
-              assign placeholder = true
+      <div class="">
+        {% for item in items %}
+          {% assign isLastItem = false %}
+          {% if forloop.last %}
+            {% assign isLastItem = true %}
+          {% endif %}
+          {% liquid
+            assign collection = collections[item.settings.collection]
+            assign title = collection.title
+            assign show_cta = item.settings.show_collection_link
+            assign cta_text = item.settings.cta_text
+            assign heading_class = 'font-size__heading-mobile-half'
+            assign local_color = item.settings.text_color
+          %}
+          {%- render 'collection-item',
+              collection: collection,
+              title: title,
+              show_cta: show_cta,
+              cta_text: cta_text,
+              heading_class: heading_class,
+              local_color: local_color,
+              text_position: text_position,
+              section_color: section_color,
+              isLast: isLastItem
+          -%}
+          
 
-              if item.settings.collection and item.settings.collection != ''
-                assign placeholder = false
-              endif
-
-              if forloop.first and odd_count
-                assign block_width_mobile = 'full'
-                assign block_width_desktop = 'full'
-              else
-                assign block_width_mobile = 'full'
-                assign block_width_desktop = 'half'
-              endif
-
-              if index == 2 and odd_count
-                assign first_col_desktop = true
-              else
-                assign first_col_desktop = false
-              endif
-
-              if forloop.last
-                assign last_col = true
-              endif
-            %}
-            {%- capture mobile_count -%}{%- cycle '1', '2' -%}{%- endcapture -%}
-            <div class="item item--desktop--{{ block_width_desktop }} item--mobile--full {% if forloop.first %}item--first{% endif %} {% if first_col_desktop %}first-col--desktop{% endif %} {% if last_col %}item--last{% endif %}  {% if settings.fade_in_items %}fade-in{% endif %}">
-              <div class="item__inner {% if block_width_desktop == 'full' %}lg--up--two-thirds lg--up--mx--auto{% endif %}">
-                <div class=" {% if mobile_count == '1' %}md--dn--pr4{% else %}md--dn--pl4{% endif %} {% if col_count_desktop == 2 or col_count_desktop == 3 %}lg--up--five-sixths lg--up--mx--auto{% endif %}">
-                  {% if placeholder %}
-                    {%- render 'cascade__collection-placeholder',
-                        block_width_mobile: item.settings.block_width_mobile,
-                        show_cta: show_cta,
-                        cta_text: cta_text,
-                        heading_class: heading_class,
-                        local_color: local_color,
-                        text_position: text_position,
-                        section_color: section_color,
-                    -%}
-                  {% else %}
-                    {%- render 'collection-item',
-                        collection: collection,
-                        title: title,
-                        block_width_mobile: item.settings.block_width_mobile,
-                        show_cta: show_cta,
-                        cta_text: cta_text,
-                        heading_class: heading_class,
-                        local_color: local_color,
-                        text_position: text_position,
-                        section_color: section_color,
-                    -%}
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-            {% liquid
-              assign col_count_desktop = col_count_desktop | plus: 1
-              if col_count_desktop == 5
-                assign col_count_desktop = 1
-              endif
-              assign index = index | plus: 1
-            %}
-          {% endfor %}
-        </cascading-content>
+        {% endfor %}
       </div>
+
     {% else %}
       {% comment %}
         Default collections
@@ -171,6 +112,7 @@
                             local_color: local_color,
                             text_position: text_position,
                             section_color: section_color,
+                            index: forloop.index
                         -%}
                       </div>
                     </div>
@@ -296,3 +238,14 @@
   ]
 }
 {% endschema %}
+
+<style>
+@media only screen and (min-width: 1400px) {
+  .grid {
+    margin-left: -40px;
+  }
+  .grid__item {
+    padding-left: 40px;
+  }  
+}
+</style>

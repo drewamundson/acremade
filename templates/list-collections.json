@@ -2,7 +2,37 @@
   "sections": {
     "main": {
       "type": "list-collections-template",
-      "settings": {}
+      "blocks": {
+        "a4cd5b66-bf73-49d2-bdd0-3e5a94fc4f72": {
+          "type": "collection",
+          "settings": {
+            "collection": "plant-based-egg-alternatives",
+            "text_color": "primary",
+            "show_collection_link": true,
+            "cta_text": "Shop now"
+          }
+        },
+        "709127df-4ee3-4bd0-bd5c-09adeed65340": {
+          "type": "collection",
+          "settings": {
+            "collection": "plant-based-meat-alternatives",
+            "text_color": "primary",
+            "show_collection_link": true,
+            "cta_text": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "a4cd5b66-bf73-49d2-bdd0-3e5a94fc4f72",
+        "709127df-4ee3-4bd0-bd5c-09adeed65340"
+      ],
+      "settings": {
+        "max_collections": 8,
+        "show_cta": true,
+        "text_position": "under",
+        "overlay_color": "primary",
+        "color_scheme": "primary"
+      }
     }
   },
   "order": [

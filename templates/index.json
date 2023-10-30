@@ -2,7 +2,6 @@
   "sections": {
     "cascade-0": {
       "type": "cascade",
-      "disabled": true,
       "blocks": {
         "rich-text-0": {
           "type": "rich_text",
@@ -40,6 +39,7 @@
         "image-1",
         "image-0"
       ],
+      "disabled": true,
       "settings": {
         "first_item": "left",
         "color_scheme": "primary"
@@ -118,7 +118,6 @@
     },
     "cascade-2": {
       "type": "cascade",
-      "disabled": true,
       "blocks": {
         "heading-0": {
           "type": "heading",
@@ -164,6 +163,7 @@
         "image-1",
         "6707061c-b46d-4b3f-a886-39f4c0cf1f0f"
       ],
+      "disabled": true,
       "settings": {
         "first_item": "left",
         "color_scheme": "tertiary"

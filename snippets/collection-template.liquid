@@ -625,7 +625,7 @@
                 {% endfor %}
               {% endfor %}
             </div>
-          {% else %}
+          {% elsif layout == 'cascade' %}
             <div class="collection-cascade">
               <cascading-content class="items"
                                  item-selector=".item"
@@ -691,7 +691,22 @@
                 {% endif %}
 
               </cascading-content>
+            </div>          
+          {% else %}
+
+            <div class="grid grid--uniform sm--grid--half-gutter mtn3 lg--up--mtn4">
+              {% for product in collection.products %}
+                <div class="product-grid-item grid__item sm--one-half md--up--one-quarter mt3 lg--up--mt4">
+                    {%- render 'product-grid-item',
+                        product: product,
+                        section_color: section_color,
+                        loop_index: forloop.index0,
+                    -%}
+                </div>
+              {% endfor %}
             </div>
+
+
           {% endif %}
         {% else %}
           <p class="mt2">{{ 'collections.general.no_matches' | t }}</p>
@@ -710,3 +725,14 @@
 
   </div> 
 </section>
+
+<style>
+@media only screen and (min-width: 1400px) {
+  .grid {
+    margin-left: -40px;
+  }
+  .grid__item {
+    padding-left: 40px;
+  }  
+}
+</style>

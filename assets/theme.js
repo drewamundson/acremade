@@ -26757,6 +26757,7 @@ var variants_Variants = function () {
     _onSelectChange: function _onSelectChange() {
       var variant = this._getVariantFromOptions();
 
+
       this.$container.trigger({
         type: 'variantChange',
         variant: variant
@@ -28926,7 +28927,7 @@ window.addEventListener('DOMContentLoaded', function () {
     } else {
       $(this).find('.product-item-hover ').removeClass('show');
     }
-  });
+  });  
   load('*');
   var themeName = "Cascade",
       themeVersion = "2.2.0";

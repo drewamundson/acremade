@@ -409,6 +409,9 @@
                   {% for pic in pics %}
                     {%- assign txt = pic | append: '_text' -%}
                     {%- assign purl = pic | append: '_url' -%}
+
+                    {%- assign hoverpic = pic | append: '_hover' -%}
+
                     {%- if block.settings[pic] -%}
                     {%- if block.settings[purl] != blank -%}
                       <a href="{{ block.settings[purl] }}" class="block">
@@ -421,15 +424,29 @@
                             <span>{{ block.settings[txt] }}</span>
                           </h3>
                         </div>
-                      {% endif %}                    
-                      {% render 'responsive-image' with
-                        image: block.settings[pic],
-                        max_width: 1000,
-                        max_height: 1000,
-                        section_color: section_color,
-                        image_class: 'contain',
-                        wrapper_class: ''
-                      %}
+                      {% endif %}
+                      <div class="relative">
+                        {% render 'responsive-image' with
+                          image: block.settings[pic],
+                          max_width: 1000,
+                          max_height: 1000,
+                          section_color: section_color,
+                          image_class: 'contain',
+                          wrapper_class: ''
+                        %} 
+                        {% comment %} {% if block.settings[hoverpic] %}
+                          <div class="product-item-hover absolute top--0 right--0 bottom--0 left--0 z1 bg-cover bg--primary-background lazyloaded">
+                            {% render 'responsive-image' with
+                                image: block.settings[hoverpic],
+                                max_width: 1000,
+                                max_height: 1000,
+                                section_color: section_color,
+                                image_class: 'contain',
+                                wrapper_class: ''
+                            %}
+                          </div>
+                        {% endif %} {% endcomment %}
+                      </div>
                     {%- if block.settings[purl] != blank -%}
                       </a>
                     {%- else -%}
@@ -438,6 +455,9 @@
 
                     {%- endif -%}
                   {% endfor %}
+
+
+
                 </div>
               </div>
 
@@ -639,6 +659,12 @@
             "info": "1250 x 1400px recommended"
           },
           {
+            "type": "image_picker",
+            "id": "image_1_hover",
+            "label": "Hover Image",
+            "info": "1250 x 1400px recommended"
+          },
+          {
             "type": "text",
             "id": "image_1_text",
             "label": "Title"
@@ -654,6 +680,12 @@
             "label": "Image",
             "info": "1250 x 1400px recommended"
           },
+          {
+            "type": "image_picker",
+            "id": "image_2_hover",
+            "label": "Hover Image",
+            "info": "1250 x 1400px recommended"
+          },          
           {
             "type": "text",
             "id": "image_2_text",
@@ -671,6 +703,12 @@
             "info": "1250 x 1400px recommended"
           },
           {
+            "type": "image_picker",
+            "id": "image_3_hover",
+            "label": "Hover Image",
+            "info": "1250 x 1400px recommended"
+          },          
+          {
             "type": "text",
             "id": "image_3_text",
             "label": "Title"
@@ -686,6 +724,12 @@
             "label": "Image",
             "info": "1250 x 1400px recommended"
           },
+          {
+            "type": "image_picker",
+            "id": "image_4_hover",
+            "label": "Hover Image",
+            "info": "1250 x 1400px recommended"
+          },          
           {
             "type": "text",
             "id": "image_4_text",
@@ -779,8 +823,9 @@
     width: 85%;
     height: 85%;
     background: rgb(224, 193, 63);
-    left: 16px;
     top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .hover:hover .main-pic {
@@ -841,3 +886,15 @@
   }
 
 {% endstylesheet %}
+
+<script>
+
+  $(document).on('mouseenter mouseleave', '.main-pic a', function (e) {
+    if (e.type === 'mouseenter') {
+      $(this).find('.product-item-hover ').addClass('show');
+    } else {
+      $(this).find('.product-item-hover ').removeClass('show');
+    }
+  });
+
+</script>
