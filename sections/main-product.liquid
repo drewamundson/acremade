@@ -1366,29 +1366,27 @@
 
       $(document).ready(function(){
         var me_val = $('.selector-wrapper.js select').val();
-        if(me_val == 'Food Service Case (8 lbs)' || me_val == 'Retail Caddy (8 x 4.9 oz)' || me_val == '3 Multipack Discount (24 Pouches)'){
-          $('.product').find('.la').hide();
-          $('.product').find('.add-to-cart-container').add('.pdp-toggle').show();
-        } else {
+        if(me_val == 'Single Pouch (4.9 oz)'){
           $('.product').find('.add-to-cart-container').add('.pdp-toggle').hide();
           $('.product').find('.la').show();
+        } else {
+          $('.product').find('.la').hide();
+          $('.product').find('.add-to-cart-container').add('.pdp-toggle').show();          
         }
       });
 
       $('.selector-wrapper.js select').on('change', function(){
         var $me = $(this),
             me_val = $me.val();
-        if(me_val == 'Food Service Case (8 lbs)' || me_val == 'Retail Caddy (8 x 4.9 oz)' || me_val == '3 Multipack Discount (24 Pouches)'){
-          $('.product').find('.la').hide();
-          $('.product').find('.add-to-cart-container').add('.pdp-toggle').show();
-        } else {
+        if(me_val == 'Single Pouch (4.9 oz)'){
           $('.product').find('.add-to-cart-container').add('.pdp-toggle').hide();
           $('.product').find('.la').show();
+        } else {
+          $('.product').find('.la').hide();
+          $('.product').find('.add-to-cart-container').add('.pdp-toggle').show();
         }
       });
     })(jQuery);
   </script>  
-
-
 
 {% endif %}
