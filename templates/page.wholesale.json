@@ -30,7 +30,7 @@
             "w_prod": "shopify:\/\/shop_images\/Frozen-Patty-Box_1_1.png",
             "w_prod_hover": "shopify:\/\/shop_images\/Egg-Patty_Plate_1.png",
             "w_title": "Frozen Plant-Based Egg Patty Foodservice Case",
-            "w_link": "shopify:\/\/products\/frozen-plant-based-egg-patty-foodservice-case"
+            "w_link": "shopify:\/\/products\/egg-patties"
           }
         },
         "6bbd0eac-1717-4f52-b665-d08ed4fd2b01": {
@@ -39,7 +39,7 @@
             "w_prod": "shopify:\/\/shop_images\/Egg_Replacer_V1_1_1.png",
             "w_prod_hover": "shopify:\/\/shop_images\/DSC07825-2_1_1.jpg",
             "w_title": "Plant-Based Egg Replacer for Baking",
-            "w_link": "shopify:\/\/products\/plant-based-egg-replacer-for-baking"
+            "w_link": "shopify:\/\/products\/replacer"
           }
         },
         "103ed6f3-6257-4488-99ec-4587d9e4256a": {
@@ -60,6 +60,17 @@
       ],
       "settings": {
         "wholesale_collection": "wholesale"
+      }
+    },
+    "720e7d9e-645e-4c49-96fc-4924aefb93ce": {
+      "type": "custom",
+      "settings": {
+        "title": "Now available through Faire",
+        "subheading": "",
+        "cta_url": "",
+        "cta_text": "Shop Now",
+        "custom_html": "<iframe src=\"https:\/\/www.faire.com\/embed\/bw_ed4h4zqcad\" width=\"900\" height=\"600\" scrolling=\"no\" style=\"margin:0 auto;border:none;display:block;max-width:100%;width:900px;height:600px;\"><\/iframe>",
+        "color_scheme": "primary"
       }
     },
     "wholesale_video_module": {
@@ -167,6 +178,7 @@
   "order": [
     "wholesale",
     "wholesale_products",
+    "720e7d9e-645e-4c49-96fc-4924aefb93ce",
     "wholesale_video_module",
     "wholesale_form",
     "wholesale_features",
